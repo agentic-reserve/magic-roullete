@@ -1,0 +1,228 @@
+// Prisma Schema for Magic Roulette Backend
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// User Model
+model User {
+  id            String   @id @default(cuid())
+  walletAddress String   @unique
+  username      String?  @unique
+  email         String?  @unique
+  avatar        String?
+  
+  // Stats
+  totalGames    Int      @default(0)
+  gamesWon      Int      @default(0)
+  gamesLost     Int      @default(0)
+  totalWagered  Decimal  @default(0) @db.Decimal(20, 9)
+  totalWinnings Decimal  @default(0) @db.Decimal(20, 9)
+  
+  // Achievements
+  level         Int      @default(1)
+  experience    Int      @default(0)
+  badges        Badge[]
+  
+  // Timestamps
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  lastSeenAt    DateTime @default(now())
+  
+  // Relations
+  games         GamePlayer[]
+  transactions  Transaction[]
+  sessions      Session[]
+  
+  @@index([walletAddress])
+  @@index([username])
+}
+
+// Game Model
+model Game {
+  id              String      @id @default(cuid())
+  gameId          BigInt      @unique
+  onChainAddress  String      @unique
+  
+  // Game Details
+  mode            GameMode
+  entryFee        Decimal     @db.Decimal(20, 9)
+  status          GameStatus  @default(WAITING)
+  currentChamber  Int         @default(1)
+  bulletChamber   Int?
+  
+  // Kamino Integration
+  hasLoan         Boolean     @default(false)
+  loanAmount      Decimal?    @db.Decimal(20, 9)
+  collateralAmount Decimal?   @db.Decimal(20, 9)
+  
+  // Players
+  players         GamePlayer[]
+  maxPlayers      Int
+  currentPlayers  Int         @default(0)
+  
+  // Results
+  winnerTeam      Int?
+  winners         String[]    @default([])
+  
+  // Timestamps
+  createdAt       DateTime    @default(now())
+  startedAt       DateTime?
+  finishedAt      DateTime?
+  
+  // Relations
+  transactions    Transaction[]
+  
+  @@index([gameId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Game Player Junction
+model GamePlayer {
+  id        String   @id @default(cuid())
+  gameId    String
+  userId    String
+  
+  game      Game     @relation(fields: [gameId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  team      Int
+  position  Int
+  isAlive   Boolean  @default(true)
+  shotsTaken Int     @default(0)
+  
+  joinedAt  DateTime @default(now())
+  
+  @@unique([gameId, userId])
+  @@index([gameId])
+  @@index([userId])
+}
+
+// Transaction Model
+model Transaction {
+  id              String          @id @default(cuid())
+  signature       String          @unique
+  
+  // Transaction Details
+  type            TransactionType
+  amount          Decimal         @db.Decimal(20, 9)
+  status          TxStatus        @default(PENDING)
+  
+  // Relations
+  userId          String?
+  user            User?           @relation(fields: [userId], references: [id])
+  gameId          String?
+  game            Game?           @relation(fields: [gameId], references: [id])
+  
+  // Metadata
+  blockTime       DateTime?
+  slot            BigInt?
+  error           String?
+  
+  createdAt       DateTime        @default(now())
+  confirmedAt     DateTime?
+  
+  @@index([signature])
+  @@index([userId])
+  @@index([gameId])
+  @@index([type])
+  @@index([status])
+}
+
+// Badge/Achievement Model
+model Badge {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  description String
+  icon        String
+  rarity      Rarity
+  
+  // Requirements
+  requirement String
+  
+  // Users who earned this badge
+  users       User[]
+  
+  createdAt   DateTime @default(now())
+  
+  @@index([rarity])
+}
+
+// Session Model (for JWT tokens)
+model Session {
+  id            String   @id @default(cuid())
+  userId        String
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  token         String   @unique
+  expiresAt     DateTime
+  
+  createdAt     DateTime @default(now())
+  
+  @@index([userId])
+  @@index([token])
+}
+
+// Leaderboard Model (Materialized View)
+model Leaderboard {
+  id            String   @id @default(cuid())
+  userId        String   @unique
+  walletAddress String
+  username      String?
+  
+  // Stats
+  totalGames    Int
+  gamesWon      Int
+  winRate       Decimal  @db.Decimal(5, 2)
+  totalWinnings Decimal  @db.Decimal(20, 9)
+  
+  // Rankings
+  rank          Int      @unique
+  
+  updatedAt     DateTime @updatedAt
+  
+  @@index([rank])
+  @@index([totalWinnings])
+  @@index([winRate])
+}
+
+// Enums
+enum GameMode {
+  ONE_VS_ONE
+  TWO_VS_TWO
+  PRACTICE
+}
+
+enum GameStatus {
+  WAITING
+  IN_PROGRESS
+  FINISHED
+  CANCELLED
+}
+
+enum TransactionType {
+  GAME_ENTRY
+  GAME_PAYOUT
+  LOAN_BORROW
+  LOAN_REPAY
+  FEE_PAYMENT
+}
+
+enum TxStatus {
+  PENDING
+  CONFIRMED
+  FAILED
+}
+
+enum Rarity {
+  COMMON
+  RARE
+  EPIC
+  LEGENDARY
+}

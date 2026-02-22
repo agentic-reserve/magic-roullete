@@ -1,0 +1,100 @@
+{
+  "version": 1,
+  "skills": {
+    "create-agent": {
+      "source": "openrouterteam/agent-skills",
+      "sourceType": "github",
+      "computedHash": "ced8d4f944d0b5afb803720fc4665590eda57c30adfb3ecb493726ba6c66b79c"
+    },
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "computedHash": "25872a21881a950edc3db1f3329664d60405d539660ce05b3265db2de06a7dfd"
+    },
+    "flutter-adaptive-ui": {
+      "source": "madteacher/mad-agents-skills",
+      "sourceType": "github",
+      "computedHash": "7b9c4ecda94f80ae16addab433432ae0e76d1b114a3f87e2df9269954e6196b6"
+    },
+    "flutter-animations": {
+      "source": "madteacher/mad-agents-skills",
+      "sourceType": "github",
+      "computedHash": "0c62d299cfdb82a8a22eadcb9b58c998cb6ceb85368a342689143a0278e4c7bb"
+    },
+    "flutter-architecture": {
+      "source": "madteacher/mad-agents-skills",
+      "sourceType": "github",
+      "computedHash": "6d65653e2930a5f5b108f5ce90520272e37fda9269197e6446a4e07576b36bf5"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "computedHash": "516bd2154eb843a8240e43d5b285229129853114ad7075a5e141e1c08e408c84"
+    },
+    "helius": {
+      "source": "sendaifun/skills",
+      "sourceType": "github",
+      "computedHash": "d9d5e2701a11e6869da4b5e5d0cd13fd34e1020527f9b8e1a105c07079b8221b"
+    },
+    "kamino": {
+      "source": "sendaifun/skills",
+      "sourceType": "github",
+      "computedHash": "695a9662150af933358d5d35a96e233570e7dda8a551bea75cfdc91484368bb2"
+    },
+    "landing-page-copywriter": {
+      "source": "onewave-ai/claude-skills",
+      "sourceType": "github",
+      "computedHash": "af0145f315f49ed498f27478d3a4f17842cbf23d7fe724a05075938027162fc2"
+    },
+    "light-protocol": {
+      "source": "sendaifun/skills",
+      "sourceType": "github",
+      "computedHash": "9e581363eb7fe18dab3fde605bd70206702e12abb4336dec21e0ba93f9c222e6"
+    },
+    "magicblock": {
+      "source": "sendaifun/skills",
+      "sourceType": "github",
+      "computedHash": "0c0480c8755af10bf08e9061f60920a4a04f94e884354792f0b0c28bd6fca93d"
+    },
+    "next-best-practices": {
+      "source": "vercel-labs/next-skills",
+      "sourceType": "github",
+      "computedHash": "c31ddd68ba5798a79a516c619b1e1fc4408cc4876ad600fefa4f5add4425719d"
+    },
+    "openrouter-typescript-sdk": {
+      "source": "openrouterteam/agent-skills",
+      "sourceType": "github",
+      "computedHash": "d6effb9c0f5f5361ed95976936845fd3c9e8eeef53f9214aa2e82845c708fd3f"
+    },
+    "solana-dev": {
+      "source": "solana-foundation/solana-dev-skill",
+      "sourceType": "github",
+      "computedHash": "4e2c6034cd0c067f0177306db5654b6d6b8f0cd319698a6e42eded7948578fd7"
+    },
+    "squads": {
+      "source": "sendaifun/skills",
+      "sourceType": "github",
+      "computedHash": "8c7c3833c0fc8cd6035b6b7a0946d00b255de11f9fe620176a17ba51ab1d8c9f"
+    },
+    "ui-ux-pro-max": {
+      "source": "nextlevelbuilder/ui-ux-pro-max-skill",
+      "sourceType": "github",
+      "computedHash": "4cfe5e95a230616c17d92b44e3cd37bae543ce087a7756a446a62f77d7c58a37"
+    },
+    "vercel-composition-patterns": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "10eb4ec94577b79ae98c63ce3e7f35f8a6a06436a4011bff083b397de6960eeb"
+    },
+    "web-design-guidelines": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "d8e7d3afe37dcc8a97b99ffb5afdb4d0919ae0092ea8b68f44eb201f035e33ac"
+    },
+    "zz-code-recon": {
+      "source": "sendaifun/skills",
+      "sourceType": "github",
+      "computedHash": "9480d576485b59094f5d93d3f21d7b45466d337526bd218de9b9f6334a5dfbbd"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "magic-roulette-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@coral-xyz/anchor": "^0.32.1",
+    "@lightprotocol/stateless.js": "^0.20.0",
+    "@lightprotocol/compressed-token": "^0.20.0",
+    "@magicblock-labs/ephemeral-rollups-sdk": "^0.6.5",
+    "@solana/kit": "^0.1.0",
+    "@solana/client": "^0.1.0",
+    "@solana/react-hooks": "^0.1.0",
+    "@solana/web3.js": "^1.95.8",
+    "next": "15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.6",
+    "typescript": "^5"
+  }
+}

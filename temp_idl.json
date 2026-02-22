@@ -1,0 +1,2067 @@
+{
+  "accounts": [
+    {
+      "discriminator": [
+        27,
+        90,
+        166,
+        125,
+        74,
+        100,
+        121,
+        18
+      ],
+      "name": "Game"
+    },
+    {
+      "discriminator": [
+        160,
+        78,
+        128,
+        0,
+        248,
+        83,
+        230,
+        160
+      ],
+      "name": "PlatformConfig"
+    },
+    {
+      "discriminator": [
+        35,
+        184,
+        225,
+        11,
+        128,
+        5,
+        89,
+        60
+      ],
+      "name": "TreasuryRewards"
+    }
+  ],
+  "address": "JE2fDdXcYEprUR2yPmWdLGDSJ7Y7HD8qsJ52eD6qUavq",
+  "errors": [
+    {
+      "code": 6000,
+      "msg": "Game is already full",
+      "name": "GameFull"
+    },
+    {
+      "code": 6001,
+      "msg": "Game is not ready to start",
+      "name": "GameNotReady"
+    },
+    {
+      "code": 6002,
+      "msg": "Game is not in progress",
+      "name": "GameNotInProgress"
+    },
+    {
+      "code": 6003,
+      "msg": "Not your turn",
+      "name": "NotYourTurn"
+    },
+    {
+      "code": 6004,
+      "msg": "Invalid game mode",
+      "name": "InvalidGameMode"
+    },
+    {
+      "code": 6005,
+      "msg": "Insufficient entry fee",
+      "name": "InsufficientEntryFee"
+    },
+    {
+      "code": 6006,
+      "msg": "VRF result not ready",
+      "name": "VrfNotReady"
+    },
+    {
+      "code": 6007,
+      "msg": "Game already finished",
+      "name": "GameAlreadyFinished"
+    },
+    {
+      "code": 6008,
+      "msg": "Cannot join your own game",
+      "name": "CannotJoinOwnGame"
+    },
+    {
+      "code": 6009,
+      "msg": "Invalid fee configuration",
+      "name": "InvalidFeeConfig"
+    },
+    {
+      "code": 6010,
+      "msg": "Arithmetic overflow",
+      "name": "ArithmeticOverflow"
+    },
+    {
+      "code": 6011,
+      "msg": "No rewards to claim",
+      "name": "NoRewardsToClaim"
+    },
+    {
+      "code": 6012,
+      "msg": "Invalid VRF authority",
+      "name": "InvalidVrfAuthority"
+    },
+    {
+      "code": 6013,
+      "msg": "Invalid token program",
+      "name": "InvalidTokenProgram"
+    },
+    {
+      "code": 6014,
+      "msg": "Invalid vault owner",
+      "name": "InvalidVaultOwner"
+    },
+    {
+      "code": 6015,
+      "msg": "Unauthorized",
+      "name": "Unauthorized"
+    },
+    {
+      "code": 6016,
+      "msg": "Player already in game",
+      "name": "PlayerAlreadyInGame"
+    },
+    {
+      "code": 6017,
+      "msg": "Invalid mint",
+      "name": "InvalidMint"
+    },
+    {
+      "code": 6018,
+      "msg": "Platform paused",
+      "name": "PlatformPaused"
+    },
+    {
+      "code": 6019,
+      "msg": "Cannot join AI game - AI games are single player",
+      "name": "CannotJoinAiGame"
+    },
+    {
+      "code": 6020,
+      "msg": "Insufficient collateral - minimum 110% of entry fee required",
+      "name": "InsufficientCollateral"
+    },
+    {
+      "code": 6021,
+      "msg": "Loan repayment failed",
+      "name": "LoanRepaymentFailed"
+    },
+    {
+      "code": 6022,
+      "msg": "Invalid Kamino market",
+      "name": "InvalidKaminoMarket"
+    },
+    {
+      "code": 6023,
+      "msg": "Invalid Kamino obligation",
+      "name": "InvalidKaminoObligation"
+    },
+    {
+      "code": 6024,
+      "msg": "Collateral withdrawal failed",
+      "name": "CollateralWithdrawalFailed"
+    },
+    {
+      "code": 6025,
+      "msg": "Insufficient winnings to repay loan",
+      "name": "InsufficientWinningsForRepayment"
+    },
+    {
+      "code": 6026,
+      "msg": "Multisig unauthorized - not the platform authority",
+      "name": "MultisigUnauthorized"
+    },
+    {
+      "code": 6027,
+      "msg": "Invalid multisig transaction",
+      "name": "InvalidMultisigTransaction"
+    },
+    {
+      "code": 6028,
+      "msg": "Multisig proposal not approved",
+      "name": "MultisigProposalNotApproved"
+    },
+    {
+      "code": 6029,
+      "msg": "Insufficient treasury balance",
+      "name": "InsufficientTreasuryBalance"
+    },
+    {
+      "code": 6030,
+      "msg": "Invalid vault balance",
+      "name": "InsufficientVaultBalance"
+    },
+    {
+      "code": 6031,
+      "msg": "Invalid winner - does not match game participants",
+      "name": "InvalidWinner"
+    }
+  ],
+  "instructions": [
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "Game",
+                "kind": "account",
+                "path": "game.game_id"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "ai_bot",
+          "signer": true
+        }
+      ],
+      "args": [],
+      "discriminator": [
+        124,
+        177,
+        111,
+        214,
+        237,
+        140,
+        208,
+        53
+      ],
+      "docs": [
+        "AI bot takes a shot"
+      ],
+      "name": "ai_take_shot"
+    },
+    {
+      "accounts": [
+        {
+          "name": "rewards",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  114,
+                  101,
+                  119,
+                  97,
+                  114,
+                  100,
+                  115
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "player"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "player",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "treasury_vault",
+          "writable": true
+        },
+        {
+          "name": "player_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": [],
+      "discriminator": [
+        4,
+        144,
+        132,
+        71,
+        116,
+        23,
+        151,
+        80
+      ],
+      "docs": [
+        "Claim rewards from treasury"
+      ],
+      "name": "claim_rewards"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "PlatformConfig",
+                "kind": "account",
+                "path": "platform_config.total_games"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "player",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "name": "ai_bot"
+        },
+        {
+          "address": "11111111111111111111111111111111",
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "ai_difficulty",
+          "type": {
+            "defined": {
+              "name": "AiDifficulty"
+            }
+          }
+        },
+        {
+          "name": "vrf_seed",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ],
+      "discriminator": [
+        21,
+        176,
+        186,
+        240,
+        32,
+        105,
+        202,
+        39
+      ],
+      "docs": [
+        "Create AI practice game (FREE - no entry fee, no prizes)"
+      ],
+      "name": "create_ai_game"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "PlatformConfig",
+                "kind": "account",
+                "path": "platform_config.total_games"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "creator",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "creator_token_account",
+          "writable": true
+        },
+        {
+          "name": "game_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        },
+        {
+          "address": "11111111111111111111111111111111",
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "game_mode",
+          "type": {
+            "defined": {
+              "name": "GameMode"
+            }
+          }
+        },
+        {
+          "name": "entry_fee",
+          "type": "u64"
+        },
+        {
+          "name": "vrf_seed",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ],
+      "discriminator": [
+        124,
+        69,
+        75,
+        66,
+        184,
+        220,
+        72,
+        206
+      ],
+      "docs": [
+        "Create a new game (1v1 or 2v2)"
+      ],
+      "name": "create_game"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "PlatformConfig",
+                "kind": "account",
+                "path": "platform_config.total_games"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "creator",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "docs": [
+            "Game vault PDA - holds SOL for this game"
+          ],
+          "name": "game_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "address": "11111111111111111111111111111111",
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "game_mode",
+          "type": {
+            "defined": {
+              "name": "GameMode"
+            }
+          }
+        },
+        {
+          "name": "entry_fee",
+          "type": "u64"
+        },
+        {
+          "name": "vrf_seed",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ],
+      "discriminator": [
+        118,
+        164,
+        195,
+        199,
+        45,
+        65,
+        73,
+        210
+      ],
+      "docs": [
+        "Create a new game with SOL betting (native Solana)"
+      ],
+      "name": "create_game_sol"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "PlatformConfig",
+                "kind": "account",
+                "path": "platform_config.total_games"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "player",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "docs": [
+            "Game vault PDA - holds SOL for this game"
+          ],
+          "name": "game_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "lending_market"
+        },
+        {
+          "name": "lending_market_authority"
+        },
+        {
+          "name": "reserve",
+          "writable": true
+        },
+        {
+          "name": "reserve_liquidity_supply",
+          "writable": true
+        },
+        {
+          "name": "reserve_collateral_mint",
+          "writable": true
+        },
+        {
+          "name": "reserve_collateral_supply",
+          "writable": true
+        },
+        {
+          "name": "obligation",
+          "writable": true
+        },
+        {
+          "name": "player_collateral_account",
+          "writable": true
+        },
+        {
+          "name": "obligation_collateral",
+          "writable": true
+        },
+        {
+          "name": "kamino_program"
+        },
+        {
+          "name": "pyth_sol_price"
+        },
+        {
+          "name": "switchboard_sol_price"
+        },
+        {
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "name": "token_program"
+        },
+        {
+          "address": "11111111111111111111111111111111",
+          "name": "system_program"
+        },
+        {
+          "address": "SysvarRent111111111111111111111111111111111",
+          "name": "rent"
+        },
+        {
+          "address": "SysvarC1ock11111111111111111111111111111111",
+          "name": "clock"
+        }
+      ],
+      "args": [
+        {
+          "name": "game_mode",
+          "type": {
+            "defined": {
+              "name": "GameMode"
+            }
+          }
+        },
+        {
+          "name": "entry_fee",
+          "type": "u64"
+        },
+        {
+          "name": "collateral_amount",
+          "type": "u64"
+        },
+        {
+          "name": "vrf_seed",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ],
+      "discriminator": [
+        1,
+        51,
+        60,
+        229,
+        238,
+        170,
+        194,
+        25
+      ],
+      "docs": [
+        "Create a new game with Kamino loan (borrow SOL for entry fee)"
+      ],
+      "name": "create_game_with_loan"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "Game",
+                "kind": "account",
+                "path": "game.game_id"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "signer": true,
+          "writable": true
+        }
+      ],
+      "args": [],
+      "discriminator": [
+        116,
+        183,
+        70,
+        107,
+        112,
+        223,
+        122,
+        210
+      ],
+      "docs": [
+        "Delegate game to Private Ephemeral Rollup",
+        "NOTE: This function is a placeholder. Actual delegation is handled by MagicBlock SDK",
+        "on the client side using createDelegateInstruction()"
+      ],
+      "name": "delegate_game"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "Game",
+                "kind": "account",
+                "path": "game.game_id"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "game_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "platform_vault",
+          "writable": true
+        },
+        {
+          "name": "treasury_vault",
+          "writable": true
+        },
+        {
+          "name": "winner1",
+          "writable": true
+        },
+        {
+          "name": "winner1_token_account",
+          "writable": true
+        },
+        {
+          "name": "winner2",
+          "writable": true
+        },
+        {
+          "name": "winner2_token_account",
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": [],
+      "discriminator": [
+        203,
+        227,
+        3,
+        167,
+        186,
+        102,
+        76,
+        10
+      ],
+      "docs": [
+        "Finalize game and distribute winnings"
+      ],
+      "name": "finalize_game"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "Game",
+                "kind": "account",
+                "path": "game.game_id"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "docs": [
+            "Game vault PDA - holds SOL for this game"
+          ],
+          "name": "game_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "docs": [
+            "Platform authority wallet (receives platform fee)"
+          ],
+          "name": "platform_authority",
+          "writable": true
+        },
+        {
+          "docs": [
+            "Treasury wallet (receives treasury fee)"
+          ],
+          "name": "treasury",
+          "writable": true
+        },
+        {
+          "name": "winner1",
+          "writable": true
+        },
+        {
+          "name": "winner2",
+          "writable": true
+        },
+        {
+          "address": "11111111111111111111111111111111",
+          "name": "system_program"
+        }
+      ],
+      "args": [],
+      "discriminator": [
+        225,
+        161,
+        115,
+        148,
+        92,
+        198,
+        124,
+        110
+      ],
+      "docs": [
+        "Finalize game and distribute SOL winnings"
+      ],
+      "name": "finalize_game_sol"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "docs": [
+            "Game vault PDA"
+          ],
+          "name": "game_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "lending_market"
+        },
+        {
+          "name": "lending_market_authority"
+        },
+        {
+          "name": "reserve",
+          "writable": true
+        },
+        {
+          "name": "reserve_liquidity_supply",
+          "writable": true
+        },
+        {
+          "name": "reserve_collateral_mint",
+          "writable": true
+        },
+        {
+          "name": "obligation",
+          "writable": true
+        },
+        {
+          "name": "obligation_collateral",
+          "writable": true
+        },
+        {
+          "name": "player_collateral_account",
+          "writable": true
+        },
+        {
+          "name": "kamino_program"
+        },
+        {
+          "name": "winner1",
+          "writable": true
+        },
+        {
+          "name": "winner2",
+          "writable": true
+        },
+        {
+          "name": "platform_vault",
+          "writable": true
+        },
+        {
+          "name": "treasury_vault",
+          "writable": true
+        },
+        {
+          "address": "TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA",
+          "name": "token_program"
+        },
+        {
+          "address": "11111111111111111111111111111111",
+          "name": "system_program"
+        }
+      ],
+      "args": [],
+      "discriminator": [
+        12,
+        177,
+        99,
+        41,
+        121,
+        122,
+        161,
+        114
+      ],
+      "docs": [
+        "Finalize game and auto-repay Kamino loan from winnings"
+      ],
+      "name": "finalize_game_with_loan"
+    },
+    {
+      "accounts": [
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "authority",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "name": "treasury"
+        },
+        {
+          "docs": [
+            "Platform token mint (Token-2022)"
+          ],
+          "name": "platform_mint"
+        },
+        {
+          "address": "11111111111111111111111111111111",
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "platform_fee_bps",
+          "type": "u16"
+        },
+        {
+          "name": "treasury_fee_bps",
+          "type": "u16"
+        }
+      ],
+      "discriminator": [
+        119,
+        201,
+        101,
+        45,
+        75,
+        122,
+        89,
+        3
+      ],
+      "docs": [
+        "Initialize platform configuration"
+      ],
+      "name": "initialize_platform"
+    },
+    {
+      "accounts": [
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "payer",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "docs": [
+            "This should be created separately using Squads SDK"
+          ],
+          "name": "multisig"
+        },
+        {
+          "docs": [
+            "Derived from multisig with index 0"
+          ],
+          "name": "platform_vault"
+        },
+        {
+          "docs": [
+            "Derived from multisig with index 1"
+          ],
+          "name": "treasury_vault"
+        },
+        {
+          "docs": [
+            "Platform mint (for token-based games)"
+          ],
+          "name": "platform_mint"
+        },
+        {
+          "address": "11111111111111111111111111111111",
+          "name": "system_program"
+        }
+      ],
+      "args": [
+        {
+          "name": "platform_fee_bps",
+          "type": "u16"
+        },
+        {
+          "name": "treasury_fee_bps",
+          "type": "u16"
+        }
+      ],
+      "discriminator": [
+        200,
+        169,
+        249,
+        38,
+        43,
+        94,
+        244,
+        11
+      ],
+      "docs": [
+        "Initialize platform with Squads multisig as authority"
+      ],
+      "name": "initialize_platform_with_multisig"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "Game",
+                "kind": "account",
+                "path": "game.game_id"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "player",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "mint"
+        },
+        {
+          "name": "player_token_account",
+          "writable": true
+        },
+        {
+          "name": "game_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "token_program"
+        }
+      ],
+      "args": [],
+      "discriminator": [
+        107,
+        112,
+        18,
+        38,
+        56,
+        173,
+        60,
+        128
+      ],
+      "docs": [
+        "Join an existing game"
+      ],
+      "name": "join_game"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "Game",
+                "kind": "account",
+                "path": "game.game_id"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "player",
+          "signer": true,
+          "writable": true
+        },
+        {
+          "name": "platform_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  112,
+                  108,
+                  97,
+                  116,
+                  102,
+                  111,
+                  114,
+                  109
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "docs": [
+            "Game vault PDA - holds SOL for this game"
+          ],
+          "name": "game_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101,
+                  95,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "game"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "address": "11111111111111111111111111111111",
+          "name": "system_program"
+        }
+      ],
+      "args": [],
+      "discriminator": [
+        27,
+        12,
+        241,
+        34,
+        204,
+        30,
+        28,
+        173
+      ],
+      "docs": [
+        "Join an existing game with SOL"
+      ],
+      "name": "join_game_sol"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "Game",
+                "kind": "account",
+                "path": "game.game_id"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "docs": [
+            "VRF authority - TODO: Add constraint when VRF program ID is known"
+          ],
+          "name": "vrf_authority",
+          "signer": true
+        }
+      ],
+      "args": [
+        {
+          "name": "randomness",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ],
+      "discriminator": [
+        221,
+        44,
+        6,
+        25,
+        159,
+        162,
+        58,
+        234
+      ],
+      "docs": [
+        "Process VRF randomness result"
+      ],
+      "name": "process_vrf_result"
+    },
+    {
+      "accounts": [
+        {
+          "name": "game",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  103,
+                  97,
+                  109,
+                  101
+                ]
+              },
+              {
+                "account": "Game",
+                "kind": "account",
+                "path": "game.game_id"
+              }
+            ]
+          },
+          "writable": true
+        },
+        {
+          "name": "player",
+          "signer": true
+        }
+      ],
+      "args": [],
+      "discriminator": [
+        244,
+        148,
+        117,
+        240,
+        147,
+        230,
+        251,
+        171
+      ],
+      "docs": [
+        "Player takes a shot (executed in Private ER)"
+      ],
+      "name": "take_shot"
+    }
+  ],
+  "metadata": {
+    "description": "Russian Roulette GameFi on Solana",
+    "name": "magic_roulette",
+    "spec": "0.1.0",
+    "version": "0.1.0"
+  },
+  "types": [
+    {
+      "name": "AiDifficulty",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Easy"
+          },
+          {
+            "name": "Medium"
+          },
+          {
+            "name": "Hard"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Game",
+      "type": {
+        "fields": [
+          {
+            "name": "game_id",
+            "type": "u64"
+          },
+          {
+            "name": "creator",
+            "type": "pubkey"
+          },
+          {
+            "name": "game_mode",
+            "type": {
+              "defined": {
+                "name": "GameMode"
+              }
+            }
+          },
+          {
+            "name": "status",
+            "type": {
+              "defined": {
+                "name": "GameStatus"
+              }
+            }
+          },
+          {
+            "name": "entry_fee",
+            "type": "u64"
+          },
+          {
+            "name": "total_pot",
+            "type": "u64"
+          },
+          {
+            "name": "is_ai_game",
+            "type": "bool"
+          },
+          {
+            "name": "ai_difficulty",
+            "type": {
+              "option": {
+                "defined": {
+                  "name": "AiDifficulty"
+                }
+              }
+            }
+          },
+          {
+            "name": "ai_player",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "is_practice_mode",
+            "type": "bool"
+          },
+          {
+            "name": "has_loan",
+            "type": "bool"
+          },
+          {
+            "name": "loan_obligation",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "collateral_amount",
+            "type": "u64"
+          },
+          {
+            "name": "loan_amount",
+            "type": "u64"
+          },
+          {
+            "name": "team_a",
+            "type": {
+              "array": [
+                "pubkey",
+                2
+              ]
+            }
+          },
+          {
+            "name": "team_b",
+            "type": {
+              "array": [
+                "pubkey",
+                2
+              ]
+            }
+          },
+          {
+            "name": "team_a_count",
+            "type": "u8"
+          },
+          {
+            "name": "team_b_count",
+            "type": "u8"
+          },
+          {
+            "name": "bullet_chamber",
+            "type": "u8"
+          },
+          {
+            "name": "current_chamber",
+            "type": "u8"
+          },
+          {
+            "name": "current_turn",
+            "type": "u8"
+          },
+          {
+            "name": "shots_taken",
+            "type": "u8"
+          },
+          {
+            "name": "vrf_seed",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "vrf_result",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          },
+          {
+            "name": "winner_team",
+            "type": {
+              "option": "u8"
+            }
+          },
+          {
+            "name": "created_at",
+            "type": "i64"
+          },
+          {
+            "name": "finished_at",
+            "type": {
+              "option": "i64"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "GameMode",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "OneVsOne"
+          },
+          {
+            "name": "TwoVsTwo"
+          },
+          {
+            "name": "HumanVsAi"
+          }
+        ]
+      }
+    },
+    {
+      "name": "GameStatus",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "WaitingForPlayers"
+          },
+          {
+            "name": "Delegated"
+          },
+          {
+            "name": "InProgress"
+          },
+          {
+            "name": "Finished"
+          },
+          {
+            "name": "Cancelled"
+          }
+        ]
+      }
+    },
+    {
+      "name": "PlatformConfig",
+      "type": {
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "treasury",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_mint",
+            "type": "pubkey"
+          },
+          {
+            "name": "platform_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "treasury_fee_bps",
+            "type": "u16"
+          },
+          {
+            "name": "total_games",
+            "type": "u64"
+          },
+          {
+            "name": "total_volume",
+            "type": "u64"
+          },
+          {
+            "name": "treasury_balance",
+            "type": "u64"
+          },
+          {
+            "name": "paused",
+            "type": "bool"
+          },
+          {
+            "name": "multisig_authority",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "platform_vault",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "treasury_vault",
+            "type": {
+              "option": "pubkey"
+            }
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    },
+    {
+      "name": "TreasuryRewards",
+      "type": {
+        "fields": [
+          {
+            "name": "player",
+            "type": "pubkey"
+          },
+          {
+            "name": "claimable_amount",
+            "type": "u64"
+          },
+          {
+            "name": "total_claimed",
+            "type": "u64"
+          },
+          {
+            "name": "last_claim",
+            "type": "i64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ],
+        "kind": "struct"
+      }
+    }
+  ]
+}

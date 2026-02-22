@@ -1,0 +1,23 @@
+{
+  "network": "devnet",
+  "rpcUrl": "https://api.devnet.solana.com",
+  "kaminoProgram": "KLend2g3cP87fffoy8q1mQqGKjrxjC8boSyAYavgmjD",
+  "market": "DxXdAyU3kCjnyggvHmY5nAwg5cRbbmdyX3npfDMjjMek",
+  "marketAuthority": "4oJCGNtxwBBtCBGBGzLDnK9kqtTN4dMGB5zqqTjKDxmX",
+  "reserves": {
+    "note": "Kamino devnet market may not be active. These are placeholder addresses for testing structure.",
+    "SOL": {
+      "address": "PLACEHOLDER_SOL_RESERVE",
+      "liquiditySupply": "PLACEHOLDER_LIQUIDITY_SUPPLY",
+      "collateralMint": "PLACEHOLDER_COLLATERAL_MINT",
+      "collateralSupply": "PLACEHOLDER_COLLATERAL_SUPPLY"
+    }
+  },
+  "oracles": {
+    "pythSolPrice": "J83w4HKfqxwcq3BEMMkPFSppX3gqekLyLJBexebFVkix",
+    "switchboardSolPrice": "GvDMxPzN1sCj7L26YDK2HnMRXEQmQ2aemov8YBtPS7vR"
+  },
+  "updatedAt": "2025-02-22T00:00:00.000Z",
+  "status": "DEVNET_MARKET_NOT_ACTIVE",
+  "recommendation": "Use mainnet Kamino market for production testing, or wait for Kamino devnet deployment"
+}
