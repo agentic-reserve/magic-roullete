@@ -1,0 +1,212 @@
+# Schemathesis Security Testing Configuration
+# API Security Testing untuk Magic Roulette Backend
+
+base_url: http://localhost:3000
+hypothesis:
+  max_examples: 1000
+  deadline: 5000
+  suppress_health_check:
+    - too_slow
+    - filter_too_much
+
+checks:
+  - all
+  - status_code_conformance
+  - content_type_conformance
+  - response_schema_conformance
+
+hooks:
+  - name: before_call
+    handler: hooks.add_auth_header
+  - name: after_call
+    handler: hooks.validate_response
+
+security_tests:
+  sql_injection:
+    enabled: true
+    payloads:
+      - "' OR '1'='1"
+      - "'; DROP TABLE games; --"
+      - "1' UNION SELECT * FROM players --"
+      - "admin' --"
+      - "' OR 1=1 --"
+      - "1' AND '1'='1"
+      - "' OR 'a'='a"
+      - "1; DELETE FROM games WHERE '1'='1"
+      - "' UNION ALL SELECT NULL,NULL,NULL --"
+      - "1' AND SLEEP(5) --"
+
+  xss:
+    enabled: true
+    payloads:
+      - "<script>alert('xss')</script>"
+      - "javascript:alert('xss')"
+      - "<img src=x onerror=alert('xss')>"
+      - "<svg onload=alert('xss')>"
+      - "<iframe src=javascript:alert('xss')>"
+      - "<body onload=alert('xss')>"
+      - "<input onfocus=alert('xss') autofocus>"
+      - "<marquee onstart=alert('xss')>"
+      - "<details open ontoggle=alert('xss')>"
+      - "<video src=x onerror=alert('xss')>"
+
+  csrf:
+    enabled: true
+    check_missing_csrf_token: true
+    check_csrf_token_validation: true
+
+  authentication:
+    enabled: true
+    tests:
+      - missing_auth_header
+      - invalid_token
+      - expired_token
+      - wrong_user_id
+      - empty_token
+      - malformed_token
+
+  authorization:
+    enabled: true
+    tests:
+      - access_other_user_data
+      - modify_other_user_data
+      - delete_other_user_data
+      - privilege_escalation
+
+  rate_limiting:
+    enabled: true
+    requests_per_second: 100
+    expected_status: 429
+
+  input_validation:
+    enabled: true
+    tests:
+      - missing_required_fields
+      - invalid_data_types
+      - out_of_range_values
+      - oversized_payloads
+      - special_characters
+      - unicode_characters
+      - null_bytes
+
+  output_encoding:
+    enabled: true
+    check_html_encoding: true
+    check_json_encoding: true
+    check_url_encoding: true
+
+endpoints:
+  - path: /games
+    method: POST
+    security_tests:
+      - sql_injection
+      - xss
+      - input_validation
+      - authentication
+    test_data:
+      creator:
+        - "player1"
+        - "' OR '1'='1"
+        - "<script>alert('xss')</script>"
+        - ""
+        - null
+      mode:
+        - "OneVsOne"
+        - "TwoVsTwo"
+        - "InvalidMode"
+        - ""
+        - null
+      entryFee:
+        - "100000000"
+        - "0"
+        - "-100"
+        - "999999999999999999"
+        - "abc"
+        - ""
+        - null
+
+  - path: /games/{gameId}/join
+    method: POST
+    security_tests:
+      - sql_injection
+      - xss
+      - input_validation
+      - authentication
+      - authorization
+    test_data:
+      gameId:
+        - "game1"
+        - "' OR '1'='1"
+        - "<script>alert('xss')</script>"
+        - "non-existent-id"
+        - ""
+        - null
+      player:
+        - "player2"
+        - "' OR '1'='1"
+        - "<script>alert('xss')</script>"
+        - ""
+        - null
+
+  - path: /games/{gameId}
+    method: GET
+    security_tests:
+      - sql_injection
+      - authentication
+      - authorization
+    test_data:
+      gameId:
+        - "game1"
+        - "' OR '1'='1"
+        - "non-existent-id"
+        - ""
+        - null
+
+  - path: /games/{gameId}/finalize
+    method: POST
+    security_tests:
+      - sql_injection
+      - xss
+      - input_validation
+      - authentication
+      - authorization
+    test_data:
+      gameId:
+        - "game1"
+        - "' OR '1'='1"
+        - ""
+        - null
+
+  - path: /rewards/claim
+    method: POST
+    security_tests:
+      - sql_injection
+      - xss
+      - input_validation
+      - authentication
+      - authorization
+    test_data:
+      player:
+        - "player1"
+        - "' OR '1'='1"
+        - "<script>alert('xss')</script>"
+        - ""
+        - null
+
+reporting:
+  format: json
+  output_file: security-test-results.json
+  include_failed_examples: true
+  include_response_bodies: true
+  include_request_bodies: true
+
+performance:
+  max_response_time_ms: 5000
+  alert_on_slow_responses: true
+  track_response_times: true
+
+logging:
+  level: INFO
+  log_requests: true
+  log_responses: true
+  log_errors: true

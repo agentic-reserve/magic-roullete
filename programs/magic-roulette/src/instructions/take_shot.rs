@@ -23,7 +23,7 @@ pub fn take_shot(ctx: Context<TakeShot>) -> Result<()> {
     );
     
     require!(
-        game.vrf_result.is_some(),
+        game.vrf_fulfilled,
         GameError::VrfNotReady
     );
     

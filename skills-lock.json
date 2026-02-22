@@ -86,6 +86,11 @@
       "sourceType": "github",
       "computedHash": "10eb4ec94577b79ae98c63ce3e7f35f8a6a06436a4011bff083b397de6960eeb"
     },
+    "vulnhunter": {
+      "source": "sendaifun/skills",
+      "sourceType": "github",
+      "computedHash": "64ed06b4baeda8b3b90e2b77cf722c9c088bd4cab1111b74c148498272399ee6"
+    },
     "web-design-guidelines": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",

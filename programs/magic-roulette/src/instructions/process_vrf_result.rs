@@ -26,7 +26,8 @@ pub fn process_vrf_result(
     );
     
     // SECURITY: Store VRF result
-    game.vrf_result = Some(randomness);
+    game.vrf_result = randomness;
+    game.vrf_fulfilled = true;
     
     // Convert randomness to chamber position (1-6)
     let random_u64 = u64::from_le_bytes([

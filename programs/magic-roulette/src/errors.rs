@@ -23,6 +23,9 @@ pub enum GameError {
     #[msg("VRF result not ready")]
     VrfNotReady,
     
+    #[msg("VRF request already pending")]
+    VrfRequestPending,
+    
     #[msg("Game already finished")]
     GameAlreadyFinished,
     

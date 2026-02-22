@@ -76,7 +76,9 @@ pub fn create_game_sol(
     
     // VRF
     game.vrf_seed = vrf_seed;
-    game.vrf_result = None;
+    game.vrf_result = [0u8; 32];
+    game.vrf_pending = false;
+    game.vrf_fulfilled = false;
     
     // Metadata
     game.winner_team = None;

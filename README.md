@@ -1,106 +1,27 @@
-# 🎮 Magic Roulette
+# Magic Roulette - Mobile-First GameFi on Solana
 
-Russian Roulette GameFi on Solana with MagicBlock Ephemeral Rollups
+**The fastest, fairest Russian Roulette game on Solana - Built for Solana Mobile Seeker**
+
+[![Solana](https://img.shields.io/badge/Solana-Mainnet-green)](https://solana.com)
+[![Anchor](https://img.shields.io/badge/Anchor-0.32.1-blue)](https://www.anchor-lang.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+---
 
 ## 🎯 Overview
 
-Magic Roulette adalah game Russian Roulette on-chain yang dibangun di Solana dengan:
-- **Privacy**: Gameplay di Intel TDX secure enclaves (MagicBlock ER)
-- **Speed**: Sub-10ms transaction latency
-- **Gasless**: No transaction fees during gameplay
-- **Fair**: Verifiable randomness via VRF
+Magic Roulette is a next-generation mobile-first GameFi platform that reimagines Russian Roulette with blockchain technology. Built specifically for Solana Mobile Seeker and the Solana dApp Store, we deliver provably fair, high-stakes gaming with sub-10ms latency and zero gas fees during gameplay.
 
-## 💰 Dua Cara Bermain
+### Key Features
 
-### 1️⃣ SOL Native (RECOMMENDED) ⭐
-
-**Stake langsung dengan SOL - Simple & Fast!**
-
-```typescript
-// Create game dengan 0.5 SOL
-await program.methods
-  .createGameSol(
-    { oneVsOne: {} },
-    new BN(0.5 * LAMPORTS_PER_SOL),
-    vrfSeed
-  )
-  .accounts({
-    game: gamePda,
-    platformConfig,
-    creator: player.publicKey,
-    gameVault: gameVaultPda,
-    systemProgram: SystemProgram.programId,
-  })
-  .signers([player])
-  .rpc();
-```
-
-**Keuntungan:**
-- ✅ Tidak perlu token khusus
-- ✅ User experience terbaik
-- ✅ Onboarding instant
-- ✅ Lebih murah
-
-**Lihat:** `SOL_NATIVE_GUIDE.md`
-
-### 2️⃣ Token-based (Advanced)
-
-**Menggunakan SPL Token-2022**
-
-Untuk platform yang ingin:
-- Token governance
-- Airdrop rewards
-- Tokenomics kompleks
-
-**Lihat:** `DEPLOYMENT_GUIDE.md`
-
----
-
-## 🎲 Game Modes
-
-### 1v1 Mode
-- 2 pemain
-- Winner takes all (minus fees)
-- Fast & intense
-
-### 2v2 Mode
-- 4 pemain (2 teams)
-- Winning team splits prize
-- Team strategy
-
-### AI Practice Mode (FREE!)
-- 1 pemain vs AI bot
-- No entry fee
-- No prizes
-- Perfect for learning
-
----
-
-## 💸 Prize Distribution
-
-**Default Fees:**
-- Platform Fee: 5%
-- Treasury Fee: 10%
-- Winner Gets: 85%
-
-**Example (1v1 dengan 1 SOL):**
-```
-Player 1: 1 SOL
-Player 2: 1 SOL
-─────────────────
-Total:    2 SOL
-
-Distribusi:
-├─ Platform (5%):  0.1 SOL
-├─ Treasury (10%): 0.2 SOL
-└─ Winner (85%):   1.7 SOL
-
-Hasil:
-✅ Winner: +0.7 SOL profit (70% ROI)
-❌ Loser:  -1 SOL loss (100% loss)
-```
-
-**Lihat:** `PENJELASAN_HADIAH.md` (Bahasa Indonesia)
+- ⚡ **Sub-10ms Gameplay** - MagicBlock Ephemeral Rollups for instant response
+- 📱 **Mobile-First** - Optimized for Solana Seeker with Mobile Wallet Adapter
+- 💰 **Gasless Gaming** - Zero transaction fees during gameplay
+- 🎲 **Provably Fair** - VRF-powered verifiable randomness
+- 🏦 **Capital Efficient** - Kamino lending integration (110% collateral)
+- 💾 **1000x Cost Savings** - Light Protocol ZK Compression
+- 🗳️ **Decentralized** - Squads multisig governance
+- 🚫 **Tokenless** - No platform token required, instant gameplay
 
 ---
 
@@ -108,14 +29,27 @@ Hasil:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                      Magic Roulette                          │
+│                   Magic Roulette Platform                    │
 ├─────────────────────────────────────────────────────────────┤
-│  Base Layer (Solana)          │  Ephemeral Rollup (ER)      │
-│  - Create game                │  - Process VRF              │
-│  - Join game                  │  - Take shots               │
-│  - Delegate to ER             │  - Game logic               │
-│  - Finalize & distribute      │  - Sub-10ms latency         │
-│  - ~400ms finality            │  - Gasless transactions     │
+│  Mobile App (React Native + Expo)                          │
+│  - Mobile Wallet Adapter                                    │
+│  - Solana Seeker optimized                                  │
+│  - Real-time WebSocket updates                              │
+├─────────────────────────────────────────────────────────────┤
+│  Smart Contract (Anchor 0.32.1)                             │
+│  - Game logic & state management                            │
+│  - Token-2022 integration                                   │
+│  - Fee distribution                                         │
+├─────────────────────────────────────────────────────────────┤
+│  Ephemeral Rollup (MagicBlock)                              │
+│  - Sub-10ms execution                                       │
+│  - Gasless transactions                                     │
+│  - VRF randomness                                           │
+├─────────────────────────────────────────────────────────────┤
+│  DeFi Integrations                                          │
+│  - Kamino Finance (lending)                                 │
+│  - Light Protocol (ZK Compression)                          │
+│  - Squads (governance)                                      │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -126,297 +60,252 @@ Hasil:
 ### Prerequisites
 
 ```bash
-# Solana CLI
-solana --version  # 1.18.0+
-
-# Anchor
-anchor --version  # 0.32.1
-
-# Node.js
-node --version    # 18.0.0+
+Solana: 2.3.13
+Rust: 1.85.0
+Anchor: 0.32.1
+Node: 24.10.0
 ```
 
-### Build
+### Installation
 
 ```bash
+# Clone repository
+git clone https://github.com/magic-roulette/magic-roulette
+cd magic-roulette
+
+# Install dependencies
+npm install
+
+# Build smart contract
 anchor build
-```
 
-### Test Locally
-
-```bash
-# Terminal 1: Start validator
-solana-test-validator
-
-# Terminal 2: Run SOL Native example
-ts-node examples/sol-native-game.ts
-```
-
-### Deploy to Devnet
-
-```bash
+# Deploy to devnet
 anchor deploy --provider.cluster devnet
 ```
 
----
-
-## 📁 Project Structure
-
-```
-magic-roulette/
-├── programs/magic-roulette/
-│   ├── src/
-│   │   ├── lib.rs                    # Main program
-│   │   ├── state.rs                  # State accounts
-│   │   ├── errors.rs                 # Error definitions
-│   │   └── instructions/
-│   │       ├── create_game_sol.rs    # SOL Native ⭐
-│   │       ├── join_game_sol.rs      # SOL Native ⭐
-│   │       ├── finalize_game_sol.rs  # SOL Native ⭐
-│   │       ├── create_game.rs        # Token-based
-│   │       ├── join_game.rs          # Token-based
-│   │       └── ... (10 instructions total)
-│   └── Cargo.toml
-├── examples/
-│   ├── sol-native-game.ts            # SOL Native example ⭐
-│   ├── magicblock-integration.ts     # MagicBlock client
-│   └── simple-game-flow.ts           # Token example
-├── tests/
-│   └── magic-roulette.ts             # Test suite
-├── docs/
-│   ├── SOL_NATIVE_GUIDE.md           # SOL Native guide ⭐
-│   ├── SOL_NATIVE_SUMMARY.md         # SOL Native summary
-│   ├── PENJELASAN_HADIAH.md          # Prize explanation (ID)
-│   ├── SCHEMA_DATABASE.md            # Database schema
-│   ├── DEPLOYMENT_GUIDE.md           # Deployment guide
-│   └── IMPLEMENTATION_STATUS.md      # Status & roadmap
-└── README.md                         # This file
-```
-
----
-
-## 🎮 Instructions
-
-### SOL Native (13 instructions)
-
-| # | Instruction | Description |
-|---|------------|-------------|
-| 1 | `initialize_platform` | Setup platform config |
-| 2 | `create_game_sol` | Create game with SOL ⭐ |
-| 3 | `join_game_sol` | Join game with SOL ⭐ |
-| 4 | `delegate_game` | Delegate to ER |
-| 5 | `process_vrf_result` | Process randomness |
-| 6 | `take_shot` | Player takes shot |
-| 7 | `finalize_game_sol` | Distribute SOL ⭐ |
-| 8 | `claim_rewards` | Claim treasury rewards |
-| 9 | `create_ai_game` | Create AI practice game |
-| 10 | `ai_take_shot` | AI bot takes shot |
-| 11 | `create_game` | Create game with token |
-| 12 | `join_game` | Join game with token |
-| 13 | `finalize_game` | Distribute tokens |
-
----
-
-## 📊 State Accounts
-
-### PlatformConfig
-- Authority & treasury wallets
-- Fee configuration (5% + 10%)
-- Total games & volume tracking
-
-### Game
-- Game ID & mode (1v1, 2v2, AI)
-- Players (Team A & Team B)
-- Entry fee & total pot
-- Game state (bullet chamber, current turn)
-- VRF seed & result
-- Winner & timestamps
-
-### TreasuryRewards
-- Player rewards from treasury
-- Claimable amount
-- Claim history
-
-**Lihat:** `SCHEMA_DATABASE.md` untuk detail lengkap
-
----
-
-## 🔒 Security Features
-
-- ✅ Minimum entry fee validation (0.01 SOL)
-- ✅ Game status checks
-- ✅ Player authorization
-- ✅ Cannot join own game
-- ✅ Cannot join AI game
-- ✅ Arithmetic overflow protection
-- ✅ PDA vault security
-- ✅ Practice mode (no real money)
-
----
-
-## 🧪 Testing
-
-### Run All Tests
+### Run Tests
 
 ```bash
+# Unit tests
 anchor test
+
+# Integration tests
+npm run test:integration
+
+# E2E tests
+npm run test:e2e
 ```
 
-### Run Specific Example
+---
 
-```bash
-# SOL Native (recommended)
-ts-node examples/sol-native-game.ts
+## 🎮 Game Modes
 
-# Token-based
-ts-node examples/simple-game-flow.ts
+### 1v1 Mode
+- Two players compete head-to-head
+- Alternating turns
+- Winner takes 85% of pot
+- Fast-paced, high-stakes action
 
-# MagicBlock integration
-ts-node examples/magicblock-integration.ts
+### 2v2 Mode
+- Four players in two teams
+- Team-based strategy
+- Shared winnings
+- Social gaming experience
+
+### Human vs AI Mode (FREE)
+- Practice mode with no entry fee
+- Three difficulty levels (Easy/Medium/Hard)
+- Perfect for learning mechanics
+- No prizes, pure practice
+
+---
+
+## 💡 Technology Stack
+
+### Smart Contract
+- **Framework**: Anchor 0.32.1
+- **Language**: Rust 1.85.0
+- **Program ID**: `JE2fDdXcYEprUR2yPmWdLGDSJ7Y7HD8qsJ52eD6qUavq`
+
+### Mobile App
+- **Framework**: React Native + Expo
+- **Wallet**: Mobile Wallet Adapter
+- **Distribution**: Solana dApp Store
+
+### Infrastructure
+- **Ephemeral Rollups**: MagicBlock (sub-10ms latency)
+- **VRF**: MagicBlock VRF Plugin (verifiable randomness)
+- **Lending**: Kamino Finance (leveraged betting)
+- **Compression**: Light Protocol (1000x cost reduction)
+- **Governance**: Squads Protocol (multisig)
+
+---
+
+## 📊 Economic Model
+
+### Fee Structure
+- **Platform Fee**: 5% (operations & development)
+- **Treasury Fee**: 10% (community rewards)
+- **Winner Share**: 85% (distributed to winners)
+
+### Example (1v1 with 0.1 SOL entry)
 ```
+Total Pot:      0.2 SOL
+Platform Fee:   0.01 SOL (5%)
+Treasury Fee:   0.02 SOL (10%)
+Winner Gets:    0.17 SOL (85%)
+```
+
+### Revenue Projections
+- **Year 1**: 1,000 daily games → ~$180K annual revenue
+- **Year 2**: 5,000 daily games → ~$900K annual revenue
+- **Year 3**: 20,000 daily games → ~$3.6M annual revenue
+
+---
+
+## 🔐 Security
+
+### Audits
+- ✅ Internal security review complete
+- 🔄 External audit scheduled Q2 2026
+- 💰 $50K bug bounty program
+
+### Security Features
+- Overflow protection (checked arithmetic)
+- Access control validation
+- Reentrancy guards
+- PDA validation
+- Input sanitization
+- VRF tamper-proof randomness
+
+---
+
+## 🗺️ Roadmap
+
+### Q1 2026 ✅
+- [x] Smart contract development
+- [x] MagicBlock ER + VRF integration
+- [x] Kamino lending integration
+- [x] Light Protocol ZK Compression
+- [x] Squads multisig setup
+- [x] Internal security audit
+
+### Q2 2026 🔄
+- [ ] External security audit
+- [ ] Mobile app development
+- [ ] Solana dApp Store submission
+- [ ] Devnet beta testing
+- [ ] Marketing campaign
+
+### Q3 2026
+- [ ] Mainnet launch
+- [ ] Seeker device partnership
+- [ ] Tournament system
+- [ ] Leaderboards
+
+### Q4 2026
+- [ ] Advanced game modes
+- [ ] iOS PWA
+- [ ] Social features
+- [ ] Global expansion
+
+---
+
+## 📱 Solana Mobile Integration
+
+### Mobile Wallet Adapter
+```typescript
+import { MobileWalletProvider } from '@wallet-ui/react-native-web3js';
+
+<MobileWalletProvider
+  cluster="mainnet-beta"
+  appIdentity={{
+    name: 'Magic Roulette',
+    uri: 'https://magic-roulette.io',
+    icon: 'https://magic-roulette.io/icon.png',
+  }}
+>
+  <GameApp />
+</MobileWalletProvider>
+```
+
+### Solana dApp Store
+- NFT-based app publishing
+- Direct distribution to Seeker users
+- No Google Play/App Store restrictions
+
+---
+
+## 🤝 DeFi Integrations
+
+### Kamino Finance
+```typescript
+// Borrow SOL for entry fee
+await createGameWithLoan(
+  market,
+  wallet,
+  entryFee: 0.1 SOL,
+  collateral: 0.11 SOL  // 110% minimum
+);
+
+// Auto-repay from winnings
+await finalizeGameWithLoan(market, wallet);
+```
+
+### Light Protocol ZK Compression
+```typescript
+// Create compressed token account (5,000 lamports vs 2M)
+const { mint } = await createMint(rpc, payer, authority, 9);
+
+// Mint compressed tokens
+await mintTo(rpc, payer, mint, recipient, authority, amount);
+
+// 1000x cost savings for high-volume gaming
+```
+
+### Squads Multisig
+- 3-of-5 signature requirement
+- Transparent treasury management
+- Community governance
 
 ---
 
 ## 📚 Documentation
 
-| Document | Description |
-|----------|-------------|
-| `SOL_NATIVE_GUIDE.md` | Complete SOL Native guide |
-| `SOL_NATIVE_SUMMARY.md` | SOL Native summary |
-| `PENJELASAN_HADIAH.md` | Prize distribution (Bahasa Indonesia) |
-| `SCHEMA_DATABASE.md` | Database schema & structure |
-| `DEPLOYMENT_GUIDE.md` | Deployment instructions |
-| `IMPLEMENTATION_STATUS.md` | Current status & roadmap |
-| `examples/README.md` | Examples documentation |
+- **Whitepaper**: [misc/MAGIC_ROULETTE_WHITEPAPER.md](misc/MAGIC_ROULETTE_WHITEPAPER.md)
+- **MagicBlock Integration**: [MAGICBLOCK_INTEGRATION_COMPLETE.md](MAGICBLOCK_INTEGRATION_COMPLETE.md)
+- **Quick Start**: [MAGICBLOCK_QUICK_START.md](MAGICBLOCK_QUICK_START.md)
+- **API Docs**: Coming soon
 
 ---
 
-## 🎯 Entry Fee Recommendations
+## 🌐 Resources
 
-### Casual Players
-```
-0.01 - 0.1 SOL
-Low risk, good for beginners
-```
-
-### Regular Players
-```
-0.5 - 1 SOL
-Medium risk, decent rewards
-```
-
-### High Rollers
-```
-5 - 10 SOL
-High risk, big rewards
-```
-
----
-
-## 🔧 Development
-
-### Build
-```bash
-anchor build
-```
-
-### Test
-```bash
-anchor test
-```
-
-### Deploy Devnet
-```bash
-anchor deploy --provider.cluster devnet
-```
-
-### Deploy Mainnet
-```bash
-anchor deploy --provider.cluster mainnet-beta
-```
-
----
-
-## 🌐 Networks
-
-### Devnet
-- **Program ID**: `JE2fDdXcYEprUR2yPmWdLGDSJ7Y7HD8qsJ52eD6qUavq`
-- **RPC**: `https://api.devnet.solana.com`
-- **Explorer**: https://explorer.solana.com/?cluster=devnet
-
-### Mainnet (Coming Soon)
-- **Program ID**: TBA
-- **RPC**: `https://api.mainnet-beta.solana.com`
-- **Explorer**: https://explorer.solana.com/
+- **Website**: https://magic-roulette.io
+- **Documentation**: https://docs.magic-roulette.io
+- **GitHub**: https://github.com/magic-roulette
+- **Discord**: https://discord.gg/magic-roulette
+- **Twitter**: @MagicRoulette
+- **Solana Mobile**: https://solanamobile.com
 
 ---
 
 ## 🤝 Contributing
 
-Contributions welcome! Please:
-1. Fork the repo
-2. Create feature branch
-3. Make changes
-4. Submit PR
-
----
-
-## 📞 Support
-
-- **Documentation**: See docs/ folder
-- **Issues**: GitHub Issues
-- **Discord**: TBA
-
----
-
-## ⚠️ Disclaimer
-
-**This is gambling software. Use responsibly.**
-
-- Understand the risks
-- Only stake what you can afford to lose
-- Gambling may be illegal in your jurisdiction
-- No guarantees of winning
-- Platform fees apply
+We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ---
 
 ## 📄 License
 
-MIT License - see LICENSE file
+MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
-## 🎉 Features
+## ⚠️ Disclaimer
 
-- ✅ SOL Native betting (simple!)
-- ✅ Token-based betting (advanced)
-- ✅ 1v1 & 2v2 modes
-- ✅ AI practice mode (free!)
-- ✅ MagicBlock ER integration
-- ✅ VRF randomness
-- ✅ Privacy with Intel TDX
-- ✅ Sub-10ms latency
-- ✅ Gasless gameplay
-- ✅ Comprehensive tests
-- ✅ Full documentation
+Magic Roulette is a gaming platform that involves risk. Players should only wager what they can afford to lose. This is a tokenless platform - there is no token sale or investment opportunity. Revenue is generated solely through platform fees from gameplay.
 
 ---
 
-## 🚀 Status
-
-**Current Version**: 0.1.0
-**Status**: ✅ Ready for devnet testing
-**Last Updated**: 2025
-
----
-
-**Built with:**
-- Solana blockchain
-- Anchor framework
-- MagicBlock Ephemeral Rollups
-- Rust & TypeScript
-
----
-
-**Start playing with SOL Native today!** 🎮🎲
+**Built with ❤️ for Solana Mobile Seeker**

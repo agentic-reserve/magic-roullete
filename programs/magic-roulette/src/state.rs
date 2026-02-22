@@ -82,9 +82,11 @@ pub struct Game {
     pub current_turn: u8,    // Which player's turn
     pub shots_taken: u8,
     
-    // VRF
+    // VRF (MagicBlock VRF Plugin)
     pub vrf_seed: [u8; 32],
-    pub vrf_result: Option<[u8; 32]>,
+    pub vrf_result: [u8; 32],
+    pub vrf_pending: bool,
+    pub vrf_fulfilled: bool,
     
     // Results
     pub winner_team: Option<u8>, // 0 = team_a, 1 = team_b
@@ -100,7 +102,7 @@ impl Game {
         + 1 + (1 + 32) + 8 + 8  // Kamino loan fields
         + (32 * 4) + 1 + 1 
         + 1 + 1 + 1 + 1 
-        + 32 + (1 + 32) 
+        + 32 + 32 + 1 + 1  // VRF fields (seed, result, pending, fulfilled)
         + (1 + 1) + 8 + (1 + 8) 
         + 1;
 

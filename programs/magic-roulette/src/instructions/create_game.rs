@@ -77,9 +77,11 @@ pub fn create_game(
     game.current_turn = 0;
     game.shots_taken = 0;
     
-    // VRF
+    // VRF (MagicBlock VRF Plugin)
     game.vrf_seed = vrf_seed;
-    game.vrf_result = None;
+    game.vrf_result = [0u8; 32];
+    game.vrf_pending = false;
+    game.vrf_fulfilled = false;
     
     // Metadata
     game.winner_team = None;

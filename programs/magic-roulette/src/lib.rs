@@ -3,6 +3,11 @@
 #![allow(unused_imports)]
 
 use anchor_lang::prelude::*;
+use ephemeral_rollups_sdk::anchor::ephemeral;
+use ephemeral_rollups_sdk::anchor::DelegationProgram;
+use ephemeral_rollups_sdk::anchor::delegate;
+use ephemeral_rollups_sdk::anchor::commit;
+use ephemeral_vrf_sdk::anchor::vrf;
 
 pub mod constants;
 pub mod errors;
@@ -42,28 +47,38 @@ pub mod magic_roulette {
         instructions::join_game(ctx)
     }
 
-    /// Delegate game to Private Ephemeral Rollup
-    /// NOTE: This function is a placeholder. Actual delegation is handled by MagicBlock SDK
-    /// on the client side using createDelegateInstruction()
-    pub fn delegate_game(ctx: Context<DelegateGame>) -> Result<()> {
+    /// Delegate game to Ephemeral Rollup (handled by MagicBlock SDK on client)
+    pub fn delegate_game(_ctx: Context<DelegateGame>) -> Result<()> {
+        msg!("Game delegated to Ephemeral Rollup");
+        msg!("Game will execute with sub-10ms latency and gasless transactions");
+        Ok(())
+    }
+
+    /// Request VRF randomness for game (executed on ER)
+    pub fn request_vrf_randomness(ctx: Context<RequestVrfRandomness>) -> Result<()> {
+        let game = &mut ctx.accounts.game;
+        require!(!game.vrf_pending, errors::GameError::VrfRequestPending);
+        game.vrf_pending = true;
+        msg!("VRF randomness requested for game {}", game.game_id);
+        Ok(())
+    }
+
+    /// VRF callback - receives verifiable randomness
+    pub fn request_vrf_randomness_callback(ctx: Context<VrfCallback>, randomness: [u8; 32]) -> Result<()> {
         let game = &mut ctx.accounts.game;
         
-        require!(
-            game.status == GameStatus::WaitingForPlayers,
-            errors::GameError::GameNotReady
-        );
+        // Store randomness in game state
+        game.vrf_result = randomness;
+        game.vrf_pending = false;
+        game.vrf_fulfilled = true;
         
-        // Update status to indicate delegation intent
-        // Actual delegation happens via MagicBlock SDK on client
-        game.status = GameStatus::Delegated;
-        
-        msg!("Game {} ready for delegation to Private Ephemeral Rollup", game.game_id);
-        msg!("Game will execute in Intel TDX for privacy");
+        msg!("VRF randomness received for game {}", game.game_id);
+        msg!("Randomness: {:?}", &randomness[0..8]);
         
         Ok(())
     }
 
-    /// Process VRF randomness result
+    /// Process VRF randomness result (legacy - kept for compatibility)
     pub fn process_vrf_result(ctx: Context<ProcessVrfResult>, randomness: [u8; 32]) -> Result<()> {
         instructions::process_vrf_result(ctx, randomness)
     }
@@ -71,6 +86,18 @@ pub mod magic_roulette {
     /// Player takes a shot (executed in Private ER)
     pub fn take_shot(ctx: Context<TakeShot>) -> Result<()> {
         instructions::take_shot(ctx)
+    }
+
+    /// Commit game state from ER to base layer (handled by MagicBlock SDK on client)
+    pub fn commit_game(_ctx: Context<CommitGame>) -> Result<()> {
+        msg!("Game state committed to base layer");
+        Ok(())
+    }
+
+    /// Undelegate game from ER (handled by MagicBlock SDK on client)
+    pub fn undelegate_game(_ctx: Context<UndelegateGame>) -> Result<()> {
+        msg!("Game undelegated from Ephemeral Rollup");
+        Ok(())
     }
 
     /// Finalize game and distribute winnings

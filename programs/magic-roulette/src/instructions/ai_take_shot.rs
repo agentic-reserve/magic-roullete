@@ -24,7 +24,7 @@ pub fn ai_take_shot(ctx: Context<AiTakeShot>) -> Result<()> {
     );
     
     require!(
-        game.vrf_result.is_some(),
+        game.vrf_fulfilled,
         GameError::VrfNotReady
     );
     

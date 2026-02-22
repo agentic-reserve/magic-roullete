@@ -1,21 +1,10 @@
-.anchor
+node_modules/
+target/
+dist/
+.anchor/
 .DS_Store
-target
-**/*.rs.bk
-node_modules
-test-ledger
-.yarn
+test-ledger/
 *.log
+*.swp
+*.swo
 .env
-.env.local
-dist
-build
-
-# AI Bot
-ai-bot/bot-keypair.json
-ai-bot/dist
-ai-bot/node_modules
-ai-bot/.env
-
-# Config
-config.json
