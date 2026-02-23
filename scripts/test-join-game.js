@@ -56,14 +56,61 @@ async function main() {
   }
 
   // Try to join the first game (game ID 0)
-  const gameId = new anchor.BN(0);
-  const [gamePda] = PublicKey.findProgramAddressSync(
+  let gameId = new anchor.BN(0);
+  let gamePda = PublicKey.findProgramAddressSync(
     [Buffer.from("game"), gameId.toArrayLike(Buffer, "le", 8)],
     programId
-  );
+  )[0];
 
-  console.log("\n📝 Fetching game state...");
-  const game = await program.account.game.fetch(gamePda);
+  console.log("\n📝 Looking for available games...");
+  let game = null;
+  let foundGame = false;
+  
+  for (let i = 0; i < config.totalGames.toNumber(); i++) {
+    gameId = new anchor.BN(i);
+    gamePda = PublicKey.findProgramAddressSync(
+      [Buffer.from("game"), gameId.toArrayLike(Buffer, "le", 8)],
+      programId
+    )[0];
+    
+    try {
+      game = await program.account.game.fetch(gamePda);
+      
+      // Skip AI games
+      if (game.isAiGame) {
+        console.log(`   Game ${i}: AI game (skipping)`);
+        continue;
+      }
+      
+      // Check if game is full based on game mode
+      let isFull = false;
+      if (Object.keys(game.gameMode)[0] === "oneVsOne") {
+        isFull = game.teamACount === 1 && game.teamBCount === 1;
+      } else if (Object.keys(game.gameMode)[0] === "twoVsTwo") {
+        isFull = game.teamACount === 2 && game.teamBCount === 2;
+      }
+      
+      // Check if game is waiting for players and not full
+      if (Object.keys(game.status)[0] === "waitingForPlayers" && !isFull) {
+        console.log(`   Game ${i}: Available! (Team A: ${game.teamACount}, Team B: ${game.teamBCount})`);
+        foundGame = true;
+        break;
+      } else {
+        console.log(`   Game ${i}: ${Object.keys(game.status)[0]} (Team A: ${game.teamACount}, Team B: ${game.teamBCount}, Full: ${isFull})`);
+      }
+    } catch (e) {
+      console.log(`   Game ${i}: Not found or error`);
+    }
+  }
+  
+  if (!foundGame) {
+    console.log("\n❌ No available games to join!");
+    console.log("   All games are either full or not accepting players.");
+    console.log("   Run: node scripts/simple-create-game.js");
+    process.exit(1);
+  }
+
+  console.log("\n📝 Selected game details:");
   console.log("   Game ID:", game.gameId.toString());
   console.log("   Creator:", game.creator.toString());
   console.log("   Entry Fee:", game.entryFee.toNumber() / LAMPORTS_PER_SOL, "SOL");
@@ -91,7 +138,7 @@ async function main() {
     const testProgram = new anchor.Program(idl, testProvider);
 
     const tx = await testProgram.methods
-      .joinGame()
+      .joinGameSol()
       .accounts({
         game: gamePda,
         platformConfig,
