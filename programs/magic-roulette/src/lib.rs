@@ -110,9 +110,6 @@ pub mod magic_roulette {
         msg!("Game undelegated from Ephemeral Rollup");
         Ok(())
     }
-        
-        Ok(())
-    }
 
     /// Finalize game and distribute winnings
     pub fn finalize_game(ctx: Context<FinalizeGame>) -> Result<()> {
