@@ -52,33 +52,54 @@ describe("magic-roulette", () => {
 
   describe("Platform Initialization", () => {
     it("Initializes platform configuration", async () => {
-      // TODO: Create platform mint first
+      // Create a dummy mint for testing
+      platformMint = Keypair.generate().publicKey;
       
       const platformFeeBps = 500; // 5%
       const treasuryFeeBps = 1000; // 10%
 
       try {
-        await program.methods
+        const tx = await program.methods
           .initializePlatform(platformFeeBps, treasuryFeeBps)
           .accounts({
             platformConfig,
             authority: platformAuthority.publicKey,
             treasury: treasury.publicKey,
             platformMint: platformMint,
-            payer: platformAuthority.publicKey,
             systemProgram: SystemProgram.programId,
           })
           .signers([platformAuthority])
           .rpc();
 
+        console.log("✅ Platform initialized! TX:", tx);
+
         // Fetch and verify platform config
         const config = await program.account.platformConfig.fetch(platformConfig);
+        console.log("Platform Config:", {
+          authority: config.authority.toString(),
+          treasury: config.treasury.toString(),
+          platformFeeBps: config.platformFeeBps,
+          treasuryFeeBps: config.treasuryFeeBps,
+          totalGames: config.totalGames.toNumber(),
+          paused: config.paused,
+        });
+        
         expect(config.platformFeeBps).to.equal(platformFeeBps);
         expect(config.treasuryFeeBps).to.equal(treasuryFeeBps);
         expect(config.totalGames.toNumber()).to.equal(0);
         expect(config.paused).to.be.false;
       } catch (error) {
-        console.log("Platform initialization test skipped - needs token setup");
+        if (error.message && error.message.includes("already in use")) {
+          console.log("✅ Platform already initialized");
+          const config = await program.account.platformConfig.fetch(platformConfig);
+          console.log("Existing config:", {
+            totalGames: config.totalGames.toNumber(),
+            paused: config.paused,
+          });
+        } else {
+          console.log("❌ Platform initialization failed:", error.message);
+          throw error;
+        }
       }
     });
   });

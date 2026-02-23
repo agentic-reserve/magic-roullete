@@ -1,50 +1,81 @@
-# Welcome to your Expo app 👋
+# Magic Roulette 🎰
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Wild West themed roulette game built with React Native, Expo, and Solana blockchain integration.
 
-## Get started
+## 🎨 Theme
 
-1. Install dependencies
+Deep browns, dusty gold, burnt orange, and warm cream colors inspired by weathered saloons and wanted posters.
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 🚀 Quick Start
 
 ```bash
-npm run reset-project
+cd magic-roullete
+npm install
+npm run dev
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Then:
+- Press `w` for web
+- Press `a` for Android (requires Android Studio)
+- Press `i` for iOS (requires Xcode on macOS)
 
-## Learn more
+## 📱 Build Commands
 
-To learn more about developing your project with Expo, look at the following resources:
+```bash
+# Build PWA
+npm run build:pwa
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+# Build Android APK (requires Android SDK)
+npm run android:apk
 
-## Join the community
+# Export web for deployment
+npm run export:web
+```
 
-Join our community of developers creating universal apps.
+## 📖 Documentation
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+See [BUILD.md](./BUILD.md) for detailed build and deployment instructions.
+
+## 🎮 Features
+
+- Animated roulette wheel with Wild West theme
+- Number betting (0-36)
+- Red/Black/Green color coding
+- Solana wallet integration ready
+- PWA support for mobile web
+- Native Android/iOS builds
+
+## 🛠️ Tech Stack
+
+- React Native + Expo
+- TypeScript
+- Solana Web3.js
+- React Native Reanimated
+- Expo Router
+
+## 📦 Project Structure
+
+```
+magic-roullete/
+├── app/              # Expo Router pages
+│   ├── (tabs)/      # Tab navigation
+│   │   ├── roulette.tsx  # Main game screen
+│   │   ├── account/      # Wallet & account
+│   │   └── settings/     # App settings
+├── components/       # Reusable components
+├── constants/        # Colors & config
+├── hooks/           # Custom React hooks
+├── utils/           # Helper functions
+└── scripts/         # Build scripts
+```
+
+## 🎯 Next Steps
+
+1. Connect to Solana program for on-chain betting
+2. Implement real SOL transactions
+3. Add game history and leaderboard
+4. Deploy to production
+
+## 📝 License
+
+MIT

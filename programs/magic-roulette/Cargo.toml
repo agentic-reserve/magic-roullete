@@ -14,13 +14,20 @@ no-idl = []
 no-log-ix-name = []
 cpi = ["no-entrypoint"]
 default = []
-idl-build = ["anchor-lang/idl-build", "anchor-spl/idl-build"]
+idl-build = ["anchor-lang/idl-build"]
 
 [dependencies]
 anchor-lang = "0.32.1"
-anchor-spl = "0.32.1"
+anchor-spl = { version = "0.32.1", features = ["token"] }
 ephemeral-rollups-sdk = { version = "0.6.5", features = ["anchor", "disable-realloc"] }
 ephemeral-vrf-sdk = { version = "0.2", features = ["anchor"] }
+spl-token-2022 = "6.0.0"
+# Temporarily removed squads-multisig to test build
+# squads-multisig = "2.0.0"
+
+# Note: Use anchor_lang::solana_program instead of separate dependency
+# Removed: solana-program = "~2.2"
 
 # Note: Kamino Lend program will be called via CPI
 # We'll use account structures and manual CPI instead of SDK dependency
+# Note: Light Protocol will be integrated via CPI for ZK Compression

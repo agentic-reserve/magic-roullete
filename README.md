@@ -2,6 +2,10 @@
 
 **The fastest, fairest Russian Roulette game on Solana - Built for Solana Mobile Seeker**
 
+🌐 **Website**: [magicroullete.com](https://magicroullete.com)  
+📱 **Platform**: Solana Mobile Seeker  
+🎮 **Program ID**: `JE2fDdXcYEprUR2yPmWdLGDSJ7Y7HD8qsJ52eD6qUavq`
+
 [![Solana](https://img.shields.io/badge/Solana-Mainnet-green)](https://solana.com)
 [![Anchor](https://img.shields.io/badge/Anchor-0.32.1-blue)](https://www.anchor-lang.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
@@ -264,9 +268,13 @@ await mintTo(rpc, payer, mint, recipient, authority, amount);
 ```
 
 ### Squads Multisig
-- 3-of-5 signature requirement
+- **Configuration**: 2-of-2 signature requirement
+- **Member 1**: `5YJB8rve6RCkJJApFW6qaWR3cC7VXSeaGC92DGcatoKo`
+- **Member 2**: `8qRCKcY9nDkLTYNAmS9SHfUahwao4e8bgGMhvJffZvv9`
+- **Status**: ✅ Ready to deploy
+- **Documentation**: See `MULTISIG_STATUS.md` and `QUICK_MULTISIG_SETUP.md`
 - Transparent treasury management
-- Community governance
+- Decentralized governance
 
 ---
 
@@ -281,12 +289,11 @@ await mintTo(rpc, payer, mint, recipient, authority, amount);
 
 ## 🌐 Resources
 
-- **Website**: https://magic-roulette.io
-- **Documentation**: https://docs.magic-roulette.io
-- **GitHub**: https://github.com/magic-roulette
-- **Discord**: https://discord.gg/magic-roulette
-- **Twitter**: @MagicRoulette
-- **Solana Mobile**: https://solanamobile.com
+- **Website**: https://magicroullete.com
+- **Documentation**: https://docs.magicroulette.com
+- **GitHub**: [https://github.com/magic-roulett](https://github.com/magicroulette-game)
+- **Twitter**: [text](https://x.com/mgcrouletteapp)
+- **email**: magicroulettesol@gmail.com
 
 ---
 
@@ -299,6 +306,15 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) for details
+
+---
+
+## 📧 Contact
+
+For inquiries, support, or partnerships:
+- **Email**: magicroulettesol@gmail.com
+- **Twitter**: https://x.com/mgcrouletteapp
+- **Full Contact Info**: See [CONTACT.md](CONTACT.md)
 
 ---
 

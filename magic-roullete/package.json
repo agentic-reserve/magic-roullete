@@ -3,7 +3,9 @@
   "scripts": {
     "android": "expo run:android",
     "android:build": "expo prebuild -p android",
+    "android:apk": "bash scripts/build-android.sh",
     "build": "tsc --noEmit && npm run android:build",
+    "build:pwa": "bash scripts/build-pwa.sh",
     "ci": "tsc --noEmit && npm run lint:check && npm run fmt:check && npm run android:build",
     "dev": "expo start",
     "doctor": "npx -y expo-doctor@latest",
@@ -14,7 +16,8 @@
     "lint:check": "expo lint",
     "reset-project": "node ./scripts/reset-project.js",
     "start": "expo start",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "export:web": "expo export --platform web"
   },
   "displayName": "Mobile Expo Boilerplate",
   "description": "A template for building a Solana mobile app with Expo and React Native.",

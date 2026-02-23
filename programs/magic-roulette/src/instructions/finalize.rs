@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-use anchor_spl::token_interface::{Mint, TokenAccount, TokenInterface};
+use anchor_spl::token_2022::Token2022;
 use crate::state::*;
 
 #[derive(Accounts)]
@@ -22,29 +22,20 @@ pub struct FinalizeGame<'info> {
     pub payer: Signer<'info>,
     
     // Token accounts
-    pub mint: InterfaceAccount<'info, Mint>,
+    /// CHECK: Token-2022 mint
+    pub mint: AccountInfo<'info>,
     
-    #[account(
-        mut,
-        token::mint = mint,
-        seeds = [b"game_vault", game.key().as_ref()],
-        bump
-    )]
-    pub game_vault: InterfaceAccount<'info, TokenAccount>,
+    #[account(mut)]
+    /// CHECK: Game vault token account
+    pub game_vault: AccountInfo<'info>,
     
-    #[account(
-        mut,
-        token::mint = mint,
-        token::authority = platform_config.authority
-    )]
-    pub platform_vault: InterfaceAccount<'info, TokenAccount>,
+    #[account(mut)]
+    /// CHECK: Platform vault token account
+    pub platform_vault: AccountInfo<'info>,
     
-    #[account(
-        mut,
-        token::mint = mint,
-        token::authority = platform_config.treasury
-    )]
-    pub treasury_vault: InterfaceAccount<'info, TokenAccount>,
+    #[account(mut)]
+    /// CHECK: Treasury vault token account
+    pub treasury_vault: AccountInfo<'info>,
     
     // Winner accounts (up to 2 for 2v2)
     /// CHECK: Winner 1
@@ -53,7 +44,7 @@ pub struct FinalizeGame<'info> {
     
     /// CHECK: Winner 1 token account
     #[account(mut)]
-    pub winner1_token_account: InterfaceAccount<'info, TokenAccount>,
+    pub winner1_token_account: AccountInfo<'info>,
     
     /// CHECK: Winner 2 (optional for 2v2)
     #[account(mut)]
@@ -61,7 +52,7 @@ pub struct FinalizeGame<'info> {
     
     /// CHECK: Winner 2 token account (optional)
     #[account(mut)]
-    pub winner2_token_account: InterfaceAccount<'info, TokenAccount>,
+    pub winner2_token_account: AccountInfo<'info>,
     
-    pub token_program: Interface<'info, TokenInterface>,
+    pub token_program: Program<'info, Token2022>,
 }

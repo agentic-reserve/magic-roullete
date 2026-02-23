@@ -1,5 +1,6 @@
 use anchor_lang::prelude::*;
-use anchor_spl::token_interface::Mint;
+use anchor_spl::token_2022::spl_token_2022::extension::StateWithExtensions;
+use anchor_spl::token_2022::spl_token_2022::state::Mint as MintState;
 use crate::{errors::GameError, state::PlatformConfig};
 
 #[derive(Accounts)]
@@ -20,7 +21,8 @@ pub struct InitializePlatform<'info> {
     pub treasury: AccountInfo<'info>,
     
     /// Platform token mint (Token-2022)
-    pub platform_mint: InterfaceAccount<'info, Mint>,
+    /// CHECK: Token-2022 mint account
+    pub platform_mint: AccountInfo<'info>,
     
     pub system_program: Program<'info, System>,
 }

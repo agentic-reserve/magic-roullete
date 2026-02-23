@@ -5,14 +5,17 @@ anchor_version = "0.32.1"
 resolution = true
 skip-lint = false
 
+[programs.localnet]
+magic_roulette = "HA71kX5tHESphxAhqdnrhHWawmEHWHLdiHjeyfA82Bam"
+
 [programs.devnet]
-magic_roulette = "JE2fDdXcYEprUR2yPmWdLGDSJ7Y7HD8qsJ52eD6qUavq"
+magic_roulette = "HA71kX5tHESphxAhqdnrhHWawmEHWHLdiHjeyfA82Bam"
 
 [registry]
 url = "https://api.devnet.solana.com"
 
 [provider]
-cluster = "devnet"
+cluster = "localnet"
 wallet = "~/.config/solana/id.json"
 
 [scripts]

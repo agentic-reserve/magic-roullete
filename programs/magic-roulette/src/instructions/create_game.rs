@@ -1,6 +1,15 @@
 use anchor_lang::prelude::*;
-use anchor_spl::token_interface::{Mint, TokenAccount, TokenInterface, transfer_checked, TransferChecked};
+use anchor_lang::solana_program::program_pack::Pack;
+use anchor_spl::token_2022::{Token2022, transfer_checked, TransferChecked};
+use anchor_spl::token_2022::spl_token_2022::state::Mint as MintState;
 use crate::{errors::GameError, state::*};
+
+// Helper function to get mint decimals
+fn get_mint_decimals(mint_account: &AccountInfo) -> Result<u8> {
+    let mint_data = mint_account.try_borrow_data()?;
+    let mint = MintState::unpack(&mint_data)?;
+    Ok(mint.decimals)
+}
 
 #[derive(Accounts)]
 #[instruction(game_mode: GameMode, entry_fee: u64)]
@@ -25,24 +34,18 @@ pub struct CreateGame<'info> {
     pub creator: Signer<'info>,
     
     // Token-2022 accounts for entry fee
-    pub mint: InterfaceAccount<'info, Mint>,
+    /// CHECK: Token-2022 mint
+    pub mint: AccountInfo<'info>,
     
-    #[account(
-        mut,
-        token::mint = mint,
-        token::authority = creator
-    )]
-    pub creator_token_account: InterfaceAccount<'info, TokenAccount>,
+    #[account(mut)]
+    /// CHECK: Creator's token account
+    pub creator_token_account: AccountInfo<'info>,
     
-    #[account(
-        mut,
-        token::mint = mint,
-        seeds = [b"game_vault", game.key().as_ref()],
-        bump
-    )]
-    pub game_vault: InterfaceAccount<'info, TokenAccount>,
+    #[account(mut)]
+    /// CHECK: Game vault token account
+    pub game_vault: AccountInfo<'info>,
     
-    pub token_program: Interface<'info, TokenInterface>,
+    pub token_program: Program<'info, Token2022>,
     pub system_program: Program<'info, System>,
 }
 
@@ -101,7 +104,7 @@ pub fn create_game(
             },
         ),
         entry_fee,
-        ctx.accounts.mint.decimals,
+        get_mint_decimals(&ctx.accounts.mint)?,
     )?;
     
     platform_config.total_games += 1;

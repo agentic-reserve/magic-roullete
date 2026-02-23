@@ -1,37 +1,48 @@
 {
   "expo": {
-    "name": "magic-roullete",
+    "name": "Magic Roulette",
     "slug": "magic-roullete",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "templateexpobasic",
-    "userInterfaceStyle": "automatic",
+    "scheme": "magicroulette",
+    "userInterfaceStyle": "dark",
     "newArchEnabled": true,
+    "primaryColor": "#d4a574",
+    "backgroundColor": "#1a0f05",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.magicroulette.app"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#1a0f05"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.beeman.web3jsexpo"
+      "package": "com.magicroulette.app"
     },
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "backgroundColor": "#1a0f05",
+      "themeColor": "#d4a574",
+      "name": "Magic Roulette",
+      "shortName": "Roulette",
+      "description": "Wild West themed roulette game on Solana",
+      "display": "standalone",
+      "orientation": "portrait",
+      "startUrl": "/"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "backgroundColor": "#FFFFFF",
+          "backgroundColor": "#1a0f05",
           "dark": {
-            "backgroundColor": "#000000",
+            "backgroundColor": "#1a0f05",
             "image": "./assets/images/splash-icon.png"
           },
           "image": "./assets/images/splash-icon.png",

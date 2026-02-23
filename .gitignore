@@ -1,10 +1,61 @@
+# Dependencies
 node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output
+
+# Build outputs
 target/
 dist/
+build/
 .anchor/
-.DS_Store
+.next/
+out/
+
+# Solana
 test-ledger/
+.solana/
+
+# Environment
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
 *.swp
 *.swo
-.env
+*~
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Keypairs (IMPORTANT: Never commit private keys!)
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!Anchor.toml
+!target/idl/*.json
+!target/types/*.ts
+
+# Temporary files
+*.tmp
+*.temp
+.cache/

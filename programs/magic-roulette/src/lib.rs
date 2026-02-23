@@ -3,6 +3,9 @@
 #![allow(unused_imports)]
 
 use anchor_lang::prelude::*;
+use anchor_lang::solana_program::program_pack::Pack;
+use anchor_spl::token_2022::{Token2022, transfer_checked, TransferChecked};
+use anchor_spl::token_2022::spl_token_2022::state::Mint as MintState;
 use ephemeral_rollups_sdk::anchor::ephemeral;
 use ephemeral_rollups_sdk::anchor::DelegationProgram;
 use ephemeral_rollups_sdk::anchor::delegate;
@@ -17,7 +20,14 @@ pub mod state;
 use instructions::*;
 use state::{GameMode, AiDifficulty, GameStatus}; // GameStatus used in delegate_game and finalize_game
 
-declare_id!("JE2fDdXcYEprUR2yPmWdLGDSJ7Y7HD8qsJ52eD6qUavq");
+// Helper function to get mint decimals
+fn get_mint_decimals(mint_account: &AccountInfo) -> Result<u8> {
+    let mint_data = mint_account.try_borrow_data()?;
+    let mint = MintState::unpack(&mint_data)?;
+    Ok(mint.decimals)
+}
+
+declare_id!("HA71kX5tHESphxAhqdnrhHWawmEHWHLdiHjeyfA82Bam");
 
 #[program]
 pub mod magic_roulette {
@@ -158,20 +168,21 @@ pub mod magic_roulette {
         
         let per_winner = winner_amount / winner_count as u64;
         
-        // Game vault PDA signer
-        let game_key = game.key();
+        // Game vault PDA signer (if needed)
+        // Note: game_vault might not be a PDA, using direct authority instead
+        let game_id_bytes = game.game_id.to_le_bytes();
         let seeds = &[
-            b"game_vault",
-            game_key.as_ref(),
-            &[ctx.bumps.game_vault],
+            b"game",
+            game_id_bytes.as_ref(),
+            &[game.bump],
         ];
         let signer = &[&seeds[..]];
         
         // Distribute to platform
-        anchor_spl::token_interface::transfer_checked(
+        transfer_checked(
             CpiContext::new_with_signer(
                 ctx.accounts.token_program.to_account_info(),
-                anchor_spl::token_interface::TransferChecked {
+                TransferChecked {
                     from: ctx.accounts.game_vault.to_account_info(),
                     to: ctx.accounts.platform_vault.to_account_info(),
                     authority: ctx.accounts.game_vault.to_account_info(),
@@ -180,14 +191,14 @@ pub mod magic_roulette {
                 signer,
             ),
             platform_fee,
-            ctx.accounts.mint.decimals,
+            get_mint_decimals(&ctx.accounts.mint)?,
         )?;
         
         // Distribute to treasury
-        anchor_spl::token_interface::transfer_checked(
+        transfer_checked(
             CpiContext::new_with_signer(
                 ctx.accounts.token_program.to_account_info(),
-                anchor_spl::token_interface::TransferChecked {
+                TransferChecked {
                     from: ctx.accounts.game_vault.to_account_info(),
                     to: ctx.accounts.treasury_vault.to_account_info(),
                     authority: ctx.accounts.game_vault.to_account_info(),
@@ -196,14 +207,14 @@ pub mod magic_roulette {
                 signer,
             ),
             treasury_fee,
-            ctx.accounts.mint.decimals,
+            get_mint_decimals(&ctx.accounts.mint)?,
         )?;
         
         // Distribute to winner(s)
-        anchor_spl::token_interface::transfer_checked(
+        transfer_checked(
             CpiContext::new_with_signer(
                 ctx.accounts.token_program.to_account_info(),
-                anchor_spl::token_interface::TransferChecked {
+                TransferChecked {
                     from: ctx.accounts.game_vault.to_account_info(),
                     to: ctx.accounts.winner1_token_account.to_account_info(),
                     authority: ctx.accounts.game_vault.to_account_info(),
@@ -212,14 +223,14 @@ pub mod magic_roulette {
                 signer,
             ),
             per_winner,
-            ctx.accounts.mint.decimals,
+            get_mint_decimals(&ctx.accounts.mint)?,
         )?;
         
         if winner_count == 2 {
-            anchor_spl::token_interface::transfer_checked(
+            transfer_checked(
                 CpiContext::new_with_signer(
                     ctx.accounts.token_program.to_account_info(),
-                    anchor_spl::token_interface::TransferChecked {
+                    TransferChecked {
                         from: ctx.accounts.game_vault.to_account_info(),
                         to: ctx.accounts.winner2_token_account.to_account_info(),
                         authority: ctx.accounts.game_vault.to_account_info(),
@@ -228,7 +239,7 @@ pub mod magic_roulette {
                     signer,
                 ),
                 per_winner,
-                ctx.accounts.mint.decimals,
+                get_mint_decimals(&ctx.accounts.mint)?,
             )?;
         }
         

@@ -26,8 +26,11 @@ const program = anchor.workspace.MagicRoulette as Program<MagicRoulette>;
 // Kamino devnet market
 const KAMINO_MARKET = new PublicKey("7u3HeHxYDLhnCoErrtycNokbQYbWGzLs6JSDqGAv5PfF");
 
-// Squads multisig (created separately)
-const SQUADS_MULTISIG = new PublicKey("YOUR_MULTISIG_ADDRESS");
+// Squads multisig addresses
+// Member 1: 5YJB8rve6RCkJJApFW6qaWR3cC7VXSeaGC92DGcatoKo
+// Member 2: 8qRCKcY9nDkLTYNAmS9SHfUahwao4e8bgGMhvJffZvv9
+// Website: magicroullete.com
+const SQUADS_MULTISIG = new PublicKey("YOUR_MULTISIG_ADDRESS"); // Will be generated after deployment
 
 // ============================================================================
 // EXAMPLE 1: Create Game with Kamino Loan

@@ -196,26 +196,26 @@ dependencies = [
  "bincode",
  "borsh 0.10.4",
  "bytemuck",
- "solana-account-info",
- "solana-clock",
- "solana-cpi",
+ "solana-account-info 2.3.0",
+ "solana-clock 2.2.3",
+ "solana-cpi 2.2.1",
  "solana-define-syscall 2.3.0",
  "solana-feature-gate-interface",
  "solana-instruction 2.3.3",
- "solana-instructions-sysvar",
+ "solana-instructions-sysvar 2.2.2",
  "solana-invoke",
  "solana-loader-v3-interface 3.0.0",
  "solana-msg 2.2.1",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
- "solana-program-memory",
- "solana-program-option",
- "solana-program-pack",
+ "solana-program-memory 2.3.1",
+ "solana-program-option 2.2.1",
+ "solana-program-pack 2.2.1",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
  "solana-system-interface 1.0.0",
- "solana-sysvar",
- "solana-sysvar-id",
+ "solana-sysvar 2.3.0",
+ "solana-sysvar-id 2.2.1",
  "thiserror 1.0.69",
 ]
 
@@ -253,10 +253,10 @@ dependencies = [
  "anchor-lang",
  "spl-associated-token-account",
  "spl-pod",
- "spl-token",
- "spl-token-2022",
- "spl-token-group-interface",
- "spl-token-metadata-interface",
+ "spl-token 8.0.0",
+ "spl-token-2022 8.0.1",
+ "spl-token-group-interface 0.6.0",
+ "spl-token-metadata-interface 0.7.0",
 ]
 
 [[package]]
@@ -301,6 +301,12 @@ name = "autocfg"
 version = "1.5.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "c08606f8c3cbf4ce6ec8e28fb0014a2c086708fe954eaa885384a6165172e7e8"
+
+[[package]]
+name = "base16ct"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4c7f02d4ea65f2c1853089ffd8d2787bdbc63de2f0d29dedbcf8ccdfa0ccd4cf"
 
 [[package]]
 name = "base64"
@@ -555,6 +561,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "const-oid"
+version = "0.9.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c2459377285ad874054d797f3ccebf984978aa39129f6eafde5cdc8315b612f8"
+
+[[package]]
 name = "constant_time_eq"
 version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -574,6 +586,18 @@ name = "crunchy"
 version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "460fbee9c2c2f33933d720630a6a0bac33ba7053db5344fac858d4b8952d77d5"
+
+[[package]]
+name = "crypto-bigint"
+version = "0.5.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0dc92fb57ca44df6db8059111ab3af99a63d5d0f8375d9972e319a379c6bab76"
+dependencies = [
+ "generic-array",
+ "rand_core 0.6.4",
+ "subtle",
+ "zeroize",
+]
 
 [[package]]
 name = "crypto-common"
@@ -625,6 +649,51 @@ dependencies = [
 ]
 
 [[package]]
+name = "darling"
+version = "0.21.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9cdf337090841a411e2a7f3deb9187445851f91b309c0c0a29e05f74a00a48c0"
+dependencies = [
+ "darling_core",
+ "darling_macro",
+]
+
+[[package]]
+name = "darling_core"
+version = "0.21.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1247195ecd7e3c85f83c8d2a366e4210d588e802133e1e355180a9870b517ea4"
+dependencies = [
+ "fnv",
+ "ident_case",
+ "proc-macro2",
+ "quote",
+ "strsim",
+ "syn 2.0.117",
+]
+
+[[package]]
+name = "darling_macro"
+version = "0.21.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d38308df82d1080de0afee5d069fa14b0326a88c14f15c5ccda35b4a6c414c81"
+dependencies = [
+ "darling_core",
+ "quote",
+ "syn 2.0.117",
+]
+
+[[package]]
+name = "der"
+version = "0.7.10"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e7c1832837b905bbfb5101e07cc24c8deddf52f93225eee6ead5f4d63d53ddcb"
+dependencies = [
+ "const-oid",
+ "zeroize",
+]
+
+[[package]]
 name = "derivation-path"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -646,8 +715,23 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9ed9a281f7bc9b7576e61468ba615a66a5c8cfdff42420a70aa82701a3b1e292"
 dependencies = [
  "block-buffer 0.10.4",
+ "const-oid",
  "crypto-common",
  "subtle",
+]
+
+[[package]]
+name = "ecdsa"
+version = "0.16.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ee27f32b5c5292967d2d4a9d7f1e0b0aed2c15daded5a60300e4abb9d8020bca"
+dependencies = [
+ "der",
+ "digest 0.10.7",
+ "elliptic-curve",
+ "rfc6979",
+ "signature",
+ "spki",
 ]
 
 [[package]]
@@ -655,6 +739,25 @@ name = "either"
 version = "1.15.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "48c757948c5ede0e46177b7add2e67155f70e33c07fea8284df6576da70b3719"
+
+[[package]]
+name = "elliptic-curve"
+version = "0.13.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b5e6043086bf7973472e0c7dff2142ea0b680d30e18d9cc40f267efbf222bd47"
+dependencies = [
+ "base16ct",
+ "crypto-bigint",
+ "digest 0.10.7",
+ "ff",
+ "generic-array",
+ "group",
+ "pkcs8",
+ "rand_core 0.6.4",
+ "sec1",
+ "subtle",
+ "zeroize",
+]
 
 [[package]]
 name = "ephemeral-rollups-sdk"
@@ -672,7 +775,7 @@ dependencies = [
  "getrandom 0.2.17",
  "magicblock-delegation-program",
  "magicblock-magic-program-api",
- "solana-program",
+ "solana-program 2.3.0",
  "solana-system-interface 2.0.0",
 ]
 
@@ -727,7 +830,7 @@ dependencies = [
  "anchor-lang",
  "borsh 1.6.0",
  "ephemeral-vrf-sdk-vrf-macro",
- "solana-program",
+ "solana-program 2.3.0",
 ]
 
 [[package]]
@@ -752,6 +855,16 @@ name = "feature-probe"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "835a3dc7d1ec9e75e2b5fb4ba75396837112d2060b03f7d43bc1897c7f7211da"
+
+[[package]]
+name = "ff"
+version = "0.13.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0b50bfb653653f9ca9095b427bed08ab8d75a137839d9ad64eb11810d5b6393"
+dependencies = [
+ "rand_core 0.6.4",
+ "subtle",
+]
 
 [[package]]
 name = "fiat-crypto"
@@ -833,6 +946,7 @@ checksum = "85649ca51fd72272d7821adaf274ad91c288277713d9c18820d8499a7ff69e9a"
 dependencies = [
  "typenum",
  "version_check",
+ "zeroize",
 ]
 
 [[package]]
@@ -857,6 +971,17 @@ dependencies = [
  "libc",
  "wasi 0.11.1+wasi-snapshot-preview1",
  "wasm-bindgen",
+]
+
+[[package]]
+name = "group"
+version = "0.13.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f0f9ef7462f7c099f518d754361858f86d8a07af53ba9af0fe635bbccb151a63"
+dependencies = [
+ "ff",
+ "rand_core 0.6.4",
+ "subtle",
 ]
 
 [[package]]
@@ -904,6 +1029,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "ident_case"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9e0384b61958566e926dc50660321d12159025e767c18e043daf26b70104c39"
+
+[[package]]
 name = "indexmap"
 version = "2.13.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -939,12 +1070,26 @@ checksum = "92ecc6618181def0457392ccd0ee51198e065e016d1d527a7ac1b6dc7c1f09d2"
 
 [[package]]
 name = "js-sys"
-version = "0.3.87"
+version = "0.3.88"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "93f0862381daaec758576dcc22eb7bbf4d7efd67328553f3b45a412a51a3fb21"
+checksum = "c7e709f3e3d22866f9c25b3aff01af289b18422cc8b4262fb19103ee80fe513d"
 dependencies = [
  "once_cell",
  "wasm-bindgen",
+]
+
+[[package]]
+name = "k256"
+version = "0.13.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f6e3919bbaa2945715f0bb6d3934a173d1e9a59ac23767fbaaef277265a7411b"
+dependencies = [
+ "cfg-if",
+ "ecdsa",
+ "elliptic-curve",
+ "once_cell",
+ "sha2 0.10.9",
+ "signature",
 ]
 
 [[package]]
@@ -1037,6 +1182,7 @@ dependencies = [
  "anchor-spl",
  "ephemeral-rollups-sdk",
  "ephemeral-vrf-sdk",
+ "spl-token-2022 6.0.0",
 ]
 
 [[package]]
@@ -1048,7 +1194,7 @@ dependencies = [
  "borsh 1.6.0",
  "bytemuck",
  "num_enum",
- "solana-program",
+ "solana-program 4.0.0",
  "static_assertions",
 ]
 
@@ -1060,7 +1206,7 @@ checksum = "ce6ec80d63618a71bb4db324ec5fdca8f85552d0469a51aa063d290256d425f5"
 dependencies = [
  "bincode",
  "serde",
- "solana-program",
+ "solana-program 2.3.0",
 ]
 
 [[package]]
@@ -1187,6 +1333,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "pastey"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b867cad97c0791bbd3aaa6472142568c6c9e8f71937e98379f584cfb0cf35bec"
+
+[[package]]
 name = "pbkdf2"
 version = "0.11.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1200,6 +1352,16 @@ name = "percent-encoding"
 version = "2.3.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9b4f627cb1b25917193a259e49bdad08f671f8d9708acfd5fe0a8c1455d87220"
+
+[[package]]
+name = "pkcs8"
+version = "0.10.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f950b2377845cebe5cf8b5165cb3cc1a5e0fa5cfa3e1f7f55707d8fd82e0a7b7"
+dependencies = [
+ "der",
+ "spki",
+]
 
 [[package]]
 name = "polyval"
@@ -1377,6 +1539,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a96887878f22d7bad8a3b6dc5b7440e0ada9a245242924394987b21cf2210a4c"
 
 [[package]]
+name = "rfc6979"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f8dd2a808d456c4a54e300a23e9f5a67e122c3024119acbfd73e3bf664491cb2"
+dependencies = [
+ "hmac",
+ "subtle",
+]
+
+[[package]]
 name = "rustc_version"
 version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1396,6 +1568,20 @@ name = "scopeguard"
 version = "1.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
+
+[[package]]
+name = "sec1"
+version = "0.7.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d3e97a565f76233a6003f9f5c54be1d9c5bdfa3eccfb189469f11ec4901c47dc"
+dependencies = [
+ "base16ct",
+ "der",
+ "generic-array",
+ "pkcs8",
+ "subtle",
+ "zeroize",
+]
 
 [[package]]
 name = "semver"
@@ -1512,6 +1698,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0fda2ff0d084019ba4d7c6f371c95d8fd75ce3524c3cb8fb653a3023f6323e64"
 
 [[package]]
+name = "signature"
+version = "2.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "77549399552de45a898a580c1b41d445bf730df867cc44e6c0233bbc4b8329de"
+dependencies = [
+ "digest 0.10.7",
+ "rand_core 0.6.4",
+]
+
+[[package]]
 name = "smallvec"
 version = "1.15.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1523,11 +1719,11 @@ version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "0f949fe4edaeaea78c844023bfc1c898e0b1f5a100f8a8d2d0f85d0a7b090258"
 dependencies = [
- "solana-account-info",
- "solana-clock",
+ "solana-account-info 2.3.0",
+ "solana-clock 2.2.3",
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
 ]
 
 [[package]]
@@ -1539,8 +1735,21 @@ dependencies = [
  "bincode",
  "serde",
  "solana-program-error 2.2.2",
- "solana-program-memory",
+ "solana-program-memory 2.3.1",
  "solana-pubkey 2.4.0",
+]
+
+[[package]]
+name = "solana-account-info"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fc3397241392f5756925029acaa8515dc70fcbe3d8059d4885d7d6533baf64fd"
+dependencies = [
+ "bincode",
+ "serde_core",
+ "solana-address 2.2.0",
+ "solana-program-error 3.0.0",
+ "solana-program-memory 3.1.0",
 ]
 
 [[package]]
@@ -1558,6 +1767,10 @@ version = "2.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "68c5d02824391b072dc5cd0aaa85fb0af9784a21d23286a767994d1e8a322131"
 dependencies = [
+ "borsh 1.6.0",
+ "bytemuck",
+ "bytemuck_derive",
+ "curve25519-dalek",
  "five8 1.0.0",
  "five8_const 1.0.0",
  "serde",
@@ -1568,6 +1781,7 @@ dependencies = [
  "solana-program-error 3.0.0",
  "solana-sanitize 3.0.1",
  "solana-sha256-hasher 3.1.0",
+ "wincode",
 ]
 
 [[package]]
@@ -1580,11 +1794,11 @@ dependencies = [
  "bytemuck",
  "serde",
  "serde_derive",
- "solana-clock",
+ "solana-clock 2.2.3",
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
- "solana-slot-hashes",
+ "solana-sdk-ids 2.2.1",
+ "solana-slot-hashes 2.2.1",
 ]
 
 [[package]]
@@ -1617,6 +1831,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-big-mod-exp"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "30c80fb6d791b3925d5ec4bf23a7c169ef5090c013059ec3ed7d0b2c04efa085"
+dependencies = [
+ "num-bigint",
+ "num-traits",
+ "solana-define-syscall 3.0.0",
+]
+
+[[package]]
 name = "solana-bincode"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1640,12 +1865,32 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-blake3-hasher"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7116e1d942a2432ca3f514625104757ab8a56233787e95144c93950029e31176"
+dependencies = [
+ "blake3",
+ "solana-define-syscall 4.0.1",
+ "solana-hash 4.2.0",
+]
+
+[[package]]
 name = "solana-borsh"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "718333bcd0a1a7aed6655aa66bef8d7fb047944922b2d3a18f49cbc13e73d004"
 dependencies = [
  "borsh 0.10.4",
+ "borsh 1.6.0",
+]
+
+[[package]]
+name = "solana-borsh"
+version = "3.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "be4a37fc44f0633779a619840b5117c2a895996cec57eb3dc10597fac7867875"
+dependencies = [
  "borsh 1.6.0",
 ]
 
@@ -1657,9 +1902,22 @@ checksum = "f8584296123df8fe229b95e2ebfd37ae637fe9db9b7d4dd677ac5a78e80dbfce"
 dependencies = [
  "serde",
  "serde_derive",
- "solana-sdk-ids",
- "solana-sdk-macro",
- "solana-sysvar-id",
+ "solana-sdk-ids 2.2.1",
+ "solana-sdk-macro 2.2.1",
+ "solana-sysvar-id 2.2.1",
+]
+
+[[package]]
+name = "solana-clock"
+version = "3.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "95cf11109c3b6115cc510f1e31f06fdd52f504271bc24ef5f1249fbbcae5f9f3"
+dependencies = [
+ "serde",
+ "serde_derive",
+ "solana-sdk-ids 3.1.0",
+ "solana-sdk-macro 3.0.1",
+ "solana-sysvar-id 3.1.0",
 ]
 
 [[package]]
@@ -1668,12 +1926,26 @@ version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8dc71126edddc2ba014622fc32d0f5e2e78ec6c5a1e0eb511b85618c09e9ea11"
 dependencies = [
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-define-syscall 2.3.0",
  "solana-instruction 2.3.3",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
- "solana-stable-layout",
+ "solana-stable-layout 2.2.1",
+]
+
+[[package]]
+name = "solana-cpi"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4dea26709d867aada85d0d3617db0944215c8bb28d3745b912de7db13a23280c"
+dependencies = [
+ "solana-account-info 3.1.0",
+ "solana-define-syscall 4.0.1",
+ "solana-instruction 3.2.0",
+ "solana-program-error 3.0.0",
+ "solana-pubkey 4.1.0",
+ "solana-stable-layout 3.0.1",
 ]
 
 [[package]]
@@ -1707,6 +1979,12 @@ checksum = "2ae3e2abcf541c8122eafe9a625d4d194b4023c20adde1e251f94e056bb1aee2"
 
 [[package]]
 name = "solana-define-syscall"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f9697086a4e102d28a156b8d6b521730335d6951bd39a5e766512bbe09007cee"
+
+[[package]]
+name = "solana-define-syscall"
 version = "4.0.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "57e5b1c0bc1d4a4d10c88a4100499d954c09d3fecfae4912c1a074dff68b1738"
@@ -1737,9 +2015,23 @@ dependencies = [
  "serde",
  "serde_derive",
  "solana-hash 2.3.0",
- "solana-sdk-ids",
- "solana-sdk-macro",
- "solana-sysvar-id",
+ "solana-sdk-ids 2.2.1",
+ "solana-sdk-macro 2.2.1",
+ "solana-sysvar-id 2.2.1",
+]
+
+[[package]]
+name = "solana-epoch-rewards"
+version = "3.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f5e7b0ba210593ba8ddd39d6d234d81795d1671cebf3026baa10d5dc23ac42f0"
+dependencies = [
+ "serde",
+ "serde_derive",
+ "solana-hash 4.2.0",
+ "solana-sdk-ids 3.1.0",
+ "solana-sdk-macro 3.0.1",
+ "solana-sysvar-id 3.1.0",
 ]
 
 [[package]]
@@ -1750,9 +2042,32 @@ checksum = "3fce071fbddecc55d727b1d7ed16a629afe4f6e4c217bc8d00af3b785f6f67ed"
 dependencies = [
  "serde",
  "serde_derive",
- "solana-sdk-ids",
- "solana-sdk-macro",
- "solana-sysvar-id",
+ "solana-sdk-ids 2.2.1",
+ "solana-sdk-macro 2.2.1",
+ "solana-sysvar-id 2.2.1",
+]
+
+[[package]]
+name = "solana-epoch-schedule"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6e5481e72cc4d52c169db73e4c0cd16de8bc943078aac587ec4817a75cc6388f"
+dependencies = [
+ "serde",
+ "serde_derive",
+ "solana-sdk-ids 3.1.0",
+ "solana-sdk-macro 3.0.1",
+ "solana-sysvar-id 3.1.0",
+]
+
+[[package]]
+name = "solana-epoch-stake"
+version = "3.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "027e6d0b9e7daac5b2ac7c3f9ca1b727861121d9ef05084cf435ff736051e7c2"
+dependencies = [
+ "solana-define-syscall 5.0.0",
+ "solana-pubkey 4.1.0",
 ]
 
 [[package]]
@@ -1764,15 +2079,32 @@ dependencies = [
  "serde",
  "serde_derive",
  "solana-address-lookup-table-interface",
- "solana-clock",
+ "solana-clock 2.2.3",
  "solana-hash 2.3.0",
  "solana-instruction 2.3.3",
- "solana-keccak-hasher",
+ "solana-keccak-hasher 2.2.1",
  "solana-message",
- "solana-nonce",
+ "solana-nonce 2.2.1",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
  "solana-system-interface 1.0.0",
+ "thiserror 2.0.18",
+]
+
+[[package]]
+name = "solana-example-mocks"
+version = "4.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0eb265ff95e28eceda117e2e3d2d2a611ecbbfe911dfeeeecd1521814540ffab"
+dependencies = [
+ "serde",
+ "serde_derive",
+ "solana-hash 4.2.0",
+ "solana-instruction 3.2.0",
+ "solana-nonce 3.1.0",
+ "solana-pubkey 4.1.0",
+ "solana-sdk-ids 3.1.0",
+ "solana-system-interface 3.1.0",
  "thiserror 2.0.18",
 ]
 
@@ -1786,12 +2118,12 @@ dependencies = [
  "serde",
  "serde_derive",
  "solana-account",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-instruction 2.3.3",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
- "solana-rent",
- "solana-sdk-ids",
+ "solana-rent 2.2.1",
+ "solana-sdk-ids 2.2.1",
  "solana-system-interface 1.0.0",
 ]
 
@@ -1800,6 +2132,17 @@ name = "solana-fee-calculator"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d89bc408da0fb3812bc3008189d148b4d3e08252c79ad810b245482a3f70cd8d"
+dependencies = [
+ "log",
+ "serde",
+ "serde_derive",
+]
+
+[[package]]
+name = "solana-fee-calculator"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4b2a5675b2cf8d407c672dc1776492b1f382337720ddf566645ae43237a3d8c3"
 dependencies = [
  "log",
  "serde",
@@ -1829,6 +2172,15 @@ name = "solana-hash"
 version = "4.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8064ea1d591ec791be95245058ca40f4f5345d390c200069d0f79bbf55bfae55"
+dependencies = [
+ "borsh 1.6.0",
+ "bytemuck",
+ "bytemuck_derive",
+ "five8 1.0.0",
+ "serde",
+ "serde_derive",
+ "wincode",
+]
 
 [[package]]
 name = "solana-instruction"
@@ -1858,6 +2210,7 @@ dependencies = [
  "bincode",
  "borsh 1.6.0",
  "serde",
+ "serde_derive",
  "solana-define-syscall 5.0.0",
  "solana-instruction-error",
  "solana-pubkey 4.1.0",
@@ -1880,14 +2233,32 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e0e85a6fad5c2d0c4f5b91d34b8ca47118fc593af706e523cdbedf846a954f57"
 dependencies = [
  "bitflags",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-instruction 2.3.3",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
  "solana-sanitize 2.2.1",
- "solana-sdk-ids",
- "solana-serialize-utils",
- "solana-sysvar-id",
+ "solana-sdk-ids 2.2.1",
+ "solana-serialize-utils 2.2.1",
+ "solana-sysvar-id 2.2.1",
+]
+
+[[package]]
+name = "solana-instructions-sysvar"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7ddf67876c541aa1e21ee1acae35c95c6fbc61119814bfef70579317a5e26955"
+dependencies = [
+ "bitflags",
+ "solana-account-info 3.1.0",
+ "solana-instruction 3.2.0",
+ "solana-instruction-error",
+ "solana-program-error 3.0.0",
+ "solana-pubkey 3.0.0",
+ "solana-sanitize 3.0.1",
+ "solana-sdk-ids 3.1.0",
+ "solana-serialize-utils 3.1.1",
+ "solana-sysvar-id 3.1.0",
 ]
 
 [[package]]
@@ -1896,11 +2267,11 @@ version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "58f5693c6de226b3626658377168b0184e94e8292ff16e3d31d4766e65627565"
 dependencies = [
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-define-syscall 2.3.0",
  "solana-instruction 2.3.3",
- "solana-program-entrypoint",
- "solana-stable-layout",
+ "solana-program-entrypoint 2.3.0",
+ "solana-stable-layout 2.2.1",
 ]
 
 [[package]]
@@ -1916,6 +2287,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-keccak-hasher"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ed1c0d16d6fdeba12291a1f068cdf0d479d9bff1141bf44afd7aa9d485f65ef8"
+dependencies = [
+ "sha3",
+ "solana-define-syscall 4.0.1",
+ "solana-hash 4.2.0",
+]
+
+[[package]]
 name = "solana-last-restart-slot"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1923,9 +2305,22 @@ checksum = "4a6360ac2fdc72e7463565cd256eedcf10d7ef0c28a1249d261ec168c1b55cdd"
 dependencies = [
  "serde",
  "serde_derive",
- "solana-sdk-ids",
- "solana-sdk-macro",
- "solana-sysvar-id",
+ "solana-sdk-ids 2.2.1",
+ "solana-sdk-macro 2.2.1",
+ "solana-sysvar-id 2.2.1",
+]
+
+[[package]]
+name = "solana-last-restart-slot"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dcda154ec827f5fc1e4da0af3417951b7e9b8157540f81f936c4a8b1156134d0"
+dependencies = [
+ "serde",
+ "serde_derive",
+ "solana-sdk-ids 3.1.0",
+ "solana-sdk-macro 3.0.1",
+ "solana-sysvar-id 3.1.0",
 ]
 
 [[package]]
@@ -1939,7 +2334,7 @@ dependencies = [
  "serde_derive",
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
 ]
 
 [[package]]
@@ -1953,7 +2348,7 @@ dependencies = [
  "serde_derive",
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
  "solana-system-interface 1.0.0",
 ]
 
@@ -1968,7 +2363,7 @@ dependencies = [
  "serde_derive",
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
  "solana-system-interface 1.0.0",
 ]
 
@@ -1983,7 +2378,7 @@ dependencies = [
  "serde_derive",
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
  "solana-system-interface 1.0.0",
 ]
 
@@ -2003,8 +2398,8 @@ dependencies = [
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
  "solana-sanitize 2.2.1",
- "solana-sdk-ids",
- "solana-short-vec",
+ "solana-sdk-ids 2.2.1",
+ "solana-short-vec 2.2.1",
  "solana-system-interface 1.0.0",
  "solana-transaction-error",
  "wasm-bindgen",
@@ -2035,6 +2430,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "61515b880c36974053dd499c0510066783f0cc6ac17def0c7ef2a244874cf4a9"
 
 [[package]]
+name = "solana-native-token"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ae8dd4c280dca9d046139eb5b7a5ac9ad10403fbd64964c7d7571214950d758f"
+
+[[package]]
 name = "solana-nonce"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2042,10 +2443,22 @@ checksum = "703e22eb185537e06204a5bd9d509b948f0066f2d1d814a6f475dafb3ddf1325"
 dependencies = [
  "serde",
  "serde_derive",
- "solana-fee-calculator",
+ "solana-fee-calculator 2.2.1",
  "solana-hash 2.3.0",
  "solana-pubkey 2.4.0",
  "solana-sha256-hasher 2.3.0",
+]
+
+[[package]]
+name = "solana-nonce"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "cbc469152a63284ef959b80c59cda015262a021da55d3b8fe42171d89c4b64f8"
+dependencies = [
+ "solana-fee-calculator 3.1.0",
+ "solana-hash 4.2.0",
+ "solana-pubkey 4.1.0",
+ "solana-sha256-hasher 3.1.0",
 ]
 
 [[package]]
@@ -2073,59 +2486,106 @@ dependencies = [
  "serde",
  "serde_bytes",
  "serde_derive",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-address-lookup-table-interface",
  "solana-atomic-u64 2.2.1",
- "solana-big-mod-exp",
+ "solana-big-mod-exp 2.2.1",
  "solana-bincode",
- "solana-blake3-hasher",
- "solana-borsh",
- "solana-clock",
- "solana-cpi",
+ "solana-blake3-hasher 2.2.1",
+ "solana-borsh 2.2.1",
+ "solana-clock 2.2.3",
+ "solana-cpi 2.2.1",
  "solana-decode-error",
  "solana-define-syscall 2.3.0",
- "solana-epoch-rewards",
- "solana-epoch-schedule",
- "solana-example-mocks",
+ "solana-epoch-rewards 2.2.1",
+ "solana-epoch-schedule 2.2.1",
+ "solana-example-mocks 2.2.1",
  "solana-feature-gate-interface",
- "solana-fee-calculator",
+ "solana-fee-calculator 2.2.1",
  "solana-hash 2.3.0",
  "solana-instruction 2.3.3",
- "solana-instructions-sysvar",
- "solana-keccak-hasher",
- "solana-last-restart-slot",
+ "solana-instructions-sysvar 2.2.2",
+ "solana-keccak-hasher 2.2.1",
+ "solana-last-restart-slot 2.2.1",
  "solana-loader-v2-interface",
  "solana-loader-v3-interface 5.0.0",
  "solana-loader-v4-interface",
  "solana-message",
  "solana-msg 2.2.1",
- "solana-native-token",
- "solana-nonce",
- "solana-program-entrypoint",
+ "solana-native-token 2.3.0",
+ "solana-nonce 2.2.1",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
- "solana-program-memory",
- "solana-program-option",
- "solana-program-pack",
+ "solana-program-memory 2.3.1",
+ "solana-program-option 2.2.1",
+ "solana-program-pack 2.2.1",
  "solana-pubkey 2.4.0",
- "solana-rent",
+ "solana-rent 2.2.1",
  "solana-sanitize 2.2.1",
- "solana-sdk-ids",
- "solana-sdk-macro",
- "solana-secp256k1-recover",
- "solana-serde-varint",
- "solana-serialize-utils",
+ "solana-sdk-ids 2.2.1",
+ "solana-sdk-macro 2.2.1",
+ "solana-secp256k1-recover 2.2.1",
+ "solana-serde-varint 2.2.2",
+ "solana-serialize-utils 2.2.1",
  "solana-sha256-hasher 2.3.0",
- "solana-short-vec",
- "solana-slot-hashes",
- "solana-slot-history",
- "solana-stable-layout",
+ "solana-short-vec 2.2.1",
+ "solana-slot-hashes 2.2.1",
+ "solana-slot-history 2.2.1",
+ "solana-stable-layout 2.2.1",
  "solana-stake-interface",
  "solana-system-interface 1.0.0",
- "solana-sysvar",
- "solana-sysvar-id",
+ "solana-sysvar 2.3.0",
+ "solana-sysvar-id 2.2.1",
  "solana-vote-interface",
  "thiserror 2.0.18",
  "wasm-bindgen",
+]
+
+[[package]]
+name = "solana-program"
+version = "4.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "778f08fb0eaf52c9a3bef2978247f7fab0ccfddc44cfddb936d5ad9f98ede886"
+dependencies = [
+ "memoffset",
+ "solana-account-info 3.1.0",
+ "solana-big-mod-exp 3.0.0",
+ "solana-blake3-hasher 3.1.0",
+ "solana-borsh 3.0.1",
+ "solana-clock 3.0.1",
+ "solana-cpi 3.1.0",
+ "solana-define-syscall 5.0.0",
+ "solana-epoch-rewards 3.0.1",
+ "solana-epoch-schedule 3.0.0",
+ "solana-epoch-stake",
+ "solana-example-mocks 4.0.0",
+ "solana-fee-calculator 3.1.0",
+ "solana-hash 4.2.0",
+ "solana-instruction 3.2.0",
+ "solana-instruction-error",
+ "solana-instructions-sysvar 3.0.0",
+ "solana-keccak-hasher 3.1.0",
+ "solana-last-restart-slot 3.0.0",
+ "solana-msg 3.1.0",
+ "solana-native-token 3.0.0",
+ "solana-program-entrypoint 3.1.1",
+ "solana-program-error 3.0.0",
+ "solana-program-memory 3.1.0",
+ "solana-program-option 3.0.0",
+ "solana-program-pack 3.1.0",
+ "solana-pubkey 4.1.0",
+ "solana-rent 4.1.0",
+ "solana-sdk-ids 3.1.0",
+ "solana-secp256k1-recover 3.1.1",
+ "solana-serde-varint 3.0.1",
+ "solana-serialize-utils 3.1.1",
+ "solana-sha256-hasher 3.1.0",
+ "solana-short-vec 3.2.0",
+ "solana-slot-hashes 3.0.1",
+ "solana-slot-history 3.0.0",
+ "solana-stable-layout 3.0.1",
+ "solana-sysvar 4.0.0",
+ "solana-sysvar-id 3.1.0",
 ]
 
 [[package]]
@@ -2134,10 +2594,22 @@ version = "2.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "32ce041b1a0ed275290a5008ee1a4a6c48f5054c8a3d78d313c08958a06aedbd"
 dependencies = [
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-msg 2.2.1",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
+]
+
+[[package]]
+name = "solana-program-entrypoint"
+version = "3.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "84c9b0a1ff494e05f503a08b3d51150b73aa639544631e510279d6375f290997"
+dependencies = [
+ "solana-account-info 3.1.0",
+ "solana-define-syscall 4.0.1",
+ "solana-program-error 3.0.0",
+ "solana-pubkey 4.1.0",
 ]
 
 [[package]]
@@ -2161,6 +2633,11 @@ name = "solana-program-error"
 version = "3.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a1af32c995a7b692a915bb7414d5f8e838450cf7c70414e763d8abcae7b51f28"
+dependencies = [
+ "borsh 1.6.0",
+ "serde",
+ "serde_derive",
+]
 
 [[package]]
 name = "solana-program-memory"
@@ -2172,10 +2649,25 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-program-memory"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4068648649653c2c50546e9a7fb761791b5ab0cda054c771bb5808d3a4b9eb52"
+dependencies = [
+ "solana-define-syscall 4.0.1",
+]
+
+[[package]]
 name = "solana-program-option"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "dc677a2e9bc616eda6dbdab834d463372b92848b2bfe4a1ed4e4b4adba3397d0"
+
+[[package]]
+name = "solana-program-option"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8e7b4ddb464f274deb4a497712664c3b612e3f5f82471d4e47710fc4ab1c3095"
 
 [[package]]
 name = "solana-program-pack"
@@ -2184,6 +2676,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "319f0ef15e6e12dc37c597faccb7d62525a509fec5f6975ecb9419efddeb277b"
 dependencies = [
  "solana-program-error 2.2.2",
+]
+
+[[package]]
+name = "solana-program-pack"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3d7701cb15b90667ae1c89ef4ac35a59c61e66ce58ddee13d729472af7f41d59"
+dependencies = [
+ "solana-program-error 3.0.0",
 ]
 
 [[package]]
@@ -2238,9 +2739,22 @@ checksum = "d1aea8fdea9de98ca6e8c2da5827707fb3842833521b528a713810ca685d2480"
 dependencies = [
  "serde",
  "serde_derive",
- "solana-sdk-ids",
- "solana-sdk-macro",
- "solana-sysvar-id",
+ "solana-sdk-ids 2.2.1",
+ "solana-sdk-macro 2.2.1",
+ "solana-sysvar-id 2.2.1",
+]
+
+[[package]]
+name = "solana-rent"
+version = "4.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1771d726d4854f1818c750e14aff40b19d84720d0b1b6d53e50e8f16cb6bd62"
+dependencies = [
+ "serde",
+ "serde_derive",
+ "solana-sdk-ids 3.1.0",
+ "solana-sdk-macro 3.0.1",
+ "solana-sysvar-id 3.1.0",
 ]
 
 [[package]]
@@ -2265,10 +2779,31 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-sdk-ids"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "def234c1956ff616d46c9dd953f251fa7096ddbaa6d52b165218de97882b7280"
+dependencies = [
+ "solana-address 2.2.0",
+]
+
+[[package]]
 name = "solana-sdk-macro"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "86280da8b99d03560f6ab5aca9de2e38805681df34e0bb8f238e69b29433b9df"
+dependencies = [
+ "bs58",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.117",
+]
+
+[[package]]
+name = "solana-sdk-macro"
+version = "3.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8765316242300c48242d84a41614cb3388229ec353ba464f6fe62a733e41806f"
 dependencies = [
  "bs58",
  "proc-macro2",
@@ -2284,6 +2819,17 @@ checksum = "baa3120b6cdaa270f39444f5093a90a7b03d296d362878f7a6991d6de3bbe496"
 dependencies = [
  "libsecp256k1",
  "solana-define-syscall 2.3.0",
+ "thiserror 2.0.18",
+]
+
+[[package]]
+name = "solana-secp256k1-recover"
+version = "3.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e7c5f18893d62e6c73117dcba48f8f5e3266d90e5ec3d0a0a90f9785adac36c1"
+dependencies = [
+ "k256",
+ "solana-define-syscall 5.0.0",
  "thiserror 2.0.18",
 ]
 
@@ -2326,6 +2872,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-serde-varint"
+version = "3.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "950e5b83e839dc0f92c66afc124bb8f40e89bc90f0579e8ec5499296d27f54e3"
+dependencies = [
+ "serde",
+]
+
+[[package]]
 name = "solana-serialize-utils"
 version = "2.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2334,6 +2889,17 @@ dependencies = [
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
  "solana-sanitize 2.2.1",
+]
+
+[[package]]
+name = "solana-serialize-utils"
+version = "3.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5d7cc401931d178472358e6b78dc72d031dc08f752d7410f0e8bd259dd6f02fa"
+dependencies = [
+ "solana-instruction-error",
+ "solana-pubkey 4.1.0",
+ "solana-sanitize 3.0.1",
 ]
 
 [[package]]
@@ -2368,6 +2934,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-short-vec"
+version = "3.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "de3bd991c2cc415291c86bb0b6b4d53e93d13bb40344e4c5a2884e0e4f5fa93f"
+
+[[package]]
 name = "solana-signature"
 version = "2.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2397,8 +2969,21 @@ dependencies = [
  "serde",
  "serde_derive",
  "solana-hash 2.3.0",
- "solana-sdk-ids",
- "solana-sysvar-id",
+ "solana-sdk-ids 2.2.1",
+ "solana-sysvar-id 2.2.1",
+]
+
+[[package]]
+name = "solana-slot-hashes"
+version = "3.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2585f70191623887329dfb5078da3a00e15e3980ea67f42c2e10b07028419f43"
+dependencies = [
+ "serde",
+ "serde_derive",
+ "solana-hash 4.2.0",
+ "solana-sdk-ids 3.1.0",
+ "solana-sysvar-id 3.1.0",
 ]
 
 [[package]]
@@ -2410,8 +2995,21 @@ dependencies = [
  "bv",
  "serde",
  "serde_derive",
- "solana-sdk-ids",
- "solana-sysvar-id",
+ "solana-sdk-ids 2.2.1",
+ "solana-sysvar-id 2.2.1",
+]
+
+[[package]]
+name = "solana-slot-history"
+version = "3.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f914f6b108f5bba14a280b458d023e3621c9973f27f015a4d755b50e88d89e97"
+dependencies = [
+ "bv",
+ "serde",
+ "serde_derive",
+ "solana-sdk-ids 3.1.0",
+ "solana-sysvar-id 3.1.0",
 ]
 
 [[package]]
@@ -2425,6 +3023,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-stable-layout"
+version = "3.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c9f6a291ba063a37780af29e7db14bdd3dc447584d8ba5b3fc4b88e2bbc982fa"
+dependencies = [
+ "solana-instruction 3.2.0",
+ "solana-pubkey 4.1.0",
+]
+
+[[package]]
 name = "solana-stake-interface"
 version = "1.2.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2435,14 +3043,14 @@ dependencies = [
  "num-traits",
  "serde",
  "serde_derive",
- "solana-clock",
- "solana-cpi",
+ "solana-clock 2.2.3",
+ "solana-cpi 2.2.1",
  "solana-decode-error",
  "solana-instruction 2.3.3",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
  "solana-system-interface 1.0.0",
- "solana-sysvar-id",
+ "solana-sysvar-id 2.2.1",
 ]
 
 [[package]]
@@ -2477,6 +3085,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "solana-system-interface"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a95a6f2e23ed861d6444ad4a6d6896c418d7d101b960787e65a8e33157cee81b"
+dependencies = [
+ "num-traits",
+ "solana-address 2.2.0",
+ "solana-msg 3.1.0",
+ "solana-program-error 3.0.0",
+]
+
+[[package]]
 name = "solana-sysvar"
 version = "2.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2489,28 +3109,62 @@ dependencies = [
  "lazy_static",
  "serde",
  "serde_derive",
- "solana-account-info",
- "solana-clock",
+ "solana-account-info 2.3.0",
+ "solana-clock 2.2.3",
  "solana-define-syscall 2.3.0",
- "solana-epoch-rewards",
- "solana-epoch-schedule",
- "solana-fee-calculator",
+ "solana-epoch-rewards 2.2.1",
+ "solana-epoch-schedule 2.2.1",
+ "solana-fee-calculator 2.2.1",
  "solana-hash 2.3.0",
  "solana-instruction 2.3.3",
- "solana-instructions-sysvar",
- "solana-last-restart-slot",
- "solana-program-entrypoint",
+ "solana-instructions-sysvar 2.2.2",
+ "solana-last-restart-slot 2.2.1",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
- "solana-program-memory",
+ "solana-program-memory 2.3.1",
  "solana-pubkey 2.4.0",
- "solana-rent",
+ "solana-rent 2.2.1",
  "solana-sanitize 2.2.1",
- "solana-sdk-ids",
- "solana-sdk-macro",
- "solana-slot-hashes",
- "solana-slot-history",
+ "solana-sdk-ids 2.2.1",
+ "solana-sdk-macro 2.2.1",
+ "solana-slot-hashes 2.2.1",
+ "solana-slot-history 2.2.1",
  "solana-stake-interface",
- "solana-sysvar-id",
+ "solana-sysvar-id 2.2.1",
+]
+
+[[package]]
+name = "solana-sysvar"
+version = "4.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1632b69b4f72489db5949a10e8308c229dfa003f99ecaa7477b376807c7b81f4"
+dependencies = [
+ "base64 0.22.1",
+ "bincode",
+ "bytemuck",
+ "bytemuck_derive",
+ "lazy_static",
+ "serde",
+ "serde_derive",
+ "solana-account-info 3.1.0",
+ "solana-clock 3.0.1",
+ "solana-define-syscall 5.0.0",
+ "solana-epoch-rewards 3.0.1",
+ "solana-epoch-schedule 3.0.0",
+ "solana-fee-calculator 3.1.0",
+ "solana-hash 4.2.0",
+ "solana-instruction 3.2.0",
+ "solana-last-restart-slot 3.0.0",
+ "solana-program-entrypoint 3.1.1",
+ "solana-program-error 3.0.0",
+ "solana-program-memory 3.1.0",
+ "solana-pubkey 4.1.0",
+ "solana-rent 4.1.0",
+ "solana-sdk-ids 3.1.0",
+ "solana-sdk-macro 3.0.1",
+ "solana-slot-hashes 3.0.1",
+ "solana-slot-history 3.0.0",
+ "solana-sysvar-id 3.1.0",
 ]
 
 [[package]]
@@ -2520,7 +3174,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5762b273d3325b047cfda250787f8d796d781746860d5d0a746ee29f3e8812c1"
 dependencies = [
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
+]
+
+[[package]]
+name = "solana-sysvar-id"
+version = "3.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "17358d1e9a13e5b9c2264d301102126cf11a47fd394cdf3dec174fe7bc96e1de"
+dependencies = [
+ "solana-address 2.2.0",
+ "solana-sdk-ids 3.1.0",
 ]
 
 [[package]]
@@ -2544,16 +3208,16 @@ dependencies = [
  "num-traits",
  "serde",
  "serde_derive",
- "solana-clock",
+ "solana-clock 2.2.3",
  "solana-decode-error",
  "solana-hash 2.3.0",
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
- "solana-rent",
- "solana-sdk-ids",
- "solana-serde-varint",
- "solana-serialize-utils",
- "solana-short-vec",
+ "solana-rent 2.2.1",
+ "solana-sdk-ids 2.2.1",
+ "solana-serde-varint 2.2.2",
+ "solana-serialize-utils 2.2.1",
+ "solana-short-vec 2.2.1",
  "solana-system-interface 1.0.0",
 ]
 
@@ -2582,7 +3246,7 @@ dependencies = [
  "solana-derivation-path",
  "solana-instruction 2.3.3",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
  "solana-seed-derivable",
  "solana-seed-phrase",
  "solana-signature",
@@ -2594,6 +3258,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "spki"
+version = "0.7.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d91ed6c858b01f942cd56b37a94b3e0a1798290327d1236e4d9cf4eaca44d29d"
+dependencies = [
+ "base64ct",
+ "der",
+]
+
+[[package]]
 name = "spl-associated-token-account"
 version = "7.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2602,10 +3276,10 @@ dependencies = [
  "borsh 1.6.0",
  "num-derive",
  "num-traits",
- "solana-program",
+ "solana-program 2.3.0",
  "spl-associated-token-account-client",
- "spl-token",
- "spl-token-2022",
+ "spl-token 8.0.0",
+ "spl-token-2022 8.0.1",
  "thiserror 2.0.18",
 ]
 
@@ -2657,25 +3331,38 @@ dependencies = [
 
 [[package]]
 name = "spl-elgamal-registry"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ce0f668975d2b0536e8a8fd60e56a05c467f06021dae037f1d0cfed0de2e231d"
+dependencies = [
+ "bytemuck",
+ "solana-program 2.3.0",
+ "solana-zk-sdk",
+ "spl-pod",
+ "spl-token-confidential-transfer-proof-extraction 0.2.1",
+]
+
+[[package]]
+name = "spl-elgamal-registry"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "65edfeed09cd4231e595616aa96022214f9c9d2be02dea62c2b30d5695a6833a"
 dependencies = [
  "bytemuck",
- "solana-account-info",
- "solana-cpi",
+ "solana-account-info 2.3.0",
+ "solana-cpi 2.2.1",
  "solana-instruction 2.3.3",
  "solana-msg 2.2.1",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
- "solana-rent",
- "solana-sdk-ids",
+ "solana-rent 2.2.1",
+ "solana-sdk-ids 2.2.1",
  "solana-system-interface 1.0.0",
- "solana-sysvar",
+ "solana-sysvar 2.3.0",
  "solana-zk-sdk",
  "spl-pod",
- "spl-token-confidential-transfer-proof-extraction",
+ "spl-token-confidential-transfer-proof-extraction 0.3.0",
 ]
 
 [[package]]
@@ -2684,10 +3371,10 @@ version = "6.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9f09647c0974e33366efeb83b8e2daebb329f0420149e74d3a4bd2c08cf9f7cb"
 dependencies = [
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-instruction 2.3.3",
  "solana-msg 2.2.1",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
 ]
@@ -2706,10 +3393,23 @@ dependencies = [
  "solana-decode-error",
  "solana-msg 2.2.1",
  "solana-program-error 2.2.2",
- "solana-program-option",
+ "solana-program-option 2.2.1",
  "solana-pubkey 2.4.0",
  "solana-zk-sdk",
  "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-program-error"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9d39b5186f42b2b50168029d81e58e800b690877ef0b30580d107659250da1d1"
+dependencies = [
+ "num-derive",
+ "num-traits",
+ "solana-program 2.3.0",
+ "spl-program-error-derive 0.4.1",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
@@ -2723,8 +3423,20 @@ dependencies = [
  "solana-decode-error",
  "solana-msg 2.2.1",
  "solana-program-error 2.2.2",
- "spl-program-error-derive",
+ "spl-program-error-derive 0.5.0",
  "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-program-error-derive"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e6d375dd76c517836353e093c2dbb490938ff72821ab568b545fd30ab3256b3e"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "sha2 0.10.9",
+ "syn 2.0.117",
 ]
 
 [[package]]
@@ -2741,14 +3453,14 @@ dependencies = [
 
 [[package]]
 name = "spl-tlv-account-resolution"
-version = "0.10.0"
+version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1408e961215688715d5a1063cbdcf982de225c45f99c82b4f7d7e1dd22b998d7"
+checksum = "cd99ff1e9ed2ab86e3fd582850d47a739fec1be9f4661cba1782d3a0f26805f3"
 dependencies = [
  "bytemuck",
  "num-derive",
  "num-traits",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-decode-error",
  "solana-instruction 2.3.3",
  "solana-msg 2.2.1",
@@ -2756,9 +3468,46 @@ dependencies = [
  "solana-pubkey 2.4.0",
  "spl-discriminator",
  "spl-pod",
- "spl-program-error",
- "spl-type-length-value",
+ "spl-program-error 0.6.0",
+ "spl-type-length-value 0.7.0",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "spl-tlv-account-resolution"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1408e961215688715d5a1063cbdcf982de225c45f99c82b4f7d7e1dd22b998d7"
+dependencies = [
+ "bytemuck",
+ "num-derive",
+ "num-traits",
+ "solana-account-info 2.3.0",
+ "solana-decode-error",
+ "solana-instruction 2.3.3",
+ "solana-msg 2.2.1",
+ "solana-program-error 2.2.2",
+ "solana-pubkey 2.4.0",
+ "spl-discriminator",
+ "spl-pod",
+ "spl-program-error 0.7.0",
+ "spl-type-length-value 0.8.0",
  "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-token"
+version = "7.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ed320a6c934128d4f7e54fe00e16b8aeaecf215799d060ae14f93378da6dc834"
+dependencies = [
+ "arrayref",
+ "bytemuck",
+ "num-derive",
+ "num-traits",
+ "num_enum",
+ "solana-program 2.3.0",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
@@ -2772,21 +3521,49 @@ dependencies = [
  "num-derive",
  "num-traits",
  "num_enum",
- "solana-account-info",
- "solana-cpi",
+ "solana-account-info 2.3.0",
+ "solana-cpi 2.2.1",
  "solana-decode-error",
  "solana-instruction 2.3.3",
  "solana-msg 2.2.1",
- "solana-program-entrypoint",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
- "solana-program-memory",
- "solana-program-option",
- "solana-program-pack",
+ "solana-program-memory 2.3.1",
+ "solana-program-option 2.2.1",
+ "solana-program-pack 2.2.1",
  "solana-pubkey 2.4.0",
- "solana-rent",
- "solana-sdk-ids",
- "solana-sysvar",
+ "solana-rent 2.2.1",
+ "solana-sdk-ids 2.2.1",
+ "solana-sysvar 2.3.0",
  "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-token-2022"
+version = "6.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5b27f7405010ef816587c944536b0eafbcc35206ab6ba0f2ca79f1d28e488f4f"
+dependencies = [
+ "arrayref",
+ "bytemuck",
+ "num-derive",
+ "num-traits",
+ "num_enum",
+ "solana-program 2.3.0",
+ "solana-security-txt",
+ "solana-zk-sdk",
+ "spl-elgamal-registry 0.1.1",
+ "spl-memo",
+ "spl-pod",
+ "spl-token 7.0.0",
+ "spl-token-confidential-transfer-ciphertext-arithmetic 0.2.1",
+ "spl-token-confidential-transfer-proof-extraction 0.2.1",
+ "spl-token-confidential-transfer-proof-generation 0.2.0",
+ "spl-token-group-interface 0.5.0",
+ "spl-token-metadata-interface 0.6.0",
+ "spl-transfer-hook-interface 0.9.0",
+ "spl-type-length-value 0.7.0",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
@@ -2800,37 +3577,49 @@ dependencies = [
  "num-derive",
  "num-traits",
  "num_enum",
- "solana-account-info",
- "solana-clock",
- "solana-cpi",
+ "solana-account-info 2.3.0",
+ "solana-clock 2.2.3",
+ "solana-cpi 2.2.1",
  "solana-decode-error",
  "solana-instruction 2.3.3",
  "solana-msg 2.2.1",
- "solana-native-token",
- "solana-program-entrypoint",
+ "solana-native-token 2.3.0",
+ "solana-program-entrypoint 2.3.0",
  "solana-program-error 2.2.2",
- "solana-program-memory",
- "solana-program-option",
- "solana-program-pack",
+ "solana-program-memory 2.3.1",
+ "solana-program-option 2.2.1",
+ "solana-program-pack 2.2.1",
  "solana-pubkey 2.4.0",
- "solana-rent",
- "solana-sdk-ids",
+ "solana-rent 2.2.1",
+ "solana-sdk-ids 2.2.1",
  "solana-security-txt",
  "solana-system-interface 1.0.0",
- "solana-sysvar",
+ "solana-sysvar 2.3.0",
  "solana-zk-sdk",
- "spl-elgamal-registry",
+ "spl-elgamal-registry 0.2.0",
  "spl-memo",
  "spl-pod",
- "spl-token",
- "spl-token-confidential-transfer-ciphertext-arithmetic",
- "spl-token-confidential-transfer-proof-extraction",
- "spl-token-confidential-transfer-proof-generation",
- "spl-token-group-interface",
- "spl-token-metadata-interface",
- "spl-transfer-hook-interface",
- "spl-type-length-value",
+ "spl-token 8.0.0",
+ "spl-token-confidential-transfer-ciphertext-arithmetic 0.3.1",
+ "spl-token-confidential-transfer-proof-extraction 0.3.0",
+ "spl-token-confidential-transfer-proof-generation 0.4.1",
+ "spl-token-group-interface 0.6.0",
+ "spl-token-metadata-interface 0.7.0",
+ "spl-transfer-hook-interface 0.10.0",
+ "spl-type-length-value 0.8.0",
  "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-token-confidential-transfer-ciphertext-arithmetic"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "170378693c5516090f6d37ae9bad2b9b6125069be68d9acd4865bbe9fc8499fd"
+dependencies = [
+ "base64 0.22.1",
+ "bytemuck",
+ "solana-curve25519",
+ "solana-zk-sdk",
 ]
 
 [[package]]
@@ -2847,22 +3636,47 @@ dependencies = [
 
 [[package]]
 name = "spl-token-confidential-transfer-proof-extraction"
+version = "0.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "eff2d6a445a147c9d6dd77b8301b1e116c8299601794b558eafa409b342faf96"
+dependencies = [
+ "bytemuck",
+ "solana-curve25519",
+ "solana-program 2.3.0",
+ "solana-zk-sdk",
+ "spl-pod",
+ "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-token-confidential-transfer-proof-extraction"
 version = "0.3.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "fe2629860ff04c17bafa9ba4bed8850a404ecac81074113e1f840dbd0ebb7bd6"
 dependencies = [
  "bytemuck",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-curve25519",
  "solana-instruction 2.3.3",
- "solana-instructions-sysvar",
+ "solana-instructions-sysvar 2.2.2",
  "solana-msg 2.2.1",
  "solana-program-error 2.2.2",
  "solana-pubkey 2.4.0",
- "solana-sdk-ids",
+ "solana-sdk-ids 2.2.1",
  "solana-zk-sdk",
  "spl-pod",
  "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-token-confidential-transfer-proof-generation"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8627184782eec1894de8ea26129c61303f1f0adeed65c20e0b10bc584f09356d"
+dependencies = [
+ "curve25519-dalek",
+ "solana-zk-sdk",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
@@ -2874,6 +3688,25 @@ dependencies = [
  "curve25519-dalek",
  "solana-zk-sdk",
  "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-token-group-interface"
+version = "0.5.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d595667ed72dbfed8c251708f406d7c2814a3fa6879893b323d56a10bedfc799"
+dependencies = [
+ "bytemuck",
+ "num-derive",
+ "num-traits",
+ "solana-decode-error",
+ "solana-instruction 2.3.3",
+ "solana-msg 2.2.1",
+ "solana-program-error 2.2.2",
+ "solana-pubkey 2.4.0",
+ "spl-discriminator",
+ "spl-pod",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
@@ -2897,14 +3730,14 @@ dependencies = [
 
 [[package]]
 name = "spl-token-metadata-interface"
-version = "0.7.0"
+version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "304d6e06f0de0c13a621464b1fd5d4b1bebf60d15ca71a44d3839958e0da16ee"
+checksum = "dfb9c89dbc877abd735f05547dcf9e6e12c00c11d6d74d8817506cab4c99fdbb"
 dependencies = [
  "borsh 1.6.0",
  "num-derive",
  "num-traits",
- "solana-borsh",
+ "solana-borsh 2.2.1",
  "solana-decode-error",
  "solana-instruction 2.3.3",
  "solana-msg 2.2.1",
@@ -2912,8 +3745,54 @@ dependencies = [
  "solana-pubkey 2.4.0",
  "spl-discriminator",
  "spl-pod",
- "spl-type-length-value",
+ "spl-type-length-value 0.7.0",
+ "thiserror 1.0.69",
+]
+
+[[package]]
+name = "spl-token-metadata-interface"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "304d6e06f0de0c13a621464b1fd5d4b1bebf60d15ca71a44d3839958e0da16ee"
+dependencies = [
+ "borsh 1.6.0",
+ "num-derive",
+ "num-traits",
+ "solana-borsh 2.2.1",
+ "solana-decode-error",
+ "solana-instruction 2.3.3",
+ "solana-msg 2.2.1",
+ "solana-program-error 2.2.2",
+ "solana-pubkey 2.4.0",
+ "spl-discriminator",
+ "spl-pod",
+ "spl-type-length-value 0.8.0",
  "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-transfer-hook-interface"
+version = "0.9.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4aa7503d52107c33c88e845e1351565050362c2314036ddf19a36cd25137c043"
+dependencies = [
+ "arrayref",
+ "bytemuck",
+ "num-derive",
+ "num-traits",
+ "solana-account-info 2.3.0",
+ "solana-cpi 2.2.1",
+ "solana-decode-error",
+ "solana-instruction 2.3.3",
+ "solana-msg 2.2.1",
+ "solana-program-error 2.2.2",
+ "solana-pubkey 2.4.0",
+ "spl-discriminator",
+ "spl-pod",
+ "spl-program-error 0.6.0",
+ "spl-tlv-account-resolution 0.9.0",
+ "spl-type-length-value 0.7.0",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
@@ -2926,8 +3805,8 @@ dependencies = [
  "bytemuck",
  "num-derive",
  "num-traits",
- "solana-account-info",
- "solana-cpi",
+ "solana-account-info 2.3.0",
+ "solana-cpi 2.2.1",
  "solana-decode-error",
  "solana-instruction 2.3.3",
  "solana-msg 2.2.1",
@@ -2935,10 +3814,28 @@ dependencies = [
  "solana-pubkey 2.4.0",
  "spl-discriminator",
  "spl-pod",
- "spl-program-error",
- "spl-tlv-account-resolution",
- "spl-type-length-value",
+ "spl-program-error 0.7.0",
+ "spl-tlv-account-resolution 0.10.0",
+ "spl-type-length-value 0.8.0",
  "thiserror 2.0.18",
+]
+
+[[package]]
+name = "spl-type-length-value"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ba70ef09b13af616a4c987797870122863cba03acc4284f226a4473b043923f9"
+dependencies = [
+ "bytemuck",
+ "num-derive",
+ "num-traits",
+ "solana-account-info 2.3.0",
+ "solana-decode-error",
+ "solana-msg 2.2.1",
+ "solana-program-error 2.2.2",
+ "spl-discriminator",
+ "spl-pod",
+ "thiserror 1.0.69",
 ]
 
 [[package]]
@@ -2950,7 +3847,7 @@ dependencies = [
  "bytemuck",
  "num-derive",
  "num-traits",
- "solana-account-info",
+ "solana-account-info 2.3.0",
  "solana-decode-error",
  "solana-msg 2.2.1",
  "solana-program-error 2.2.2",
@@ -2964,6 +3861,12 @@ name = "static_assertions"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2eb9349b6444b326872e140eb1cf5e7c522154d69e7a0ffb0fb81c06b37543f"
+
+[[package]]
+name = "strsim"
+version = "0.11.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7da8b5736845d9f2fcb837ea5d9e2628564b3b043a70948a3f0b778838c5fb4f"
 
 [[package]]
 name = "subtle"
@@ -3186,9 +4089,9 @@ checksum = "ccf3ec651a847eb01de73ccad15eb7d99f80485de043efb2f370cd654f4ea44b"
 
 [[package]]
 name = "wasm-bindgen"
-version = "0.2.110"
+version = "0.2.111"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1de241cdc66a9d91bd84f097039eb140cdc6eec47e0cdbaf9d932a1dd6c35866"
+checksum = "ec1adf1535672f5b7824f817792b1afd731d7e843d2d04ec8f27e8cb51edd8ac"
 dependencies = [
  "cfg-if",
  "once_cell",
@@ -3199,9 +4102,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro"
-version = "0.2.110"
+version = "0.2.111"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e12fdf6649048f2e3de6d7d5ff3ced779cdedee0e0baffd7dff5cdfa3abc8a52"
+checksum = "19e638317c08b21663aed4d2b9a2091450548954695ff4efa75bff5fa546b3b1"
 dependencies = [
  "quote",
  "wasm-bindgen-macro-support",
@@ -3209,9 +4112,9 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-macro-support"
-version = "0.2.110"
+version = "0.2.111"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0e63d1795c565ac3462334c1e396fd46dbf481c40f51f5072c310717bc4fb309"
+checksum = "2c64760850114d03d5f65457e96fc988f11f01d38fbaa51b254e4ab5809102af"
 dependencies = [
  "bumpalo",
  "proc-macro2",
@@ -3222,21 +4125,46 @@ dependencies = [
 
 [[package]]
 name = "wasm-bindgen-shared"
-version = "0.2.110"
+version = "0.2.111"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e9f9cdac23a5ce71f6bf9f8824898a501e511892791ea2a0c6b8568c68b9cb53"
+checksum = "60eecd4fe26177cfa3339eb00b4a36445889ba3ad37080c2429879718e20ca41"
 dependencies = [
  "unicode-ident",
 ]
 
 [[package]]
 name = "web-sys"
-version = "0.3.87"
+version = "0.3.88"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f2c7c5718134e770ee62af3b6b4a84518ec10101aad610c024b64d6ff29bb1ff"
+checksum = "9d6bb20ed2d9572df8584f6dc81d68a41a625cadc6f15999d649a70ce7e3597a"
 dependencies = [
  "js-sys",
  "wasm-bindgen",
+]
+
+[[package]]
+name = "wincode"
+version = "0.4.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "466e67917609b2d40a838a5b972d1a6237c9749600cb8de8f65559b90d48485b"
+dependencies = [
+ "pastey",
+ "proc-macro2",
+ "quote",
+ "thiserror 2.0.18",
+ "wincode-derive",
+]
+
+[[package]]
+name = "wincode-derive"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "26a7a568eda854acc9945ed136a9d50b8c6d31911584624958808ae96eee3912"
+dependencies = [
+ "darling",
+ "proc-macro2",
+ "quote",
+ "syn 2.0.117",
 ]
 
 [[package]]

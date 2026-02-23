@@ -721,7 +721,7 @@ Magic Roulette uses Squads multisig for treasury and platform management.
 - [ ] Mobile app development (React Native + Expo)
 - [ ] Mobile Wallet Adapter integration
 - [ ] Solana dApp Store submission
-- [ ] Devnet mobile beta testing
+- [ ] mobile beta testing
 - [ ] Seeker device optimization
 - [ ] Marketing campaign
 
@@ -857,15 +857,22 @@ Magic Roulette isn't just a game—it's the future of mobile blockchain gaming. 
 
 ### C. Resources
 
-- Website: https://magicroulette.com
-- Mobile App: Solana dApp Store
-- Documentation: https://docs.magicroulette.com
-- GitHub: https://github.com/magic-roulette
-- Discord: https://discord.gg/magic-roulette
-- Twitter: @MagicRoulette
-- Solana Mobile: https://solanamobile.com
+- **Website**: https://magicroullete.com
+- **Documentation**: https://docs.magicroulette.com
+- **GitHub**: https://github.com/magicroulette-game/magic-roullete
+- **Twitter**: https://x.com/mgcrouletteapp
+- **Email**: magicroulettesol@gmail.com
+- **Mobile App**: Solana dApp Store
+- **Solana Mobile**: https://solanamobile.com
 
-### D. Legal Disclaimer
+### D. Contact
+
+For inquiries, partnerships, or support:
+- **Email**: magicroulettesol@gmail.com
+- **Twitter**: @mgcrouletteapp
+- **GitHub**: github.com/magicroulette-game
+
+### E. Legal Disclaimer
 
 This whitepaper is for informational purposes only and does not constitute financial advice. Magic Roulette is a gaming platform and involves risk. Players should only wager what they can afford to lose. Availability may be restricted in certain jurisdictions. Please check local regulations before participating.
 
