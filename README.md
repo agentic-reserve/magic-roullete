@@ -4,7 +4,8 @@
 
 🌐 **Website**: [magicroullete.com](https://magicroullete.com)  
 📱 **Platform**: Solana Mobile Seeker  
-🎮 **Program ID**: `JE2fDdXcYEprUR2yPmWdLGDSJ7Y7HD8qsJ52eD6qUavq`
+🎮 **Program ID (Localnet)**: `HA71kX5tHESphxAhqdnrhHWawmEHWHLdiHjeyfA82Bam`  
+📦 **GitHub**: [agentic-reserve/magic-roullete](https://github.com/agentic-reserve/magic-roullete)
 
 [![Solana](https://img.shields.io/badge/Solana-Mainnet-green)](https://solana.com)
 [![Anchor](https://img.shields.io/badge/Anchor-0.32.1-blue)](https://www.anchor-lang.com/)
@@ -64,7 +65,7 @@ Magic Roulette is a next-generation mobile-first GameFi platform that reimagines
 ### Prerequisites
 
 ```bash
-Solana: 2.3.13
+Solana: 3.1.9+
 Rust: 1.85.0
 Anchor: 0.32.1
 Node: 24.10.0
@@ -74,31 +75,51 @@ Node: 24.10.0
 
 ```bash
 # Clone repository
-git clone https://github.com/magic-roulette/magic-roulette
-cd magic-roulette
+git clone https://github.com/agentic-reserve/magic-roullete
+cd magic-roullete
 
 # Install dependencies
 npm install
 
 # Build smart contract
 anchor build
-
-# Deploy to devnet
-anchor deploy --provider.cluster devnet
 ```
 
-### Run Tests
+### Testing (Localnet)
+
+**⚡ Quick Start (3 Steps)** - See [QUICK_START.md](QUICK_START.md)
 
 ```bash
-# Unit tests
-anchor test
+# Step 1: Start validator (new terminal)
+solana-test-validator \
+  --bpf-program HA71kX5tHESphxAhqdnrhHWawmEHWHLdiHjeyfA82Bam \
+  target/deploy/magic_roulette.so \
+  --reset
 
-# Integration tests
-npm run test:integration
+# Step 2: Verify setup
+node scripts/test-connection.js
 
-# E2E tests
-npm run test:e2e
+# Step 3: Run tests
+node scripts/simple-create-game.js
+node scripts/test-join-game.js
 ```
+
+**📚 Complete Testing Guide** - See [TESTING_GUIDE.md](TESTING_GUIDE.md)
+
+### Deploy to Devnet
+
+```bash
+# Switch to devnet
+solana config set --url devnet
+
+# Deploy program
+anchor deploy --provider.cluster devnet
+
+# Initialize platform
+node scripts/init-platform-devnet.js
+```
+
+**📚 Devnet Deployment Guide** - See [DEVNET_DEPLOYMENT_GUIDE.md](DEVNET_DEPLOYMENT_GUIDE.md)
 
 ---
 
@@ -280,10 +301,26 @@ await mintTo(rpc, payer, mint, recipient, authority, amount);
 
 ## 📚 Documentation
 
+### Getting Started
+- **Quick Start**: [QUICK_START.md](QUICK_START.md) - Get testing in 5 minutes
+- **Testing Guide**: [TESTING_GUIDE.md](TESTING_GUIDE.md) - Complete testing instructions
+- **Next Steps**: [NEXT_STEPS.md](NEXT_STEPS.md) - What to do next
+- **Current Status**: [CURRENT_STATUS.md](CURRENT_STATUS.md) - Project status overview
+
+### Deployment & Integration
+- **Devnet Deployment**: [DEVNET_DEPLOYMENT_GUIDE.md](DEVNET_DEPLOYMENT_GUIDE.md)
+- **Wallet Integration**: [WALLET_INTEGRATION_COMPLETE.md](WALLET_INTEGRATION_COMPLETE.md)
+- **Alternative Testing**: [ALTERNATIVE_TESTING_GUIDE.md](ALTERNATIVE_TESTING_GUIDE.md)
+
+### Technical Documentation
 - **Whitepaper**: [misc/MAGIC_ROULETTE_WHITEPAPER.md](misc/MAGIC_ROULETTE_WHITEPAPER.md)
+- **Implementation Status**: [misc/IMPLEMENTATION_STATUS.md](misc/IMPLEMENTATION_STATUS.md)
 - **MagicBlock Integration**: [MAGICBLOCK_INTEGRATION_COMPLETE.md](MAGICBLOCK_INTEGRATION_COMPLETE.md)
-- **Quick Start**: [MAGICBLOCK_QUICK_START.md](MAGICBLOCK_QUICK_START.md)
-- **API Docs**: Coming soon
+- **MagicBlock Quick Start**: [MAGICBLOCK_QUICK_START.md](MAGICBLOCK_QUICK_START.md)
+- **Multisig Setup**: [QUICK_MULTISIG_SETUP.md](QUICK_MULTISIG_SETUP.md)
+
+### Session Notes
+- **Session Summary**: [SESSION_SUMMARY.md](SESSION_SUMMARY.md) - Latest work completed
 
 ---
 

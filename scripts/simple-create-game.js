@@ -93,12 +93,21 @@ async function main() {
   // Create AI Practice Game
   console.log("\n📝 Creating AI Practice Game...");
   
-  const aiGameId = new anchor.BN(Date.now() + 1000);
+  // Get updated platform config to get next game ID
+  const updatedConfig = await program.account.platformConfig.fetch(platformConfig);
+  const aiGameId = updatedConfig.totalGames;
+  
+  console.log("Next AI Game ID:", aiGameId.toString());
+  
   const [aiGamePda] = PublicKey.findProgramAddressSync(
     [Buffer.from("game"), aiGameId.toArrayLike(Buffer, "le", 8)],
     programId
   );
 
+  // Create or use a dedicated AI bot keypair
+  // For testing, we'll create a new one each time
+  const aiBot = Keypair.generate();
+  
   const aiDifficulty = { medium: {} };
   const aiVrfSeed = Array(32).fill(0).map(() => Math.floor(Math.random() * 256));
 
@@ -109,7 +118,7 @@ async function main() {
         game: aiGamePda,
         platformConfig,
         player: walletKeypair.publicKey,
-        payer: walletKeypair.publicKey,
+        aiBot: aiBot.publicKey,
         systemProgram: SystemProgram.programId,
       })
       .rpc();
