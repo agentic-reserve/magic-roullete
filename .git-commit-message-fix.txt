@@ -1,0 +1,29 @@
+fix: Update test-join-game script to use joinGameSol and properly detect full games
+
+## Bug Fixes
+- Changed from `joinGame()` to `joinGameSol()` for SOL-based games
+- Fixed game full detection logic (was checking non-existent `isFull` field)
+- Added proper game mode checking (oneVsOne vs twoVsTwo)
+- Script now iterates through all games to find an available one
+
+## Changes
+- Use `joinGameSol` instruction instead of `joinGame` (which requires Token-2022 accounts)
+- Implement proper full game detection:
+  - 1v1: full when teamACount === 1 && teamBCount === 1
+  - 2v2: full when teamACount === 2 && teamBCount === 2
+- Skip AI games automatically
+- Better error messages when no games available
+
+## Test Results
+✅ Successfully finds available games
+✅ Skips full games
+✅ Joins game correctly
+✅ Verifies game state updates (team counts, pot, status)
+✅ Shows all players in teams
+
+Example output:
+- Game 0: Full (Team A: 1, Team B: 1)
+- Game 1: Available (Team A: 1, Team B: 0)
+- Joined game 1 successfully
+- Total pot: 0.2 SOL
+- Both teams now have 1 player each

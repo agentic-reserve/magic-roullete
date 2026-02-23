@@ -11,6 +11,12 @@ pub enum GameError {
     #[msg("Game is not in progress")]
     GameNotInProgress,
     
+    #[msg("Invalid game status for this operation")]
+    InvalidGameStatus,
+    
+    #[msg("Game not finished")]
+    GameNotFinished,
+    
     #[msg("Not your turn")]
     NotYourTurn,
     

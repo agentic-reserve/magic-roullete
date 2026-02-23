@@ -20,14 +20,16 @@ pub fn process_vrf_result(
 ) -> Result<()> {
     let game = &mut ctx.accounts.game;
     
+    // Can process VRF in either Delegated or InProgress status (for ER compatibility)
     require!(
-        game.status == GameStatus::Delegated,
-        GameError::GameNotInProgress
+        game.status == GameStatus::Delegated || game.status == GameStatus::InProgress,
+        GameError::InvalidGameStatus
     );
     
     // SECURITY: Store VRF result
     game.vrf_result = randomness;
     game.vrf_fulfilled = true;
+    game.vrf_pending = false;
     
     // Convert randomness to chamber position (1-6)
     let random_u64 = u64::from_le_bytes([
@@ -39,7 +41,10 @@ pub fn process_vrf_result(
     // Start game
     game.status = GameStatus::InProgress;
     
-    msg!("VRF processed for game {}", game.game_id);
+    msg!("🎲 VRF processed for game {}", game.game_id);
+    msg!("   Bullet chamber: {}", game.bullet_chamber);
+    msg!("   Status: InProgress");
+    msg!("   Game ready for shots on Ephemeral Rollup");
     
     Ok(())
 }

@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@coral-xyz/anchor": "^0.32.1",
-    "@magicblock-labs/ephemeral-rollups-sdk": "^0.2.8",
+    "@magicblock-labs/ephemeral-rollups-kit": "^0.6.5",
+    "@magicblock-labs/ephemeral-rollups-sdk": "^0.6.5",
     "@solana/spl-token": "^0.1.8",
     "@solana/web3.js": "^1.95.8",
     "@sqds/multisig": "^1.3.1",

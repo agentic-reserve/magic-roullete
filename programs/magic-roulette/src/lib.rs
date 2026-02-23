@@ -29,6 +29,7 @@ fn get_mint_decimals(mint_account: &AccountInfo) -> Result<u8> {
 
 declare_id!("HA71kX5tHESphxAhqdnrhHWawmEHWHLdiHjeyfA82Bam");
 
+#[ephemeral]  // CRITICAL: Enables MagicBlock Ephemeral Rollups support
 #[program]
 pub mod magic_roulette {
     use super::*;
@@ -104,9 +105,12 @@ pub mod magic_roulette {
         Ok(())
     }
 
-    /// Undelegate game from ER (handled by MagicBlock SDK on client)
+    /// Undelegate game from ER and return to base layer (handled by MagicBlock SDK on client)
     pub fn undelegate_game(_ctx: Context<UndelegateGame>) -> Result<()> {
         msg!("Game undelegated from Ephemeral Rollup");
+        Ok(())
+    }
+        
         Ok(())
     }
 
