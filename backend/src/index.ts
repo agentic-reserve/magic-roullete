@@ -19,9 +19,9 @@ dotenv.config();
 import { apiRouter } from './routes';
 import { errorHandler } from './middleware/error-handler';
 import { notFoundHandler } from './middleware/not-found';
-import { WebSocketServer } from './services/websocket';
-import { SolanaService } from './services/solana';
-import { RedisService } from './services/redis';
+import { GameWebSocketServer } from './websocket/server';
+// import { SolanaService } from './services/solana';
+// import { RedisService } from './services/redis';
 
 // Initialize app
 const app = express();
@@ -62,17 +62,16 @@ async function initializeServices() {
   try {
     console.log('🚀 Initializing services...');
     
-    // Initialize Redis
-    await RedisService.getInstance().connect();
-    console.log('✅ Redis connected');
+    // Initialize Redis (optional for now)
+    // await RedisService.getInstance().connect();
+    // console.log('✅ Redis connected');
     
-    // Initialize Solana
-    await SolanaService.getInstance().initialize();
-    console.log('✅ Solana service initialized');
+    // Initialize Solana (optional for now)
+    // await SolanaService.getInstance().initialize();
+    // console.log('✅ Solana service initialized');
     
     // Initialize WebSocket
-    const wsServer = new WebSocketServer(httpServer);
-    wsServer.initialize();
+    const wsServer = new GameWebSocketServer(httpServer);
     console.log('✅ WebSocket server initialized');
     
     console.log('✅ All services initialized');
@@ -113,9 +112,9 @@ process.on('SIGTERM', async () => {
   httpServer.close(async () => {
     console.log('✅ HTTP server closed');
     
-    // Close Redis connection
-    await RedisService.getInstance().disconnect();
-    console.log('✅ Redis disconnected');
+    // Close Redis connection (if enabled)
+    // await RedisService.getInstance().disconnect();
+    // console.log('✅ Redis disconnected');
     
     console.log('✅ Shutdown complete');
     process.exit(0);
@@ -128,9 +127,9 @@ process.on('SIGINT', async () => {
   httpServer.close(async () => {
     console.log('✅ HTTP server closed');
     
-    // Close Redis connection
-    await RedisService.getInstance().disconnect();
-    console.log('✅ Redis disconnected');
+    // Close Redis connection (if enabled)
+    // await RedisService.getInstance().disconnect();
+    // console.log('✅ Redis disconnected');
     
     console.log('✅ Shutdown complete');
     process.exit(0);
