@@ -9,9 +9,8 @@ pub mod claim_rewards;
 pub mod create_ai_game;
 pub mod ai_take_shot;
 
-// MagicBlock Ephemeral Rollup & VRF
+// MagicBlock VRF
 pub mod vrf_instructions;
-pub mod er_instructions;
 
 // SOL betting versions
 pub mod create_game_sol;
@@ -38,7 +37,6 @@ pub use ai_take_shot::*;
 
 // MagicBlock exports
 pub use vrf_instructions::*;
-pub use er_instructions::*;
 
 // SOL betting exports
 pub use create_game_sol::*;

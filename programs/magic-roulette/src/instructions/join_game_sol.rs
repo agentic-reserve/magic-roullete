@@ -16,7 +16,8 @@ pub struct JoinGameSol<'info> {
     
     #[account(
         seeds = [b"platform"],
-        bump = platform_config.bump
+        bump = platform_config.bump,
+        constraint = !platform_config.paused @ GameError::PlatformPaused
     )]
     pub platform_config: Account<'info, PlatformConfig>,
     

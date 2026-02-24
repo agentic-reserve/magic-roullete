@@ -6,10 +6,8 @@ use anchor_lang::prelude::*;
 use anchor_lang::solana_program::program_pack::Pack;
 use anchor_spl::token_2022::{Token2022, transfer_checked, TransferChecked};
 use anchor_spl::token_2022::spl_token_2022::state::Mint as MintState;
+use anchor_spl::token_2022::spl_token_2022::ID as TOKEN_2022_PROGRAM_ID;
 use ephemeral_rollups_sdk::anchor::ephemeral;
-use ephemeral_rollups_sdk::anchor::DelegationProgram;
-use ephemeral_rollups_sdk::anchor::delegate;
-use ephemeral_rollups_sdk::anchor::commit;
 use ephemeral_vrf_sdk::anchor::vrf;
 
 pub mod constants;
@@ -19,9 +17,16 @@ pub mod state;
 
 use instructions::*;
 use state::{GameMode, AiDifficulty, GameStatus}; // GameStatus used in delegate_game and finalize_game
+use constants::MAGICBLOCK_DELEGATION_PROGRAM_ID;
 
-// Helper function to get mint decimals
+// Helper function to get mint decimals with ownership validation
 fn get_mint_decimals(mint_account: &AccountInfo) -> Result<u8> {
+    // SECURITY: Validate mint is owned by Token-2022 program
+    require!(
+        mint_account.owner == &TOKEN_2022_PROGRAM_ID,
+        errors::GameError::InvalidMint
+    );
+    
     let mint_data = mint_account.try_borrow_data()?;
     let mint = MintState::unpack(&mint_data)?;
     Ok(mint.decimals)
@@ -29,7 +34,7 @@ fn get_mint_decimals(mint_account: &AccountInfo) -> Result<u8> {
 
 declare_id!("HA71kX5tHESphxAhqdnrhHWawmEHWHLdiHjeyfA82Bam");
 
-#[ephemeral]  // CRITICAL: Enables MagicBlock Ephemeral Rollups support
+// #[ephemeral]  // TEMPORARY: Disabled for Windows build
 #[program]
 pub mod magic_roulette {
     use super::*;
@@ -58,10 +63,26 @@ pub mod magic_roulette {
         instructions::join_game(ctx)
     }
 
-    /// Delegate game to Ephemeral Rollup (handled by MagicBlock SDK on client)
-    pub fn delegate_game(_ctx: Context<DelegateGame>) -> Result<()> {
-        msg!("Game delegated to Ephemeral Rollup");
-        msg!("Game will execute with sub-10ms latency and gasless transactions");
+    /// Delegate game to Ephemeral Rollup
+    /// 
+    /// SECURITY: Permission check - only creator or platform authority can delegate
+    /// NOTE: Delegation is handled by the client using MagicBlock SDK
+    pub fn delegate_game(ctx: Context<DelegateGame>) -> Result<()> {
+        let game = &mut ctx.accounts.game;
+        
+        // Permission check: Only creator or platform authority
+        require!(
+            ctx.accounts.payer.key() == game.creator 
+                || ctx.accounts.payer.key() == ctx.accounts.platform_config.authority,
+            errors::GameError::Unauthorized
+        );
+        
+        // Update status - actual delegation happens via CPI in client
+        game.status = GameStatus::Delegated;
+        
+        msg!("✅ Game {} marked for delegation to ER", game.game_id);
+        msg!("   Players can now take shots with sub-10ms latency");
+        
         Ok(())
     }
 
@@ -99,22 +120,34 @@ pub mod magic_roulette {
         instructions::take_shot(ctx)
     }
 
-    /// Commit game state from ER to base layer (handled by MagicBlock SDK on client)
-    pub fn commit_game(_ctx: Context<CommitGame>) -> Result<()> {
-        msg!("Game state committed to base layer");
+    /// Commit game state from ER to base layer
+    /// NOTE: Commit is handled by the client using MagicBlock SDK
+    pub fn commit_game(ctx: Context<CommitGame>) -> Result<()> {
+        let game = &ctx.accounts.game;
+        
+        msg!("💾 Game {} state ready for commit to base layer", game.game_id);
+        msg!("   Status: {:?}", game.status);
+        msg!("   Shots taken: {}", game.shots_taken);
+        
         Ok(())
     }
 
-    /// Undelegate game from ER and return to base layer (handled by MagicBlock SDK on client)
-    pub fn undelegate_game(_ctx: Context<UndelegateGame>) -> Result<()> {
-        msg!("Game undelegated from Ephemeral Rollup");
+    /// Undelegate game from ER and return to base layer
+    /// NOTE: Undelegation is handled by the client using MagicBlock SDK
+    pub fn undelegate_game(ctx: Context<UndelegateGame>) -> Result<()> {
+        let game = &ctx.accounts.game;
+        
+        msg!("✅ Game {} ready for undelegation from Ephemeral Rollup", game.game_id);
+        msg!("   Final status: {:?}", game.status);
+        msg!("   Winner: Team {:?}", game.winner_team);
+        
         Ok(())
     }
 
     /// Finalize game and distribute winnings
     pub fn finalize_game(ctx: Context<FinalizeGame>) -> Result<()> {
         let game = &mut ctx.accounts.game;
-        let platform_config = &mut ctx.accounts.platform_config;
+        let platform_config = &ctx.accounts.platform_config;
         
         // SECURITY: Validate game status
         require!(
@@ -134,9 +167,6 @@ pub mod magic_roulette {
             msg!("Winner: Team {}", game.winner_team.unwrap());
             return Ok(());
         }
-        
-        // NOTE: State commit from ER is handled by MagicBlock SDK on client side
-        // using createCommitInstruction() or createUndelegateInstruction()
         
         // Calculate prize distribution
         let total_pot = game.total_pot;
@@ -169,16 +199,29 @@ pub mod magic_roulette {
         
         let per_winner = winner_amount / winner_count as u64;
         
-        // Game vault PDA signer (if needed)
-        // Note: game_vault might not be a PDA, using direct authority instead
+        // Game PDA signer seeds
         let game_id_bytes = game.game_id.to_le_bytes();
-        let seeds = &[
+        let bump_seed = [game.bump];
+        let seeds: &[&[u8]] = &[
             b"game",
             game_id_bytes.as_ref(),
-            &[game.bump],
+            &bump_seed,
         ];
-        let signer = &[&seeds[..]];
+        let signer = &[seeds];
         
+        // EFFECTS: Update platform stats before interactions
+        let platform_config = &mut ctx.accounts.platform_config;
+        platform_config.total_volume = platform_config.total_volume
+            .checked_add(total_pot)
+            .ok_or(errors::GameError::ArithmeticOverflow)?;
+        
+        platform_config.treasury_balance = platform_config.treasury_balance
+            .checked_add(treasury_fee)
+            .ok_or(errors::GameError::ArithmeticOverflow)?;
+        
+        game.status = GameStatus::Cancelled;
+        
+        // INTERACTIONS: Distribute funds
         // Distribute to platform
         transfer_checked(
             CpiContext::new_with_signer(
@@ -186,7 +229,7 @@ pub mod magic_roulette {
                 TransferChecked {
                     from: ctx.accounts.game_vault.to_account_info(),
                     to: ctx.accounts.platform_vault.to_account_info(),
-                    authority: ctx.accounts.game_vault.to_account_info(),
+                    authority: game.to_account_info(),
                     mint: ctx.accounts.mint.to_account_info(),
                 },
                 signer,
@@ -202,7 +245,7 @@ pub mod magic_roulette {
                 TransferChecked {
                     from: ctx.accounts.game_vault.to_account_info(),
                     to: ctx.accounts.treasury_vault.to_account_info(),
-                    authority: ctx.accounts.game_vault.to_account_info(),
+                    authority: game.to_account_info(),
                     mint: ctx.accounts.mint.to_account_info(),
                 },
                 signer,
@@ -218,7 +261,7 @@ pub mod magic_roulette {
                 TransferChecked {
                     from: ctx.accounts.game_vault.to_account_info(),
                     to: ctx.accounts.winner1_token_account.to_account_info(),
-                    authority: ctx.accounts.game_vault.to_account_info(),
+                    authority: game.to_account_info(),
                     mint: ctx.accounts.mint.to_account_info(),
                 },
                 signer,
@@ -234,7 +277,7 @@ pub mod magic_roulette {
                     TransferChecked {
                         from: ctx.accounts.game_vault.to_account_info(),
                         to: ctx.accounts.winner2_token_account.to_account_info(),
-                        authority: ctx.accounts.game_vault.to_account_info(),
+                        authority: game.to_account_info(),
                         mint: ctx.accounts.mint.to_account_info(),
                     },
                     signer,
@@ -243,18 +286,6 @@ pub mod magic_roulette {
                 get_mint_decimals(&ctx.accounts.mint)?,
             )?;
         }
-        
-        // Update platform stats
-        platform_config.total_volume = platform_config.total_volume
-            .checked_add(total_pot)
-            .ok_or(errors::GameError::ArithmeticOverflow)?;
-        
-        platform_config.treasury_balance = platform_config.treasury_balance
-            .checked_add(treasury_fee)
-            .ok_or(errors::GameError::ArithmeticOverflow)?;
-        
-        // Mark game as processed
-        game.status = GameStatus::Cancelled;
         
         msg!("Game {} finalized", game.game_id);
         msg!("Each winner receives: {}", per_winner);

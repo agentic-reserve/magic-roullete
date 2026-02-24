@@ -1,66 +1,71 @@
-/**
- * Wallet Connect/Disconnect Button Component
- */
-
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, ActivityIndicator, View } from 'react-native';
-import { useMobileWallet } from '../lib/wallet/MobileWalletProvider';
+import { useWallet } from '../contexts/WalletContext';
 
-export function WalletButton() {
-  const { account, connected, connecting, connect, disconnect } = useMobileWallet();
+export const WalletButton: React.FC = () => {
+  const { publicKey, connected, connecting, connect, disconnect } = useWallet();
 
-  const handlePress = async () => {
-    try {
-      if (connected) {
-        await disconnect();
-      } else {
-        await connect();
-      }
-    } catch (error) {
-      console.error('Wallet action failed:', error);
+  const handlePress = () => {
+    if (connected) {
+      disconnect();
+    } else {
+      connect();
     }
   };
 
-  if (connecting) {
-    return (
-      <View style={styles.button}>
-        <ActivityIndicator color="#fff" />
-        <Text style={styles.buttonText}>Connecting...</Text>
-      </View>
-    );
-  }
+  const formatAddress = (address: string) => {
+    return `${address.slice(0, 4)}...${address.slice(-4)}`;
+  };
 
   return (
-    <TouchableOpacity 
-      style={[styles.button, connected && styles.buttonConnected]} 
+    <TouchableOpacity
+      style={[styles.button, connected && styles.buttonConnected]}
       onPress={handlePress}
+      disabled={connecting}
     >
-      <Text style={styles.buttonText}>
-        {connected 
-          ? `${account?.address.slice(0, 4)}...${account?.address.slice(-4)}`
-          : 'Connect Wallet'
-        }
-      </Text>
+      {connecting ? (
+        <ActivityIndicator color="#fff" />
+      ) : (
+        <View style={styles.content}>
+          <Text style={styles.buttonText}>
+            {connected && publicKey
+              ? formatAddress(publicKey.toBase58())
+              : 'Connect Wallet'}
+          </Text>
+          {connected && <View style={styles.indicator} />}
+        </View>
+      )}
     </TouchableOpacity>
   );
-}
+};
 
 const styles = StyleSheet.create({
   button: {
     backgroundColor: '#9945FF',
-    paddingHorizontal: 24,
+    paddingHorizontal: 20,
     paddingVertical: 12,
-    borderRadius: 8,
-    flexDirection: 'row',
+    borderRadius: 12,
+    minWidth: 150,
     alignItems: 'center',
-    gap: 8,
+    justifyContent: 'center',
   },
   buttonConnected: {
     backgroundColor: '#14F195',
+  },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: '600',
+  },
+  indicator: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#fff',
   },
 });

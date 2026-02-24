@@ -6,6 +6,31 @@
       "sourceType": "github",
       "computedHash": "ced8d4f944d0b5afb803720fc4665590eda57c30adfb3ecb493726ba6c66b79c"
     },
+    "database": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "dcd5f31da93e9352f1b3a156d85c356554bae96876bc582818b2f7e08060afc3"
+    },
+    "deploy": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "99b9ff018804acdf0f1053d37dfbf1350606e0addd0c01b59d519aced7704208"
+    },
+    "deployment": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "af803182eb5bb70671762b34b939eb5a67372638e17af34acaa23b621085f7a7"
+    },
+    "domain": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "b66ea4ebe2bab97defb74d037517eea50f7f9c1abf71029bb447bd484163a8a9"
+    },
+    "environment": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "82df8eb4592cb4b5da71e441f44e7a2f4a039f2e20a089e7ae144bc756f681ee"
+    },
     "find-skills": {
       "source": "vercel-labs/skills",
       "sourceType": "github",
@@ -56,6 +81,16 @@
       "sourceType": "github",
       "computedHash": "0c0480c8755af10bf08e9061f60920a4a04f94e884354792f0b0c28bd6fca93d"
     },
+    "metrics": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "007e591372deaed97150f14841f0c1c42952be142d452c745a1db71d75125302"
+    },
+    "new": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "8f4e7f1d3039a687fd2d31be5085300a82ef7ad2f6ad087218d6da46d1350b70"
+    },
     "next-best-practices": {
       "source": "vercel-labs/next-skills",
       "sourceType": "github",
@@ -66,6 +101,21 @@
       "sourceType": "github",
       "computedHash": "d6effb9c0f5f5361ed95976936845fd3c9e8eeef53f9214aa2e82845c708fd3f"
     },
+    "projects": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "66051d52aab9583364a437bef24ba951f139a1114a4f1f17e7362373f465444d"
+    },
+    "railway-docs": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "f2875f91dce7c7ac81db4e6415cf05623bea45b3eb251747eaf32107cfd918bf"
+    },
+    "service": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "fb44d04980465c74354d721feb01a3031c9646cf02a3384ce05faaaaf34e6aa3"
+    },
     "solana-dev": {
       "source": "solana-foundation/solana-dev-skill",
       "sourceType": "github",
@@ -75,6 +125,16 @@
       "source": "sendaifun/skills",
       "sourceType": "github",
       "computedHash": "8c7c3833c0fc8cd6035b6b7a0946d00b255de11f9fe620176a17ba51ab1d8c9f"
+    },
+    "status": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "aba0f09d8e0c03a80abd80472423626948ac25e1dc59be5d2982ca1af0ebfc1c"
+    },
+    "templates": {
+      "source": "railwayapp/railway-skills",
+      "sourceType": "github",
+      "computedHash": "f1d7116b115d540a6c6d7c1658d38e21fc5af2a70dbfe65f5187cd90cf02e3d1"
     },
     "ui-ux-pro-max": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",

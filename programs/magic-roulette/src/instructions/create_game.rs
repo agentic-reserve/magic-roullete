@@ -2,10 +2,17 @@ use anchor_lang::prelude::*;
 use anchor_lang::solana_program::program_pack::Pack;
 use anchor_spl::token_2022::{Token2022, transfer_checked, TransferChecked};
 use anchor_spl::token_2022::spl_token_2022::state::Mint as MintState;
+use anchor_spl::token_2022::spl_token_2022::ID as TOKEN_2022_PROGRAM_ID;
 use crate::{errors::GameError, state::*};
 
-// Helper function to get mint decimals
+// Helper function to get mint decimals with ownership validation
 fn get_mint_decimals(mint_account: &AccountInfo) -> Result<u8> {
+    // SECURITY: Validate mint is owned by Token-2022 program
+    require!(
+        mint_account.owner == &TOKEN_2022_PROGRAM_ID,
+        GameError::InvalidMint
+    );
+    
     let mint_data = mint_account.try_borrow_data()?;
     let mint = MintState::unpack(&mint_data)?;
     Ok(mint.decimals)
@@ -26,7 +33,8 @@ pub struct CreateGame<'info> {
     #[account(
         mut,
         seeds = [b"platform"],
-        bump = platform_config.bump
+        bump = platform_config.bump,
+        constraint = !platform_config.paused @ GameError::PlatformPaused
     )]
     pub platform_config: Account<'info, PlatformConfig>,
     

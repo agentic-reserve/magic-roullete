@@ -318,6 +318,7 @@ await mintTo(rpc, payer, mint, recipient, authority, amount);
 - **MagicBlock Integration**: [MAGICBLOCK_INTEGRATION_COMPLETE.md](MAGICBLOCK_INTEGRATION_COMPLETE.md)
 - **MagicBlock Quick Start**: [MAGICBLOCK_QUICK_START.md](MAGICBLOCK_QUICK_START.md)
 - **Multisig Setup**: [QUICK_MULTISIG_SETUP.md](QUICK_MULTISIG_SETUP.md)
+- **Compressed Tokens**: [docs/COMPRESSED_TOKENS.md](docs/COMPRESSED_TOKENS.md) - Complete guide to Light Protocol ZK Compression
 
 ### Session Notes
 - **Session Summary**: [SESSION_SUMMARY.md](SESSION_SUMMARY.md) - Latest work completed

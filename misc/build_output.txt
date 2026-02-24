@@ -1,0 +1,46 @@
+    Checking magic-roulette v0.1.0 (/mnt/c/Users/raden/Documents/magic-roullete/programs/magic-roulette)
+error[E0599]: no method named `delegate_pda` found for mutable reference `&mut delegate::DelegateGame<'_>` in the current scope
+  --> programs/magic-roulette/src/lib.rs:70:22
+   |
+70 |         ctx.accounts.delegate_pda(
+   |         -------------^^^^^^^^^^^^ method not found in `&mut delegate::DelegateGame<'_>`
+
+error[E0277]: `state::GameStatus` doesn't implement `Debug`
+   --> programs/magic-roulette/src/lib.rs:136:33
+    |
+136 |         msg!("   Status: {:?}", game.status);
+    |                          ----   ^^^^^^^^^^^ `state::GameStatus` cannot be formatted using `{:?}` because it doesn't implement `Debug`
+    |                          |
+    |                          required by this formatting parameter
+    |
+    = help: the trait `Debug` is not implemented for `state::GameStatus`
+    = note: add `#[derive(Debug)]` to `state::GameStatus` or manually `impl Debug for state::GameStatus`
+    = note: this error originates in the macro `$crate::__export::format_args` which comes from the expansion of the macro `msg` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `state::GameStatus` with `#[derive(Debug)]`
+   --> programs/magic-roulette/src/state.rs:11:1
+    |
+ 11 + #[derive(Debug)]
+ 12 | pub enum GameStatus {
+    |
+
+error[E0277]: `state::GameStatus` doesn't implement `Debug`
+   --> programs/magic-roulette/src/lib.rs:155:39
+    |
+155 |         msg!("   Final status: {:?}", game.status);
+    |                                ----   ^^^^^^^^^^^ `state::GameStatus` cannot be formatted using `{:?}` because it doesn't implement `Debug`
+    |                                |
+    |                                required by this formatting parameter
+    |
+    = help: the trait `Debug` is not implemented for `state::GameStatus`
+    = note: add `#[derive(Debug)]` to `state::GameStatus` or manually `impl Debug for state::GameStatus`
+    = note: this error originates in the macro `$crate::__export::format_args` which comes from the expansion of the macro `msg` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `state::GameStatus` with `#[derive(Debug)]`
+   --> programs/magic-roulette/src/state.rs:11:1
+    |
+ 11 + #[derive(Debug)]
+ 12 | pub enum GameStatus {
+    |
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.
+error: could not compile `magic-roulette` (lib) due to 3 previous errors

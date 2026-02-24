@@ -60,7 +60,7 @@ pub struct FinalizeGameSol<'info> {
 
 pub fn finalize_game_sol(ctx: Context<FinalizeGameSol>) -> Result<()> {
     let game = &mut ctx.accounts.game;
-    let platform_config = &mut ctx.accounts.platform_config;
+    let platform_config = &ctx.accounts.platform_config;
     
     // SECURITY: Validate game status
     require!(
@@ -79,6 +79,40 @@ pub fn finalize_game_sol(ctx: Context<FinalizeGameSol>) -> Result<()> {
         msg!("🎮 Practice game finished - no prizes distributed");
         msg!("Winner: Team {}", game.winner_team.unwrap());
         return Ok(());
+    }
+    
+    // SECURITY: Validate winner accounts match actual game participants
+    let winning_team = game.winner_team.unwrap();
+    let expected_winner1 = if winning_team == 0 {
+        game.team_a[0]
+    } else {
+        game.team_b[0]
+    };
+    
+    require!(
+        ctx.accounts.winner1.key() == expected_winner1,
+        GameError::InvalidWinner
+    );
+    
+    // Get winner count
+    let winner_count = if winning_team == 0 {
+        game.team_a_count as usize
+    } else {
+        game.team_b_count as usize
+    };
+    
+    // Validate winner2 for 2v2
+    if winner_count == 2 {
+        let expected_winner2 = if winning_team == 0 {
+            game.team_a[1]
+        } else {
+            game.team_b[1]
+        };
+        
+        require!(
+            ctx.accounts.winner2.key() == expected_winner2,
+            GameError::InvalidWinner
+        );
     }
     
     // Calculate prize distribution
@@ -102,14 +136,6 @@ pub fn finalize_game_sol(ctx: Context<FinalizeGameSol>) -> Result<()> {
         .checked_sub(treasury_fee)
         .ok_or(GameError::ArithmeticOverflow)?;
     
-    // Get winner count
-    let winning_team = game.winner_team.unwrap();
-    let winner_count = if winning_team == 0 {
-        game.team_a_count as usize
-    } else {
-        game.team_b_count as usize
-    };
-    
     let per_winner = winner_amount / winner_count as u64;
     
     // Game vault PDA signer
@@ -122,6 +148,15 @@ pub fn finalize_game_sol(ctx: Context<FinalizeGameSol>) -> Result<()> {
     ];
     let signer = &[&seeds[..]];
     
+    // SECURITY: Verify vault has enough SOL (including rent exemption)
+    let vault_balance = ctx.accounts.game_vault.lamports();
+    let rent_exempt_minimum = Rent::get()?.minimum_balance(0);
+    
+    require!(
+        vault_balance >= total_pot + rent_exempt_minimum,
+        GameError::InsufficientVaultBalance
+    );
+    
     msg!("💰 Finalizing game {}", game.game_id);
     msg!("   Total pot: {} SOL", total_pot as f64 / 1_000_000_000.0);
     msg!("   Platform fee: {} SOL", platform_fee as f64 / 1_000_000_000.0);
@@ -129,6 +164,20 @@ pub fn finalize_game_sol(ctx: Context<FinalizeGameSol>) -> Result<()> {
     msg!("   Winner amount: {} SOL", winner_amount as f64 / 1_000_000_000.0);
     msg!("   Per winner: {} SOL", per_winner as f64 / 1_000_000_000.0);
     
+    // EFFECTS: Update state before interactions
+    let platform_config = &mut ctx.accounts.platform_config;
+    platform_config.total_volume = platform_config.total_volume
+        .checked_add(total_pot)
+        .ok_or(GameError::ArithmeticOverflow)?;
+    
+    platform_config.treasury_balance = platform_config.treasury_balance
+        .checked_add(treasury_fee)
+        .ok_or(GameError::ArithmeticOverflow)?;
+    
+    game.status = GameStatus::Cancelled;
+    game.finished_at = Some(Clock::get()?.unix_timestamp);
+    
+    // INTERACTIONS: Distribute funds
     // Distribute to platform
     transfer(
         CpiContext::new_with_signer(
@@ -181,19 +230,6 @@ pub fn finalize_game_sol(ctx: Context<FinalizeGameSol>) -> Result<()> {
             per_winner,
         )?;
     }
-    
-    // Update platform stats
-    platform_config.total_volume = platform_config.total_volume
-        .checked_add(total_pot)
-        .ok_or(GameError::ArithmeticOverflow)?;
-    
-    platform_config.treasury_balance = platform_config.treasury_balance
-        .checked_add(treasury_fee)
-        .ok_or(GameError::ArithmeticOverflow)?;
-    
-    // Mark game as processed
-    game.status = GameStatus::Cancelled;
-    game.finished_at = Some(Clock::get()?.unix_timestamp);
     
     msg!("✅ Game finalized successfully!");
     msg!("🎉 Prizes distributed!");

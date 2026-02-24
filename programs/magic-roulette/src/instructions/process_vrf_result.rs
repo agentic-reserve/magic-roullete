@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-use crate::{errors::GameError, state::*};
+use crate::{errors::GameError, state::*, constants::MAGICBLOCK_VRF_PROGRAM_ID};
 
 #[derive(Accounts)]
 pub struct ProcessVrfResult<'info> {
@@ -10,7 +10,10 @@ pub struct ProcessVrfResult<'info> {
     )]
     pub game: Account<'info, Game>,
     
-    /// VRF authority - TODO: Add constraint when VRF program ID is known
+    /// VRF authority - must be MagicBlock VRF program
+    #[account(
+        constraint = vrf_authority.key() == MAGICBLOCK_VRF_PROGRAM_ID @ GameError::InvalidVrfAuthority
+    )]
     pub vrf_authority: Signer<'info>,
 }
 

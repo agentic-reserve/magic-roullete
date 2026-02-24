@@ -7,11 +7,12 @@ pub struct AiTakeShot<'info> {
         mut,
         seeds = [b"game", game.game_id.to_le_bytes().as_ref()],
         bump = game.bump,
-        constraint = game.is_ai_game @ GameError::InvalidGameMode
+        constraint = game.is_ai_game @ GameError::InvalidGameMode,
+        constraint = game.ai_player == Some(ai_bot.key()) @ GameError::Unauthorized
     )]
     pub game: Account<'info, Game>,
     
-    /// CHECK: AI bot signer (platform-controlled)
+    /// AI bot signer - must match game.ai_player
     pub ai_bot: Signer<'info>,
 }
 

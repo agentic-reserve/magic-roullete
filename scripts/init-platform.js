@@ -1,120 +1,108 @@
 const anchor = require("@coral-xyz/anchor");
-const { PublicKey, Keypair, SystemProgram, LAMPORTS_PER_SOL } = require("@solana/web3.js");
-const { TOKEN_2022_PROGRAM_ID } = require("@solana/spl-token");
 const fs = require("fs");
+const os = require("os");
 
 async function main() {
-  console.log("🚀 Magic Roulette - Platform Initialization");
-  console.log("==========================================\n");
-
-  // Setup connection
-  const connection = new anchor.web3.Connection("http://localhost:8899", "confirmed");
+  console.log("\n🚀 Initializing Magic Roulette Platform...\n");
   
-  // Load wallet
-  const walletKeypair = Keypair.fromSecretKey(
-    Buffer.from(JSON.parse(fs.readFileSync(process.env.HOME + "/.config/solana/id.json")))
+  // Set up connection
+  const connection = new anchor.web3.Connection(
+    "https://brooks-dn4q23-fast-devnet.helius-rpc.com",
+    "confirmed"
   );
   
+  // Load wallet
+  const walletPath = os.homedir() + "/.config/solana/id.json";
+  const walletKeypair = anchor.web3.Keypair.fromSecretKey(
+    Buffer.from(JSON.parse(fs.readFileSync(walletPath, "utf8")))
+  );
   const wallet = new anchor.Wallet(walletKeypair);
+  
   const provider = new anchor.AnchorProvider(connection, wallet, {
     commitment: "confirmed",
   });
   anchor.setProvider(provider);
 
-  // Load program
-  const programId = new PublicKey("HA71kX5tHESphxAhqdnrhHWawmEHWHLdiHjeyfA82Bam");
-  const idlPath = "./target/idl/magic_roulette.json";
-  
-  if (!fs.existsSync(idlPath)) {
-    console.error("❌ IDL file not found. Run 'anchor build' first.");
-    process.exit(1);
-  }
-  
-  const idl = JSON.parse(fs.readFileSync(idlPath, "utf8"));
-  const program = new anchor.Program(idl, provider);
-
-  console.log("Program ID:", programId.toString());
-  console.log("Wallet:", wallet.publicKey.toString());
+  console.log("📡 Connection established");
+  console.log("   RPC:", "https://brooks-dn4q23-fast-devnet.helius-rpc.com");
+  console.log("   Wallet:", wallet.publicKey.toString());
   
   const balance = await connection.getBalance(wallet.publicKey);
-  console.log("Balance:", balance / LAMPORTS_PER_SOL, "SOL\n");
+  console.log("   Balance:", balance / anchor.web3.LAMPORTS_PER_SOL, "SOL\n");
 
-  // Derive Platform Config PDA
-  const [platformConfig, bump] = PublicKey.findProgramAddressSync(
-    [Buffer.from("platform")],
-    programId
+  const programId = new anchor.web3.PublicKey(
+    "HA71kX5tHESphxAhqdnrhHWawmEHWHLdiHjeyfA82Bam"
   );
   
-  console.log("Platform Config PDA:", platformConfig.toString());
-  console.log("Bump:", bump, "\n");
+  console.log("📄 Loading program IDL...");
+  const idl = JSON.parse(fs.readFileSync("./target/idl/magic_roulette.json", "utf8"));
+  const program = new anchor.Program(idl, provider);
 
-  // Check if platform is already initialized
+  // Platform configuration PDA
+  const [platformConfig] = anchor.web3.PublicKey.findProgramAddressSync(
+    [Buffer.from("platform")],
+    program.programId
+  );
+
+  console.log("   Program ID:", program.programId.toString());
+  console.log("   Platform Config PDA:", platformConfig.toString(), "\n");
+
   try {
+    // Check if already initialized
+    console.log("🔍 Checking if platform is already initialized...");
+    try {
+      const existingConfig = await program.account.platformConfig.fetch(platformConfig);
+      console.log("\n⚠️  Platform already initialized!");
+      console.log("   Total Games:", existingConfig.totalGames.toString());
+      console.log("   Platform Fee:", existingConfig.platformFeeBps / 100, "%");
+      console.log("   Treasury Fee:", existingConfig.treasuryFeeBps / 100, "%");
+      console.log("   Paused:", existingConfig.paused);
+      return;
+    } catch (e) {
+      console.log("   Platform not initialized yet, proceeding...\n");
+    }
+
+    console.log("⚙️  Initializing platform with:");
+    console.log("   Platform Fee: 5%");
+    console.log("   Treasury Fee: 10%");
+    console.log("   Authority:", wallet.publicKey.toString());
+    console.log("   Treasury:", wallet.publicKey.toString(), "\n");
+
+    const tx = await program.methods
+      .initializePlatform(
+        500,  // 5% platform fee
+        1000  // 10% treasury fee
+      )
+      .accountsPartial({
+        platformConfig,
+        authority: wallet.publicKey,
+        treasury: wallet.publicKey,
+        platformMint: anchor.web3.PublicKey.default,
+        systemProgram: anchor.web3.SystemProgram.programId,
+      })
+      .rpc();
+
+    console.log("✅ Platform initialized successfully!\n");
+    console.log("   Transaction:", tx);
+    console.log("   Explorer:", `https://explorer.solana.com/tx/${tx}?cluster=devnet\n`);
+    
+    // Fetch and display config
+    console.log("📊 Fetching platform configuration...");
     const config = await program.account.platformConfig.fetch(platformConfig);
-    console.log("✅ Platform already initialized!");
-    console.log("   Authority:", config.authority.toString());
+    console.log("\n   Authority:", config.authority.toString());
     console.log("   Treasury:", config.treasury.toString());
     console.log("   Platform Fee:", config.platformFeeBps / 100, "%");
     console.log("   Treasury Fee:", config.treasuryFeeBps / 100, "%");
     console.log("   Total Games:", config.totalGames.toString());
     console.log("   Paused:", config.paused);
-    console.log("\n✨ Platform is ready for game creation!");
-    return;
+    console.log("\n🎉 Platform is ready for game creation!");
+    
   } catch (error) {
-    console.log("Platform not initialized yet. Initializing...\n");
-  }
-
-  // Create a dummy mint for platform token (Token-2022)
-  const mintKeypair = Keypair.generate();
-  console.log("Creating platform token mint:", mintKeypair.publicKey.toString());
-  
-  // Create treasury keypair
-  const treasury = Keypair.generate();
-  console.log("Treasury:", treasury.publicKey.toString(), "\n");
-
-  // Initialize platform
-  const platformFeeBps = 500;  // 5%
-  const treasuryFeeBps = 1000; // 10%
-
-  try {
-    console.log("Sending initialize_platform transaction...");
-    const tx = await program.methods
-      .initializePlatform(platformFeeBps, treasuryFeeBps)
-      .accounts({
-        platformConfig: platformConfig,
-        authority: wallet.publicKey,
-        treasury: treasury.publicKey,
-        platformMint: mintKeypair.publicKey,
-        systemProgram: SystemProgram.programId,
-      })
-      .rpc();
-
-    console.log("✅ Platform initialized successfully!");
-    console.log("   Transaction:", tx);
-    console.log("   Platform Config:", platformConfig.toString());
-    console.log("   Platform Fee:", platformFeeBps / 100, "%");
-    console.log("   Treasury Fee:", treasuryFeeBps / 100, "%\n");
-
-    // Fetch and display config
-    const config = await program.account.platformConfig.fetch(platformConfig);
-    console.log("📊 Platform Configuration:");
-    console.log("   Authority:", config.authority.toString());
-    console.log("   Treasury:", config.treasury.toString());
-    console.log("   Platform Mint:", config.platformMint.toString());
-    console.log("   Total Games:", config.totalGames.toString());
-    console.log("   Total Volume:", config.totalVolume.toString());
-    console.log("   Treasury Balance:", config.treasuryBalance.toString());
-    console.log("   Paused:", config.paused);
-    console.log("   Bump:", config.bump);
-
-    console.log("\n✨ Platform initialization complete!");
-    console.log("Ready to create games!");
-
-  } catch (error) {
-    console.error("❌ Error:", error.message);
+    console.error("\n❌ Error initializing platform:");
+    console.error(error.message || error);
     if (error.logs) {
-      console.log("\nProgram Logs:");
-      error.logs.forEach(log => console.log("  ", log));
+      console.error("\n📋 Program Logs:");
+      error.logs.forEach((log) => console.error("   ", log));
     }
     throw error;
   }
@@ -126,6 +114,6 @@ main()
     process.exit(0);
   })
   .catch((error) => {
-    console.error("\n❌ Script failed:", error);
+    console.error("\n❌ Script failed:", error.message);
     process.exit(1);
   });

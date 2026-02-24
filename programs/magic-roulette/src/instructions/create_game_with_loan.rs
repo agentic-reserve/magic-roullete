@@ -1,16 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_lang::system_program::{transfer, Transfer};
 use anchor_lang::solana_program::{instruction::Instruction, program::invoke_signed, account_info::AccountInfo as SolanaAccountInfo};
-use crate::{errors::GameError, state::*};
-
-// Kamino Lend Program ID (devnet & mainnet)
-// KLend2g3cP87fffoy8q1mQqGKjrxjC8boSyAYavgmjD
-const KAMINO_PROGRAM_ID: Pubkey = Pubkey::new_from_array([
-    0x9b, 0x5a, 0x3c, 0x8f, 0x1e, 0x7d, 0x4b, 0x2a,
-    0x6f, 0x9e, 0x8d, 0x7c, 0x5b, 0x4a, 0x3e, 0x2d,
-    0x1c, 0x0b, 0x9a, 0x8f, 0x7e, 0x6d, 0x5c, 0x4b,
-    0x3a, 0x2e, 0x1d, 0x0c, 0x9b, 0x8a, 0x7f, 0x6e
-]);
+use crate::{errors::GameError, state::*, constants::KAMINO_PROGRAM_ID};
 
 #[derive(Accounts)]
 #[instruction(game_mode: GameMode, entry_fee: u64, collateral_amount: u64)]
@@ -27,7 +18,8 @@ pub struct CreateGameWithLoan<'info> {
     #[account(
         mut,
         seeds = [b"platform"],
-        bump = platform_config.bump
+        bump = platform_config.bump,
+        constraint = !platform_config.paused @ GameError::PlatformPaused
     )]
     pub platform_config: Account<'info, PlatformConfig>,
     
@@ -78,7 +70,10 @@ pub struct CreateGameWithLoan<'info> {
     #[account(mut)]
     pub obligation_collateral: AccountInfo<'info>,
     
-    /// CHECK: Kamino lending program
+    /// CHECK: Kamino lending program - validated against known program ID
+    #[account(
+        constraint = kamino_program.key() == KAMINO_PROGRAM_ID @ GameError::InvalidKaminoMarket
+    )]
     pub kamino_program: AccountInfo<'info>,
     
     /// CHECK: Pyth SOL price feed (for oracle)

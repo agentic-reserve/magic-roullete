@@ -7,7 +7,7 @@ pub enum GameMode {
     HumanVsAi,  // New: Human vs AI mode
 }
 
-#[derive(AnchorSerialize, AnchorDeserialize, Clone, Copy, PartialEq, Eq)]
+#[derive(AnchorSerialize, AnchorDeserialize, Clone, Copy, PartialEq, Eq, Debug)]
 pub enum GameStatus {
     WaitingForPlayers,
     Delegated,

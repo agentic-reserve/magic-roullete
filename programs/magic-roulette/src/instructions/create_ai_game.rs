@@ -1,5 +1,5 @@
 use anchor_lang::prelude::*;
-use crate::state::*;
+use crate::{errors::GameError, state::*};
 
 #[derive(Accounts)]
 pub struct CreateAiGame<'info> {
@@ -15,7 +15,8 @@ pub struct CreateAiGame<'info> {
     #[account(
         mut,
         seeds = [b"platform"],
-        bump = platform_config.bump
+        bump = platform_config.bump,
+        constraint = !platform_config.paused @ GameError::PlatformPaused
     )]
     pub platform_config: Account<'info, PlatformConfig>,
     
