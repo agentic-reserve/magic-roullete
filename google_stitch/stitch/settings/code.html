@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#d4a573",
+              "background-light": "#f8f7f6",
+              "background-dark": "#1e1914",
+            },
+            fontFamily: {
+              "display": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>.dusty-overlay {
+    background-image: linear-gradient(to bottom, rgba(30, 25, 20, 0.8), rgba(30, 25, 20, 0.95)), url(https://lh3.googleusercontent.com/aida-public/AB6AXuAzkezxi2yTkqsYLOf7n_NWvZfCw6h7Q-tbpJXSNlUVE8wMahxadM3bmw2vOvmQQ0CEGx8Fq5z1fg71HeQklQAcrJcIP7gYuzBcIBHL7Ond1qSmF4nEpKZ-1ZsfqywEHrk6qEC3u15IzAPCHMwP8a1mnTs04VWXSpq0uEhCEbSQFAfgEqmIHA-_bO8_i9Btv5WWtK0MsVh8z9Vnu-Wz6YmksbrpdlRRbmrfa98NPPbn82xTx5MvpDUGRo0pmoWpBZUwkv37OIsf99Wo);
+    background-size: cover;
+    background-blend-mode: multiply
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light dark:bg-background-dark overflow-x-hidden">
+<!-- Header -->
+<div class="flex items-center bg-background-light dark:bg-background-dark border-b border-primary/20 p-4 justify-between sticky top-0 z-10">
+<div class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined cursor-pointer hover:text-primary transition-colors">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-[0.1em] flex-1 text-center uppercase">Saloon Settings</h2>
+<div class="flex w-12 items-center justify-end">
+<span class="material-symbols-outlined text-primary">history_edu</span>
+</div>
+</div>
+<div class="flex-1 px-4 py-6 space-y-8">
+<!-- Audio & Haptics Section -->
+<section>
+<h2 class="text-primary text-xs font-bold leading-tight tracking-[0.2em] uppercase mb-4 px-1">Game Audio &amp; Feel</h2>
+<div class="bg-slate-800/20 dark:bg-primary/5 rounded-xl border border-primary/10 overflow-hidden">
+<!-- Sound Effects -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] justify-between border-b border-primary/10">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/20 shrink-0 size-10">
+<span class="material-symbols-outlined">volume_up</span>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-medium">Sound Effects</p>
+</div>
+<label class="relative flex h-[28px] w-[48px] cursor-pointer items-center rounded-full bg-slate-300 dark:bg-slate-700 p-1 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="h-5 w-5 rounded-full bg-white shadow-md transition-transform peer-checked:translate-x-[20px]"></div>
+</label>
+</div>
+<!-- Music -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] justify-between border-b border-primary/10">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/20 shrink-0 size-10">
+<span class="material-symbols-outlined">music_note</span>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-medium">Saloon Music</p>
+</div>
+<label class="relative flex h-[28px] w-[48px] cursor-pointer items-center rounded-full bg-slate-300 dark:bg-slate-700 p-1 transition-colors has-[:checked]:bg-primary">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="h-5 w-5 rounded-full bg-white shadow-md transition-transform peer-checked:translate-x-[20px]"></div>
+</label>
+</div>
+<!-- Haptic Feedback -->
+<div class="flex items-center gap-4 px-4 min-h-[64px] justify-between">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/20 shrink-0 size-10">
+<span class="material-symbols-outlined">vibration</span>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-medium">Haptic Feedback</p>
+</div>
+<label class="relative flex h-[28px] w-[48px] cursor-pointer items-center rounded-full bg-slate-300 dark:bg-slate-700 p-1 transition-colors has-[:checked]:bg-primary">
+<input class="sr-only peer" type="checkbox"/>
+<div class="h-5 w-5 rounded-full bg-white shadow-md transition-transform peer-checked:translate-x-[20px]"></div>
+</label>
+</div>
+</div>
+</section>
+<!-- Wallet Management Section -->
+<section>
+<h2 class="text-primary text-xs font-bold leading-tight tracking-[0.2em] uppercase mb-4 px-1">Wallet Management</h2>
+<div class="bg-slate-800/20 dark:bg-primary/5 rounded-xl border border-primary/10 p-4 space-y-4">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-full bg-gradient-to-br from-primary to-orange-900 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">account_balance_wallet</span>
+</div>
+<div>
+<p class="text-sm font-bold text-slate-900 dark:text-slate-100">Dusty Pouch</p>
+<p class="text-xs text-slate-500 dark:text-primary/60 font-mono">0x71C...4f2D</p>
+</div>
+</div>
+<button class="px-4 py-2 bg-primary/20 hover:bg-primary/30 text-primary text-xs font-bold rounded-lg border border-primary/30 uppercase transition-all">
+                        Disconnect
+                    </button>
+</div>
+</div>
+</section>
+<!-- Help & Information Section -->
+<section>
+<h2 class="text-primary text-xs font-bold leading-tight tracking-[0.2em] uppercase mb-4 px-1">Information</h2>
+<div class="bg-slate-800/20 dark:bg-primary/5 rounded-xl border border-primary/10 overflow-hidden">
+<a class="flex items-center gap-4 px-4 min-h-[64px] justify-between hover:bg-primary/10 transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/20 shrink-0 size-10">
+<span class="material-symbols-outlined">menu_book</span>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-medium">How to Play</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">chevron_right</span>
+</a>
+<a class="flex items-center gap-4 px-4 min-h-[64px] justify-between border-t border-primary/10 hover:bg-primary/10 transition-colors group" href="#">
+<div class="flex items-center gap-4">
+<div class="text-primary flex items-center justify-center rounded-lg bg-primary/20 shrink-0 size-10">
+<span class="material-symbols-outlined">gavel</span>
+</div>
+<p class="text-slate-900 dark:text-slate-100 text-base font-medium">House Rules &amp; Terms</p>
+</div>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-primary">chevron_right</span>
+</a>
+</div>
+</section>
+<!-- Danger Zone -->
+<button class="w-full py-4 text-red-500/80 hover:text-red-500 text-sm font-bold tracking-widest uppercase flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">logout</span>
+            Leave Saloon
+        </button>
+</div>
+<!-- Bottom Navigation -->
+<div class="flex gap-2 border-t border-primary/20 bg-background-light dark:bg-[#1a1612] px-4 pb-6 pt-2 sticky bottom-0">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-primary/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">casino</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Table</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-primary/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Bets</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 dark:text-primary/40 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">wallet</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Wallet</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">settings</span>
+<p class="text-[10px] font-bold uppercase tracking-wider">Settings</p>
+</a>
+</div>
+</div>
+</body></html>

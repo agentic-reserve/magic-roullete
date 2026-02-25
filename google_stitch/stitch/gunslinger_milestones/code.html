@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4a573",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#1e1914",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Be Vietnam Pro", sans-serif;
+        }
+        .grayscale-filter {
+            filter: grayscale(100%) opacity(0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<header class="flex items-center justify-between p-4 border-b border-primary/10 bg-background-light dark:bg-background-dark sticky top-0 z-10">
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="text-lg font-bold tracking-tight text-slate-900 dark:text-slate-100">Gunslinger Milestones</h1>
+<button class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined text-primary">help_outline</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto">
+<div class="p-6 bg-gradient-to-b from-primary/10 to-transparent">
+<div class="flex flex-col gap-4">
+<div class="flex items-end justify-between">
+<div>
+<p class="text-primary text-sm font-bold uppercase tracking-widest">Current Rank</p>
+<h2 class="text-2xl font-bold text-slate-900 dark:text-slate-100">Deputy Sheriff</h2>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">650 / 1000 XP</p>
+</div>
+<div class="relative w-full h-4 bg-primary/20 rounded-full overflow-hidden">
+<div class="absolute top-0 left-0 h-full bg-primary rounded-full" style="width: 65%;"></div>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-slate-600 dark:text-slate-400 text-sm italic">350 XP to <span class="text-primary font-bold">Marshal</span></p>
+<span class="material-symbols-outlined text-primary text-xl">stars</span>
+</div>
+</div>
+</div>
+<section class="p-4">
+<h3 class="text-lg font-bold mb-4 px-2 border-l-4 border-primary">Unlocked Badges</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative aspect-square rounded-xl overflow-hidden bg-background-dark/50 border border-primary/30 group">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-80"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-2">flare</span>
+<p class="font-bold text-sm text-slate-100">First Blood</p>
+<p class="text-[10px] text-primary/80 uppercase">First Win</p>
+</div>
+<img alt="Dusty western background" class="absolute inset-0 -z-10 object-cover w-full h-full opacity-40" data-alt="Vintage dusty western saloon background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGf055A1gzAMdn-_obDz396d11sZg-4IZD-Gyv9i7COPP3sph1pZmPDYjUEunMh5F6VYNZwr-FV9zC5vbVBeRGi8NlHZYIr6x8vjHRhsMMMDrVoR0zd2fdnEjVZ8r2sdWN5bu1PlI1g5s2fXuYYP5exSUTuEQo54wLGpV-MTuEZSRey_shtkOXFcrwbX7iDrwdSSrJUfTsKxdY0gsEu_Qb_B9SJT22gGkj1CsNiQRexfGdgMSnqd6u5OJ2fmtcKIU3NNwpwCh0XiO6"/>
+</div>
+<div class="relative aspect-square rounded-xl overflow-hidden bg-background-dark/50 border border-primary/30 group">
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark to-transparent opacity-80"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-2">target</span>
+<p class="font-bold text-sm text-slate-100">Dead Eye</p>
+<p class="text-[10px] text-primary/80 uppercase">5 Wins Streak</p>
+</div>
+<img alt="Old wooden texture" class="absolute inset-0 -z-10 object-cover w-full h-full opacity-40" data-alt="Dark weathered wood texture background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhUjSmIIgQlE5BmG6qmJX_mN2nYVxJEMTFl3VBSFhFgIR8NkAea6YQINj1_vz3G1nWu51kpk_ztnExlhyt7OGtDmE9d0vG81DFUdHogrDXlcpRZpuGoC1Y47NSs43nWKH7y_ounQ-TkNFusRTF9Z7HRU6PYR1alfrnziwwKKGse3Rpx0HLklEgaOi6dtlqoNRBQdgH2p1x1cbY8jLGhxFPz2dww-lVfSL0DCO_74ryiAcKVotnhwMrqsJ-Ms9gvmpCK1GkGIBG9NmX"/>
+</div>
+</div>
+</section>
+<section class="p-4">
+<h3 class="text-lg font-bold mb-4 px-2 border-l-4 border-slate-500 text-slate-500">Locked Achievements</h3>
+<div class="grid grid-cols-2 gap-4">
+<div class="relative aspect-square rounded-xl overflow-hidden bg-background-dark/20 border border-slate-700/30 grayscale-filter">
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+<span class="material-symbols-outlined text-slate-400 text-5xl mb-2">payments</span>
+<p class="font-bold text-sm text-slate-400">High Roller</p>
+<p class="text-[10px] text-slate-500 uppercase">Wager 10+ SOL</p>
+</div>
+<div class="absolute top-2 right-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">lock</span>
+</div>
+</div>
+<div class="relative aspect-square rounded-xl overflow-hidden bg-background-dark/20 border border-slate-700/30 grayscale-filter">
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+<span class="material-symbols-outlined text-slate-400 text-5xl mb-2">military_tech</span>
+<p class="font-bold text-sm text-slate-400">Sheriff's Star</p>
+<p class="text-[10px] text-slate-500 uppercase">Level 50 Reached</p>
+</div>
+<div class="absolute top-2 right-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">lock</span>
+</div>
+</div>
+<div class="relative aspect-square rounded-xl overflow-hidden bg-background-dark/20 border border-slate-700/30 grayscale-filter">
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+<span class="material-symbols-outlined text-slate-400 text-5xl mb-2">local_fire_department</span>
+<p class="font-bold text-sm text-slate-400">On Fire</p>
+<p class="text-[10px] text-slate-500 uppercase">10 Wins in 24h</p>
+</div>
+<div class="absolute top-2 right-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">lock</span>
+</div>
+</div>
+<div class="relative aspect-square rounded-xl overflow-hidden bg-background-dark/20 border border-slate-700/30 grayscale-filter">
+<div class="absolute inset-0 bg-black/40"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center p-4 text-center">
+<span class="material-symbols-outlined text-slate-400 text-5xl mb-2">group</span>
+<p class="font-bold text-sm text-slate-400">Posse Leader</p>
+<p class="text-[10px] text-slate-500 uppercase">Invite 5 Friends</p>
+</div>
+<div class="absolute top-2 right-2">
+<span class="material-symbols-outlined text-slate-500 text-sm">lock</span>
+</div>
+</div>
+</div>
+</section>
+<div class="h-20"></div>
+</main>
+<nav class="fixed bottom-0 left-0 right-0 bg-background-light dark:bg-background-dark border-t border-primary/20 px-4 pb-6 pt-2">
+<div class="flex justify-around items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">casino</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Play</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-[1]">military_tech</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Milestones</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">leaderboard</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Board</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-bold uppercase tracking-wider">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

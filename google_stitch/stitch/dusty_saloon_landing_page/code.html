@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4a574",
+                        "gold": "#d4a574",
+                        "iron": "#2a1810",
+                        "background-light": "#f5e6d3",
+                        "background-dark": "#1a0f05",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #1a0f05;
+            color: #f5e6d3;
+        }
+        .brass-border {
+            border: 2px solid #d4a574;
+            box-shadow: 0 0 10px rgba(212, 165, 116, 0.3);
+        }
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: rgba(212, 165, 116, 0.1);
+            border-top: 1px solid #2a1810;
+            border-bottom: 1px solid #2a1810;
+        }
+        .ticker {
+            display: flex;
+            white-space: nowrap;
+            padding-right: 100%;
+        }
+        .ticker-item {
+            display: inline-block;
+            padding: 0 2rem;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen flex flex-col text-[#f5e6d3]">
+<!-- Top Navigation -->
+<nav class="flex items-center bg-background-light dark:bg-background-dark border-b border-iron/50 p-4 justify-between sticky top-0 z-50">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-3xl">casino</span>
+<h2 class="text-xl font-black leading-tight tracking-tighter uppercase font-display text-[#f5e6d3]">MAGIC ROULETTE</h2>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden md:block text-gold text-xs font-bold tracking-widest uppercase hover:text-primary transition-colors">How to Play</button>
+<button class="bg-primary/20 text-primary border border-primary/50 px-4 py-1.5 rounded-lg text-sm font-bold tracking-wider hover:bg-primary hover:text-white transition-all">
+                CONNECT WALLET
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1">
+<!-- Hero Section -->
+<section class="@container relative">
+<div class="relative min-h-[85vh] flex flex-col items-center justify-center p-6 text-center overflow-hidden bg-gradient-to-b from-background-dark via-background-dark to-iron/20">
+<!-- Background Image Decor -->
+<div class="absolute inset-0 opacity-20 pointer-events-none" data-alt="Vintage dusty western frontier desert landscape" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBlntR3k4k1wkH3gPj9IOPvpKyH05BMmaEy3Nz3Xl_j6-AISGekZckmIl3WiP5vQFAFwMnlXbVADDl_ruTowsH3aogPxOcYvHAo6slfTpUk9vmE5oOPPtFC8jSSsap1-TyXSylFdNUBMI8ogSl31nbxjpEw2HpEzXU8eiDFDR6dkjnN5Au94teZjsBFmRriglvTbBL7PMKxXdldPX0KNP5as_KGU2MrAjQ5y1-j3PQrDATtUlksAP_9gckFRZig9f8e6sy4mYDqPhqZ"); background-size: cover; background-position: center;'>
+</div>
+<div class="z-10 flex flex-col items-center gap-8 max-w-4xl">
+<!-- Rotating Cylinder Visual -->
+<div class="relative w-48 h-48 md:w-64 md:h-64 flex items-center justify-center rounded-full border-4 border-gold/40 bg-iron/40 p-4 shadow-[0_0_50px_rgba(212,175,55,0.2)]">
+<div class="w-full h-full rounded-full border-8 border-gold flex items-center justify-center bg-zinc-900 shadow-inner">
+<div class="grid grid-cols-3 gap-2 p-4 w-full h-full rotate-45">
+<div class="w-full h-full rounded-full bg-zinc-800 border-2 border-iron"></div>
+<div class="w-full h-full rounded-full bg-zinc-800 border-2 border-iron"></div>
+<div class="w-full h-full rounded-full bg-zinc-800 border-2 border-iron"></div>
+<div class="w-full h-full rounded-full bg-zinc-800 border-2 border-iron"></div>
+<div class="w-full h-full rounded-full bg-zinc-800 border-2 border-iron"></div>
+<div class="w-full h-full rounded-full bg-primary shadow-[0_0_15px_rgba(236,19,30,0.8)] border-2 border-gold"></div>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-gold/20 text-9xl">brightness_7</span>
+</div>
+</div>
+<div class="space-y-4">
+<h1 class="text-5xl md:text-7xl font-black leading-none tracking-tighter uppercase font-display italic text-[#f5e6d3]">
+                            HIGH STAKES.<br/>
+<span class="text-primary">FAST SOL.</span><br/>
+                            ONE CHAMBER.
+                        </h1>
+<p class="text-lg md:text-xl max-w-xl mx-auto font-medium text-[#f5e6d3]/70">
+                            The frontier is calling, gunslinger. Experience the ultimate Solana showdown in the dust and blood of the digital West.
+                        </p>
+</div>
+<!-- Brass-rimmed Badge Button -->
+<button class="relative group cursor-pointer">
+<div class="absolute -inset-1 bg-gold rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+<div class="relative flex items-center justify-center px-10 py-5 bg-gradient-to-b from-[#d4a574] to-[#8b6b4a] border-4 border-[#2a1810] rounded-xl shadow-2xl transform transition hover:scale-105 active:scale-95">
+<span class="text-[#1a0f05] text-xl md:text-2xl font-black tracking-widest uppercase font-display flex items-center gap-3">
+<span class="material-symbols-outlined text-[#1a0f05]">workspace_premium</span>
+                                ENTER THE FRONTIER
+                            </span>
+</div>
+</button>
+</div>
+</div>
+</section>
+<!-- Social Proof Stats -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:p-8 bg-background-dark">
+<div class="flex flex-col gap-2 rounded-xl p-8 bg-[#2a1810]/60 border border-[#d4a574]/20 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">groups</span>
+</div>
+<p class="text-gold text-sm font-bold uppercase tracking-widest">Active Gunslingers</p>
+<p class="text-4xl md:text-5xl font-black font-display text-[#f5e6d3]">10,243</p>
+<div class="h-1 w-12 bg-primary mt-2"></div>
+</div>
+<div class="flex flex-col gap-2 rounded-xl p-8 bg-[#2a1810]/60 border border-[#d4a574]/20 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl">payments</span>
+</div>
+<p class="text-gold text-sm font-bold uppercase tracking-widest">Total SOL Won</p>
+<p class="text-4xl md:text-5xl font-black font-display text-[#f5e6d3]">15.4K <span class="text-lg font-bold text-slate-500 italic">SOL</span></p>
+<div class="h-1 w-12 bg-primary mt-2"></div>
+</div>
+</section>
+<!-- Winners Ticker -->
+<div class="ticker-wrap py-4">
+<div class="ticker">
+<div class="ticker-item flex items-center gap-2 text-sm font-bold text-slate-400">
+<span class="text-gold">RECENT WINNERS:</span>
+</div>
+<div class="ticker-item flex items-center gap-2 text-sm font-bold text-slate-100">
+<span class="text-primary font-display">@Outlaw_44</span> won <span class="text-gold">1.2 SOL</span>
+<span class="material-symbols-outlined text-xs text-gold">verified</span>
+</div>
+<div class="ticker-item flex items-center gap-2 text-sm font-bold text-slate-100">
+<span class="text-primary font-display">@Sling_Sol</span> won <span class="text-gold">5.0 SOL</span>
+<span class="material-symbols-outlined text-xs text-gold">verified</span>
+</div>
+<div class="ticker-item flex items-center gap-2 text-sm font-bold text-slate-100">
+<span class="text-primary font-display">@Rustler_X</span> won <span class="text-gold">0.8 SOL</span>
+<span class="material-symbols-outlined text-xs text-gold">verified</span>
+</div>
+<div class="ticker-item flex items-center gap-2 text-sm font-bold text-slate-100">
+<span class="text-primary font-display">@Gold_Digger</span> won <span class="text-gold">12.5 SOL</span>
+<span class="material-symbols-outlined text-xs text-gold">verified</span>
+</div>
+<div class="ticker-item flex items-center gap-2 text-sm font-bold text-slate-100">
+<span class="text-primary font-display">@Bulletproof</span> won <span class="text-gold">2.1 SOL</span>
+<span class="material-symbols-outlined text-xs text-gold">verified</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile Friendly) -->
+<footer class="sticky bottom-0 z-50">
+<div class="flex gap-2 border-t border-iron bg-background-dark/95 backdrop-blur-md px-4 pb-4 pt-2">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-[#d4a574]" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">sports_esports</span>
+</div>
+<p class="text-xs font-bold leading-normal tracking-wide uppercase">Play</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 hover:text-gold transition-colors" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">leaderboard</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-wide uppercase">Rankings</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 hover:text-gold transition-colors" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">monitoring</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-wide uppercase">Stats</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 hover:text-gold transition-colors" href="#">
+<div class="flex h-8 items-center justify-center">
+<span class="material-symbols-outlined">person</span>
+</div>
+<p class="text-xs font-medium leading-normal tracking-wide uppercase">Sheriff</p>
+</a>
+</div>
+</footer>
+</body></html>

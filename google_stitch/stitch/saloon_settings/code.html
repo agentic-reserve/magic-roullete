@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#d4a573",
+              "background-light": "#f8f7f6",
+              "background-dark": "#1e1914",
+            },
+            fontFamily: {
+              "display": ["Be Vietnam Pro"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<title>Magic Roulette Settings</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="relative mx-auto max-w-md min-h-screen flex flex-col bg-background-light dark:bg-background-dark shadow-2xl overflow-hidden border-x border-primary/10">
+<!-- Header -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 pb-2 justify-between border-b border-primary/20">
+<div class="text-primary flex size-10 shrink-0 items-center justify-center cursor-pointer">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight flex-1 text-center pr-10">Magic Roulette Settings</h2>
+</div>
+<!-- Scrollable Content Area -->
+<div class="flex-1 overflow-y-auto pb-24">
+<!-- Hero Panel (Wooden Style) -->
+<div class="px-4 py-6">
+<div class="relative w-full h-32 rounded-xl overflow-hidden bg-gradient-to-br from-[#3e2723] to-[#1a0f0e] border-2 border-primary/30 flex items-center justify-center">
+<div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/wood-pattern.png')]" data-alt="Dark weathered wood plank texture pattern"></div>
+<div class="relative text-center">
+<span class="material-symbols-outlined text-primary text-5xl mb-2">settings_suggest</span>
+<p class="text-primary font-bold uppercase tracking-widest text-xs">Dusty Saloon Configuration</p>
+</div>
+</div>
+</div>
+<!-- General Section -->
+<div class="px-4 mb-2">
+<h3 class="text-primary text-sm font-bold uppercase tracking-wider py-2">General Audio &amp; Tactile</h3>
+<!-- Sound Effects Row -->
+<div class="flex items-center gap-4 bg-primary/5 dark:bg-primary/10 rounded-lg px-4 min-h-16 justify-between mb-2 border border-primary/10">
+<div class="flex items-center gap-4 text-slate-800 dark:text-slate-200">
+<span class="material-symbols-outlined text-primary">volume_up</span>
+<p class="text-base font-medium">Sound Effects</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-2 border-[#8d6e63] bg-[#3e2723] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary">
+<div class="h-full w-[23px] rounded-full bg-gradient-to-b from-[#d7ccc8] to-[#a1887f] shadow-inner border border-[#5d4037]"></div>
+<input checked="" class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<!-- Haptic Feedback Row -->
+<div class="flex items-center gap-4 bg-primary/5 dark:bg-primary/10 rounded-lg px-4 min-h-16 justify-between border border-primary/10">
+<div class="flex items-center gap-4 text-slate-800 dark:text-slate-200">
+<span class="material-symbols-outlined text-primary">vibration</span>
+<p class="text-base font-medium">Haptic Feedback</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-2 border-[#8d6e63] bg-[#3e2723] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary">
+<div class="h-full w-[23px] rounded-full bg-gradient-to-b from-[#d7ccc8] to-[#a1887f] shadow-inner border border-[#5d4037]"></div>
+<input class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+</div>
+<!-- Privacy Section -->
+<div class="px-4 mt-6 mb-2">
+<h3 class="text-primary text-sm font-bold uppercase tracking-wider py-2">Privacy &amp; Security</h3>
+<div class="flex items-center gap-4 bg-primary/5 dark:bg-primary/10 rounded-lg px-4 min-h-16 justify-between border border-primary/10">
+<div class="flex items-center gap-4 text-slate-800 dark:text-slate-200">
+<span class="material-symbols-outlined text-primary">visibility_off</span>
+<p class="text-base font-medium">Privacy Mode</p>
+</div>
+<div class="shrink-0">
+<label class="relative flex h-[31px] w-[51px] cursor-pointer items-center rounded-full border-2 border-[#8d6e63] bg-[#3e2723] p-0.5 has-[:checked]:justify-end has-[:checked]:bg-primary">
+<div class="h-full w-[23px] rounded-full bg-gradient-to-b from-[#d7ccc8] to-[#a1887f] shadow-inner border border-[#5d4037]"></div>
+<input class="invisible absolute" type="checkbox"/>
+</label>
+</div>
+</div>
+<p class="text-xs text-slate-500 mt-2 px-1">Enabling this will hide your username from public leaderboards and global feeds.</p>
+</div>
+<!-- Wallet Management -->
+<div class="px-4 mt-6">
+<h3 class="text-primary text-sm font-bold uppercase tracking-wider py-2">Assets</h3>
+<div class="bg-primary/5 dark:bg-primary/10 rounded-lg border border-primary/10 overflow-hidden">
+<div class="flex items-center gap-4 px-4 min-h-16 justify-between border-b border-primary/10 cursor-pointer hover:bg-primary/20 transition-colors">
+<div class="flex items-center gap-4 text-slate-800 dark:text-slate-200">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+<p class="text-base font-medium">Wallet Management</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+<div class="flex items-center gap-4 px-4 min-h-16 justify-between cursor-pointer hover:bg-primary/20 transition-colors">
+<div class="flex items-center gap-4 text-slate-800 dark:text-slate-200">
+<span class="material-symbols-outlined text-primary">history</span>
+<p class="text-base font-medium">Transaction History</p>
+</div>
+<span class="material-symbols-outlined text-slate-400">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- About Section -->
+<div class="px-4 mt-8 pb-10">
+<div class="p-6 rounded-xl bg-gradient-to-tr from-primary/10 to-primary/5 border border-primary/20 text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-3">landscape</span>
+<h4 class="text-lg font-bold text-slate-900 dark:text-slate-100 mb-2">About the Frontier</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed mb-4">
+                        Discover the lore of the Magic Roulette. Version 2.4.0 "Dusty Saloon" update brings new tables and mystic stakes to the wild west.
+                    </p>
+<button class="w-full bg-primary py-3 rounded-lg text-[#1e1914] font-bold uppercase tracking-widest text-sm hover:brightness-110 transition-all">
+                        Read the Tales
+                    </button>
+</div>
+</div>
+</div>
+<!-- Bottom Navigation Bar (Themed) -->
+<div class="absolute bottom-0 left-0 right-0 flex gap-2 border-t border-primary/20 bg-background-light dark:bg-[#25211e] px-4 pb-3 pt-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">casino</span>
+<p class="text-[10px] font-medium leading-normal tracking-tight">Lobby</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">sports_esports</span>
+<p class="text-[10px] font-medium leading-normal tracking-tight">Games</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-slate-500 dark:text-slate-400" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<p class="text-[10px] font-medium leading-normal tracking-tight">Stats</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+<p class="text-[10px] font-medium leading-normal tracking-tight">Settings</p>
+</a>
+</div>
+</div>
+</body></html>

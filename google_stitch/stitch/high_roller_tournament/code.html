@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>High Roller Arena - Magic Roulette</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4a573",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#1e1914",
+                        "saloon-brown": "#3a2d23",
+                        "dusty-gold": "#c5a059",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .golden-glow {
+            box-shadow: 0 0 20px rgba(212, 165, 115, 0.4);
+        }
+        .ticket-texture {
+            background-image: radial-gradient(circle at 2px 2px, rgba(212, 165, 115, 0.15) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 border-b border-primary/10 justify-between">
+<div class="text-primary flex size-12 shrink-0 items-center justify-start">
+<span class="material-symbols-outlined cursor-pointer">arrow_back</span>
+</div>
+<div class="flex flex-col items-center">
+<h2 class="text-primary text-xs font-bold uppercase tracking-widest leading-tight">Magic Roulette</h2>
+<h1 class="text-slate-100 text-lg font-bold leading-tight tracking-tight">HIGH ROLLER ARENA</h1>
+</div>
+<div class="flex w-12 items-center justify-end">
+<button class="text-primary p-0">
+<span class="material-symbols-outlined">info</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Hero Section with Invitation -->
+<div class="p-4 @container">
+<div class="relative group cursor-default">
+<!-- Decorative Saloon Background Card -->
+<div class="absolute inset-0 bg-primary/5 rounded-xl border border-primary/20 scale-[0.98] translate-y-2"></div>
+<div class="relative bg-saloon-brown dark:bg-[#2a241d] rounded-xl overflow-hidden border border-primary/30 shadow-2xl">
+<!-- Subtle Background Motifs -->
+<div class="absolute inset-0 opacity-10 ticket-texture"></div>
+<div class="absolute -right-12 -top-12 size-48 rounded-full border-4 border-primary/20"></div>
+<div class="p-8 flex flex-col items-center text-center relative z-10">
+<div class="bg-primary/20 p-3 rounded-full mb-4">
+<span class="material-symbols-outlined text-primary text-4xl">confirmation_number</span>
+</div>
+<p class="text-primary font-bold tracking-[0.2em] text-xs mb-2">EXCLUSIVE INVITATION</p>
+<h3 class="text-3xl font-bold text-slate-100 mb-4">GOLDEN TICKET TOURNAMENT</h3>
+<div class="w-full h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent my-6"></div>
+<div class="grid grid-cols-2 gap-4 w-full mb-8">
+<div class="bg-background-dark/50 p-4 rounded-lg border border-primary/10">
+<p class="text-primary/60 text-xs uppercase font-bold mb-1">Entry Fee</p>
+<p class="text-2xl font-bold text-primary">50 SOL</p>
+</div>
+<div class="bg-background-dark/50 p-4 rounded-lg border border-primary/10">
+<p class="text-primary/60 text-xs uppercase font-bold mb-1">Prize Pool</p>
+<p class="text-2xl font-bold text-primary">5,000 SOL</p>
+</div>
+</div>
+<!-- Limited Entry Counter -->
+<div class="flex flex-col items-center gap-2 w-full mb-2">
+<div class="flex justify-between w-full text-xs font-bold px-1">
+<span class="text-primary/80 uppercase">Seats Remaining</span>
+<span class="text-slate-100">8 / 16 Players</span>
+</div>
+<div class="w-full bg-background-dark h-3 rounded-full overflow-hidden border border-primary/20">
+<div class="bg-primary h-full w-1/2 shadow-[0_0_10px_#d4a573]"></div>
+</div>
+</div>
+</div>
+<!-- Bottom Banner -->
+<div class="bg-primary px-8 py-3 flex justify-between items-center">
+<span class="text-saloon-brown font-bold text-sm tracking-tight">DUSTY SALOON SEASON</span>
+<span class="material-symbols-outlined text-saloon-brown">military_tech</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Details Section -->
+<div class="px-6 py-4">
+<h4 class="text-primary text-sm font-bold uppercase tracking-widest mb-4">Tournament Rules</h4>
+<div class="space-y-4">
+<div class="flex gap-4 items-start">
+<div class="bg-primary/10 p-2 rounded text-primary">
+<span class="material-symbols-outlined text-xl">timer</span>
+</div>
+<div>
+<p class="text-slate-100 font-bold text-sm">Starts in 02:45:12</p>
+<p class="text-primary/60 text-xs">Late registration will not be permitted for High Rollers.</p>
+</div>
+</div>
+<div class="flex gap-4 items-start">
+<div class="bg-primary/10 p-2 rounded text-primary">
+<span class="material-symbols-outlined text-xl">security</span>
+</div>
+<div>
+<p class="text-slate-100 font-bold text-sm">Provably Fair System</p>
+<p class="text-primary/60 text-xs">All spins are verified on-chain via the Solana network.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Visual Decorative Divider -->
+<div class="flex items-center justify-center gap-4 py-8 opacity-30">
+<span class="material-symbols-outlined text-primary">playing_cards</span>
+<div class="h-px w-20 bg-gradient-to-r from-transparent to-primary"></div>
+<span class="material-symbols-outlined text-primary">target</span>
+<div class="h-px w-20 bg-gradient-to-l from-transparent to-primary"></div>
+<span class="material-symbols-outlined text-primary">casino</span>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 left-0 right-0 bg-background-dark/80 backdrop-blur-md border-t border-primary/20 px-4 pb-8 pt-4">
+<button class="w-full bg-primary hover:bg-dusty-gold text-saloon-brown font-bold text-lg py-4 rounded-xl golden-glow transition-all flex items-center justify-center gap-2">
+<span>ENTER ARENA</span>
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+<!-- Bottom Navigation Bar (Example Component Integration) -->
+<nav class="fixed bottom-0 left-0 right-0 z-50">
+<div class="flex gap-2 border-t border-primary/20 bg-background-dark px-4 pb-3 pt-2">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary/60" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-xs font-medium leading-normal">Lobby</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">trophy</span>
+<p class="text-xs font-medium leading-normal">Tourneys</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary/60" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<p class="text-xs font-medium leading-normal">Wallet</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary/60" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-xs font-medium leading-normal">Profile</p>
+</a>
+</div>
+</nav>
+</body></html>

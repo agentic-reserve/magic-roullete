@@ -51,6 +51,16 @@
       "sourceType": "github",
       "computedHash": "6d65653e2930a5f5b108f5ce90520272e37fda9269197e6446a4e07576b36bf5"
     },
+    "framer-motion-animator": {
+      "source": "patricio0312rev/skills",
+      "sourceType": "github",
+      "computedHash": "22a8401fab0cdf32d5c153b98aba5e95435a479810896879535dc7ac3710efbe"
+    },
+    "framer-ui-skills": {
+      "source": "ihlamury/design-skills",
+      "sourceType": "github",
+      "computedHash": "211915eec0dba3034f7b14ccf6d644f829cd3ab12df61609e8e206fb1cd4b872"
+    },
     "frontend-design": {
       "source": "anthropics/skills",
       "sourceType": "github",
@@ -145,6 +155,11 @@
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
       "computedHash": "10eb4ec94577b79ae98c63ce3e7f35f8a6a06436a4011bff083b397de6960eeb"
+    },
+    "vercel-react-native-skills": {
+      "source": "vercel-labs/agent-skills",
+      "sourceType": "github",
+      "computedHash": "a804b4e848059822638c390359976f7021380bcefb1469d473aa4e9202c15ecb"
     },
     "vulnhunter": {
       "source": "sendaifun/skills",

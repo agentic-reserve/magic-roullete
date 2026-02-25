@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4a573",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#1e1914",
+                        "rust": "#d9531e",
+                        "magma": "#8b2612",
+                        "saloon-brown": "#2a2118",
+                        "dust-gold": "#b49b7a"
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>body {
+    font-family: "Be Vietnam Pro", sans-serif
+    }
+.gritty-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCXfJi_E3vEDrsBbjWlcY2n2gR4otcvgnJU1iCzEJ2bmFGUfmgRGv8kQe5LP8o2s2quTDnLnPTxZb7o9PJHNEg4MmF1E1jzr0osgSl88CAE7EMHS8FJfUVuSW_KDkz9aYr_kBTF8LusLx0FKYyUmTCaOjnDu_HG_i2O1ZN_387o37WUxNm-oduDE_hx4Vf88xMvq6XLy0ynGnrND-b-filS2vdXYFvHqrA2O343mGlvqQ97tRVIDsPlirZ6WuueXUN3z1QyX4y05m0s);
+    opacity: 0.1
+    }</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<div class="flex items-center bg-background-light dark:bg-background-dark p-4 border-b border-primary/10 justify-between">
+<div class="text-primary flex size-12 shrink-0 items-center justify-start cursor-pointer">
+<span class="material-symbols-outlined text-3xl">chevron_left</span>
+</div>
+<h2 class="text-primary text-lg font-bold uppercase tracking-widest flex-1 text-center font-display">Liquidation Alert</h2>
+<div class="flex w-12 items-center justify-end">
+<span class="material-symbols-outlined text-rust animate-pulse">report</span>
+</div>
+</div>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col items-center justify-center p-6 space-y-8 relative overflow-hidden">
+<div class="absolute inset-0 gritty-overlay pointer-events-none"></div>
+<!-- Central Warning Icon -->
+<div class="relative">
+<div class="absolute inset-0 bg-rust/20 blur-3xl rounded-full scale-150"></div>
+<div class="relative z-10 flex flex-col items-center">
+<div class="w-32 h-32 rounded-full bg-gradient-to-b from-rust to-magma flex items-center justify-center border-4 border-primary/30 shadow-2xl shadow-rust/40">
+<span class="material-symbols-outlined text-6xl text-background-dark" style="font-variation-settings: 'FILL' 1">skull</span>
+</div>
+<div class="h-1 w-24 bg-primary/20 mt-6 blur-sm rounded-full"></div>
+</div>
+</div>
+<!-- Heading Section -->
+<div class="text-center space-y-2">
+<h1 class="text-rust tracking-tighter text-4xl font-bold leading-none uppercase font-display italic">POSITION LIQUIDATED</h1>
+<p class="text-dust-gold text-sm font-medium uppercase tracking-[0.2em]">The house always wins, partner.</p>
+</div>
+<!-- Details Card -->
+<div class="w-full max-w-sm bg-saloon-brown/40 border border-primary/20 rounded-xl p-5 space-y-4 backdrop-blur-sm">
+<div class="flex justify-between items-center border-b border-primary/10 pb-3">
+<span class="text-dust-gold text-xs uppercase font-bold">Collateral Seized</span>
+<span class="text-slate-100 font-bold text-lg flex items-center gap-1">
+                    10.50 SOL
+                    <img alt="Solana Logo" class="w-4 h-4" data-alt="Solana cryptocurrency symbol" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfRITs9u0guxDnYIdb4GuFKiXv1_ej2r1AFoAS-TICNVliGe_7bELAoKzbwIJf9YqZO3QwSdxqu-mINsAO6wB49Q7uIlnzatBplPgPb2uaERlYrl6wsvyOyN6foAFeHJeoE7gP5pb8ZwAMce_oyW_su37hsdmCTfinOCt17YVz171hxQW53vbN_ipV0cCTzHkL2bJgFMS04yPC-kZpaDnzFiOun6L0GyKMOTsm8-atAUJXE2Hv_qxJsXf9-6AiEl_JJubaAe_val-w"/>
+</span>
+</div>
+<div class="flex justify-between items-center border-b border-primary/10 pb-3">
+<span class="text-dust-gold text-xs uppercase font-bold">Trigger Price</span>
+<span class="text-rust font-bold">$124.82</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-dust-gold text-xs uppercase font-bold">Mark Price</span>
+<span class="text-slate-100 font-bold">$124.80</span>
+</div>
+</div>
+<!-- Warning Text -->
+<p class="text-primary/70 text-sm text-center max-w-xs leading-relaxed italic">
+            "Your stake has been claimed by the saloon vault. Market volatility swept through like a desert storm."
+        </p>
+<!-- Action Buttons -->
+<div class="w-full max-w-sm flex flex-col gap-3 pt-4">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark py-4 rounded-lg font-bold uppercase tracking-widest transition-all shadow-lg shadow-primary/20">
+                Return to Vault
+            </button>
+<button class="w-full bg-transparent border border-rust text-rust hover:bg-rust/10 py-4 rounded-lg font-bold uppercase tracking-widest transition-all">
+                Re-up Collateral
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="border-t border-primary/10 bg-saloon-brown/80 backdrop-blur-md px-4 pb-8 pt-3">
+<div class="flex gap-2 max-w-lg mx-auto">
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-primary" href="#">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1">account_balance</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Vault</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-dust-gold/60" href="#">
+<span class="material-symbols-outlined text-2xl">sports_esports</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Saloon</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-dust-gold/60" href="#">
+<span class="material-symbols-outlined text-2xl">swap_horiz</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Trade</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-end gap-1 text-dust-gold/60" href="#">
+<span class="material-symbols-outlined text-2xl">person</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Profile</p>
+</a>
+</div>
+</nav>
+</body></html>

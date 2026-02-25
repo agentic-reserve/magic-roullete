@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Lucky Draw - Magic Roulette</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4a573",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#1e1914",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header Navigation -->
+<header class="flex items-center justify-between p-4 border-b border-primary/20 bg-background-light dark:bg-background-dark sticky top-0 z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</div>
+<h2 class="text-lg font-bold tracking-tight text-center flex-1">The Lucky Draw</h2>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-1 bg-primary/10 px-3 py-1 rounded-full border border-primary/30">
+<span class="text-xs font-bold text-primary uppercase">2.5 SOL</span>
+</div>
+<span class="material-symbols-outlined text-primary">info</span>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<!-- Hero Section with Revolver Cylinder -->
+<div class="relative @container px-4 py-6">
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-b from-primary/20 to-background-dark aspect-square flex flex-col items-center justify-center border border-primary/20 shadow-2xl">
+<!-- Saloon Background Aesthetic -->
+<div class="absolute inset-0 opacity-10 bg-[url('https://placeholder.pics/svg/600')] bg-cover bg-center" data-alt="Faded dusty saloon interior background pattern"></div>
+<!-- 3D Revolver Cylinder Representation -->
+<div class="relative z-10 w-64 h-64 md:w-80 md:h-80 flex items-center justify-center">
+<!-- The outer cylinder ring -->
+<div class="absolute inset-0 rounded-full border-8 border-primary/40 shadow-[0_0_50px_rgba(212,165,115,0.2)]"></div>
+<!-- Chamber Holes -->
+<div class="grid grid-cols-2 gap-12 rotate-45">
+<div class="w-16 h-16 rounded-full bg-slate-900 border-4 border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary/40 text-4xl">skull</span>
+</div>
+<div class="w-16 h-16 rounded-full bg-slate-900 border-4 border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary/40 text-4xl">star</span>
+</div>
+<div class="w-16 h-16 rounded-full bg-slate-900 border-4 border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary/40 text-4xl">military_tech</span>
+</div>
+<div class="w-16 h-16 rounded-full bg-slate-900 border-4 border-primary/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary/40 text-4xl">local_fire_department</span>
+</div>
+</div>
+<!-- Center Pin -->
+<div class="absolute w-12 h-12 rounded-full bg-primary shadow-lg border-4 border-background-dark flex items-center justify-center">
+<div class="w-2 h-2 rounded-full bg-background-dark"></div>
+</div>
+</div>
+<!-- Spin Instruction -->
+<div class="mt-8 text-center z-10">
+<p class="text-primary font-bold text-xl uppercase tracking-widest">Spin to Win</p>
+<p class="text-slate-400 text-sm mt-1">Try your luck, Cowboy</p>
+</div>
+</div>
+</div>
+<!-- Spin Action Button -->
+<div class="px-4 mb-8">
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-4 rounded-xl shadow-lg shadow-primary/20 flex items-center justify-center gap-3 transition-transform active:scale-95">
+<span class="material-symbols-outlined">restart_alt</span>
+<span class="text-lg uppercase">Spin for 0.1 SOL</span>
+</button>
+</div>
+<!-- Potential Rare Loot Section -->
+<section class="px-4">
+<div class="flex items-center justify-between mb-4">
+<h4 class="text-primary text-sm font-bold uppercase tracking-widest">Potential Rare Loot</h4>
+<span class="text-xs text-slate-500">View All</span>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<!-- Loot Card 1 -->
+<div class="group relative rounded-xl overflow-hidden bg-primary/5 border border-primary/10 p-2 aspect-square flex flex-col gap-2">
+<div class="flex-1 rounded-lg bg-cover bg-center overflow-hidden" data-alt="A luxurious golden revolver hammer with ornate engravings" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdFGdDtjMGkavw4LcQwmWwsNHmg2z9WqWkuCuxGf-dcMdYteQpfMa73KL-9LqawrjJNFK3FF32hak_jB1eaSctC38X0qdLPlyhbhdFkG9z5W5L7qXB9NASnPvw9J0D_-ZrGti_3aoWJ16ZTY7Ti9tdvJtuJ7jORflkXbMhd_Xpt7m-t33I5hXYxrca6tgkKcNS--kAssJB_6hTs0kJsbZLrMNJp6jLuoDVF7FGI-cQu6iCCdAydfXFmPX6fyAMGxLt64FFC8iHgyyK');">
+<div class="absolute top-2 right-2 bg-yellow-500/20 backdrop-blur-sm p-1 rounded-lg border border-yellow-500/50">
+<span class="material-symbols-outlined text-yellow-500 text-xs">grade</span>
+</div>
+</div>
+<div class="px-1 py-1">
+<p class="text-slate-100 text-sm font-bold truncate">Golden Hammer</p>
+<p class="text-primary text-[10px] font-medium uppercase">Legendary</p>
+</div>
+</div>
+<!-- Loot Card 2 -->
+<div class="group relative rounded-xl overflow-hidden bg-primary/5 border border-primary/10 p-2 aspect-square flex flex-col gap-2">
+<div class="flex-1 rounded-lg bg-cover bg-center overflow-hidden" data-alt="Detailed silver skull engraving for revolver grip" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAdgM4_OLXaN4MmHuK_pvTkqw7XdRhMpgBXxDIJomeNhFsh3ZwrZynfEk8h1ebDn4VDrnbcMTyATrpVU6XLmmdRFw3ah2OUrY1o4NL8pyVPLfu1AB2yZJFg9HF4Teb6NWU6_rjQUX2xufI7lXotcjwugJ2AtxMORaT-We5jmV_sv8W9shQbDBbGj_SR5Cq6W5NdMlRew1raGobUFEWFbJS9j1DRVv7vNwE6QojjOeN6ahKs_EKK6xRzV-rlHzpDIhWygsrqXHRdIpUn');">
+<div class="absolute top-2 right-2 bg-purple-500/20 backdrop-blur-sm p-1 rounded-lg border border-purple-500/50">
+<span class="material-symbols-outlined text-purple-500 text-xs">auto_awesome</span>
+</div>
+</div>
+<div class="px-1 py-1">
+<p class="text-slate-100 text-sm font-bold truncate">Skull Engraving</p>
+<p class="text-primary text-[10px] font-medium uppercase">Epic</p>
+</div>
+</div>
+<!-- Loot Card 3 -->
+<div class="group relative rounded-xl overflow-hidden bg-primary/5 border border-primary/10 p-2 aspect-square flex flex-col gap-2">
+<div class="flex-1 rounded-lg bg-cover bg-center overflow-hidden" data-alt="Polished ivory grip handle for a revolver" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAM5FRNNkmhQIAaGZSJPqacmDmscWcm8tnOwUKMLGGKRCh5b_iG9iqtc6mqwGwAymlLip9N6vuPJzuaIR27zm1x7g-nxvW6G0IN_Z2jE286FkozzX4ADFbGbv3hXNo4fAkHdsQDbma_JSZFs4bdOYILv21L1zlybs3h-ZKzGzQDxKbb9cdQN3IVzoA1T16_4QOWrms7760484x2UYQhGVqpDVuCP9BhBLw3Fj9bqjiGZfkH0CHJ_GfkKlBVJh-gNZBlKBnAdcdZWH9a');">
+</div>
+<div class="px-1 py-1">
+<p class="text-slate-100 text-sm font-bold truncate">Ivory Grip</p>
+<p class="text-primary text-[10px] font-medium uppercase">Rare</p>
+</div>
+</div>
+<!-- Loot Card 4 -->
+<div class="group relative rounded-xl overflow-hidden bg-primary/5 border border-primary/10 p-2 aspect-square flex flex-col gap-2">
+<div class="flex-1 rounded-lg bg-cover bg-center overflow-hidden" data-alt="Glowing blue custom bullets with magic trails" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBX8MbT-dB5D5sqBuSlyqbUmR39d7p4Ny_WY4jpV6rBINBGtEValy5dPcWnED3YATIk7Q38665pJ0mDFMmxFK68y6WdAKOxMft9KdyuDh-6qZChUSrs2Ca2glw21PlQxjQcTh-WSIOcGil86yciRRI0QYQ6H2rEUxXWaQxOOrxZTEkQZ0faYoGD4nfsTUgmu2VOGoRGAvznV59JwTyTDcUoX0MthD3H4auqZpp3k0RWWvdML_l_gzkkLB8riV-wtvr92rMCLvoaQkGI');">
+</div>
+<div class="px-1 py-1">
+<p class="text-slate-100 text-sm font-bold truncate">Soul Bullets</p>
+<p class="text-primary text-[10px] font-medium uppercase">Epic</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 left-0 right-0 border-t border-primary/20 bg-background-light dark:bg-background-dark/95 backdrop-blur-md px-4 pb-6 pt-2 z-50">
+<div class="flex justify-between items-center max-w-md mx-auto">
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Home</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">restart_alt</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Roulette</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">work</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Inventory</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">storefront</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Shop</p>
+</a>
+<a class="flex flex-col items-center gap-1 text-slate-500" href="#">
+<span class="material-symbols-outlined">person</span>
+<p class="text-[10px] font-medium uppercase tracking-tighter">Profile</p>
+</a>
+</div>
+</nav>
+</body></html>

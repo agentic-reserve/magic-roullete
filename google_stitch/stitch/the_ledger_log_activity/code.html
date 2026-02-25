@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4a573",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#1e1914",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .parchment-bg {
+            background: linear-gradient(to bottom right, #fdf6e3, #eee0b1);
+        }
+        .dark .parchment-bg {
+            background: linear-gradient(to bottom right, #eaddca, #c5b358);
+        }
+        .ink-text {
+            color: #2c1e0f;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-background-light dark:bg-background-dark border-b border-primary/20 p-4">
+<div class="flex items-center justify-between max-w-2xl mx-auto w-full">
+<button class="text-primary hover:bg-primary/10 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<h1 class="text-xl font-bold tracking-tight text-primary uppercase italic">The Ledger</h1>
+<button class="text-primary hover:bg-primary/10 p-2 rounded-full transition-colors">
+<span class="material-symbols-outlined">calendar_month</span>
+</button>
+</div>
+</header>
+<!-- Filters -->
+<nav class="bg-background-light dark:bg-background-dark px-4 max-w-2xl mx-auto w-full">
+<div class="flex border-b border-primary/10 gap-6">
+<a class="flex flex-col items-center justify-center border-b-2 border-primary text-primary pb-3 pt-4 px-2" href="#">
+<p class="text-sm font-bold uppercase tracking-widest">All Records</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 px-2 hover:text-primary transition-colors" href="#">
+<p class="text-sm font-bold uppercase tracking-widest">1v1 Duels</p>
+</a>
+<a class="flex flex-col items-center justify-center border-b-2 border-transparent text-slate-500 dark:text-slate-400 pb-3 pt-4 px-2 hover:text-primary transition-colors" href="#">
+<p class="text-sm font-bold uppercase tracking-widest">Brawls</p>
+</a>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto p-4 max-w-2xl mx-auto w-full">
+<div class="flex items-center justify-between mb-6">
+<h2 class="text-xs font-bold uppercase text-slate-500 dark:text-primary/60 tracking-[0.2em]">Recent Activity</h2>
+<span class="text-[10px] font-medium text-slate-400">Territory: West Frontier</span>
+</div>
+<div class="space-y-4">
+<!-- Ledger Entry 1 -->
+<div class="parchment-bg p-5 rounded-lg shadow-xl border-l-4 border-primary/40 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-2 opacity-10">
+<span class="material-symbols-outlined text-6xl ink-text">history_edu</span>
+</div>
+<div class="flex justify-between items-start relative z-10">
+<div class="flex gap-4">
+<div class="bg-primary/20 p-3 rounded-lg flex items-center justify-center h-fit">
+<span class="material-symbols-outlined ink-text">swords</span>
+</div>
+<div>
+<p class="ink-text font-bold text-lg leading-tight italic">Survived (1v1)</p>
+<p class="ink-text/70 text-xs font-medium uppercase tracking-tighter">High Noon Duel • Win</p>
+<p class="ink-text/50 text-[10px] mt-2 font-mono">OCT 24, 1885 | 04:20 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="ink-text font-bold text-lg">+45 SOL</p>
+<span class="text-[10px] bg-primary/30 px-2 py-0.5 rounded uppercase font-bold ink-text/80">Confirmed</span>
+</div>
+</div>
+</div>
+<!-- Ledger Entry 2 -->
+<div class="parchment-bg p-5 rounded-lg shadow-xl border-l-4 border-red-800/40 relative overflow-hidden">
+<div class="flex justify-between items-start relative z-10">
+<div class="flex gap-4">
+<div class="bg-red-800/10 p-3 rounded-lg flex items-center justify-center h-fit">
+<span class="material-symbols-outlined text-red-900">skull</span>
+</div>
+<div>
+<p class="ink-text font-bold text-lg leading-tight italic">Eliminated (2v2)</p>
+<p class="ink-text/70 text-xs font-medium uppercase tracking-tighter">Saloon Brawl • Loss</p>
+<p class="ink-text/50 text-[10px] mt-2 font-mono">OCT 24, 1885 | 01:15 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-red-900 font-bold text-lg">-12 SOL</p>
+</div>
+</div>
+</div>
+<!-- Ledger Entry 3 -->
+<div class="parchment-bg p-5 rounded-lg shadow-xl border-l-4 border-primary/40 relative overflow-hidden">
+<div class="flex justify-between items-start relative z-10">
+<div class="flex gap-4">
+<div class="bg-primary/20 p-3 rounded-lg flex items-center justify-center h-fit">
+<span class="material-symbols-outlined ink-text">groups</span>
+</div>
+<div>
+<p class="ink-text font-bold text-lg leading-tight italic">Survived (2v2)</p>
+<p class="ink-text/70 text-xs font-medium uppercase tracking-tighter">Train Robbery • Win</p>
+<p class="ink-text/50 text-[10px] mt-2 font-mono">OCT 23, 1885 | 11:45 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="ink-text font-bold text-lg">+120 SOL</p>
+<span class="text-[10px] bg-primary/30 px-2 py-0.5 rounded uppercase font-bold ink-text/80">Bounty Hunt</span>
+</div>
+</div>
+</div>
+<!-- Ledger Entry 4 -->
+<div class="parchment-bg p-5 rounded-lg shadow-xl border-l-4 border-primary/40 relative overflow-hidden">
+<div class="flex justify-between items-start relative z-10">
+<div class="flex gap-4">
+<div class="bg-primary/20 p-3 rounded-lg flex items-center justify-center h-fit">
+<span class="material-symbols-outlined ink-text">token</span>
+</div>
+<div>
+<p class="ink-text font-bold text-lg leading-tight italic">Exchange</p>
+<p class="ink-text/70 text-xs font-medium uppercase tracking-tighter">Ammunition Purchase</p>
+<p class="ink-text/50 text-[10px] mt-2 font-mono">OCT 23, 1885 | 09:12 PM</p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-red-900 font-bold text-lg">-5 SOL</p>
+</div>
+</div>
+</div>
+</div>
+<div class="py-8 text-center">
+<button class="border-2 border-primary/30 text-primary px-6 py-2 rounded-lg text-sm font-bold uppercase tracking-widest hover:bg-primary/10 transition-colors">
+                Load Older Records
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<footer class="bg-background-light dark:bg-background-dark border-t border-primary/20 pb-6 pt-2">
+<div class="flex max-w-2xl mx-auto w-full px-4">
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Saloon</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined fill-1">menu_book</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Ledger</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">swords</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Duel</p>
+</a>
+<a class="flex flex-1 flex-col items-center gap-1 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+<p class="text-[10px] font-bold uppercase tracking-tighter">Stakes</p>
+</a>
+</div>
+</footer>
+</body></html>

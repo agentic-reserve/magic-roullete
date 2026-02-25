@@ -25,6 +25,7 @@ test-ledger/
 .env.development.local
 .env.test.local
 .env.production.local
+.env-backup-20260225-013059
 
 # Logs
 *.log

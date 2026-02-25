@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4a573",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#1e1914",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>Dusty Saloon - Achievement Gallery</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen pb-24">
+<!-- Header Section -->
+<header class="sticky top-0 z-10 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-primary/20">
+<div class="flex items-center p-4 justify-between max-w-2xl mx-auto">
+<div class="flex size-10 items-center justify-center rounded-full hover:bg-primary/10 cursor-pointer">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</div>
+<h2 class="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-100">Dusty Saloon Hall of Fame</h2>
+<div class="flex size-10 items-center justify-center rounded-full bg-primary/20">
+<span class="material-symbols-outlined text-primary">military_tech</span>
+</div>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-4 py-6">
+<!-- Stats Overview -->
+<div class="flex flex-wrap gap-4 mb-8">
+<div class="flex-1 min-w-[140px] flex flex-col gap-1 rounded-xl border border-primary/30 bg-primary/5 p-4 items-center text-center">
+<p class="text-primary text-2xl font-bold">24/50</p>
+<p class="text-slate-600 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Achievements</p>
+</div>
+<div class="flex-1 min-w-[140px] flex flex-col gap-1 rounded-xl border border-primary/30 bg-primary/5 p-4 items-center text-center">
+<p class="text-primary text-2xl font-bold">12,450</p>
+<p class="text-slate-600 dark:text-slate-400 text-xs font-medium uppercase tracking-wider">Bounty Earned</p>
+</div>
+</div>
+<!-- Navigation Tabs -->
+<nav class="flex border-b border-primary/20 mb-6">
+<button class="flex-1 py-3 text-sm font-bold border-b-2 border-primary text-primary">ALL POSTERS</button>
+<button class="flex-1 py-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-primary">UNLOCKED</button>
+<button class="flex-1 py-3 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-primary">LOCKED</button>
+</nav>
+<!-- Achievement Grid -->
+<div class="grid grid-cols-2 gap-4">
+<!-- Unlocked Achievement: First Blood -->
+<div class="relative group aspect-[3/4] rounded-lg overflow-hidden border-2 border-primary bg-primary/10 p-3 flex flex-col items-center justify-between text-center transition-transform hover:scale-[1.02]">
+<div class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]"></div>
+<p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-1">Wanted</p>
+<div class="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mb-2 border border-primary/40">
+<span class="material-symbols-outlined text-4xl text-primary">colorize</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-100 text-sm mb-1 uppercase tracking-tighter">First Blood</h3>
+<p class="text-[10px] text-slate-400 italic leading-tight">"The first drop of ink in the ledger of destiny."</p>
+</div>
+<div class="mt-2 py-1 px-3 bg-primary rounded-full">
+<span class="text-[10px] font-bold text-background-dark uppercase">CLAIMED</span>
+</div>
+</div>
+<!-- Unlocked Achievement: High Roller -->
+<div class="relative group aspect-[3/4] rounded-lg overflow-hidden border-2 border-primary bg-primary/10 p-3 flex flex-col items-center justify-between text-center transition-transform hover:scale-[1.02]">
+<div class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]"></div>
+<p class="text-[10px] font-bold text-primary uppercase tracking-[0.2em] mb-1">Wanted</p>
+<div class="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mb-2 border border-primary/40">
+<span class="material-symbols-outlined text-4xl text-primary">currency_bitcoin</span>
+</div>
+<div>
+<h3 class="font-bold text-slate-100 text-sm mb-1 uppercase tracking-tighter">High Roller</h3>
+<p class="text-[10px] text-slate-400 italic leading-tight">"Fortune favors the bold and the heavily loaded."</p>
+</div>
+<div class="mt-2 py-1 px-3 bg-primary rounded-full">
+<span class="text-[10px] font-bold text-background-dark uppercase">CLAIMED</span>
+</div>
+</div>
+<!-- Locked Achievement: 10 Game Streak -->
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden border-2 border-slate-700 bg-slate-800/50 p-3 flex flex-col items-center justify-between text-center grayscale opacity-80">
+<div class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-slate-500 text-2xl mb-1">lock</span>
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-1">Unknown</p>
+</div>
+<div class="w-20 h-20 rounded-full bg-slate-700/50 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-4xl text-slate-600">trending_up</span>
+</div>
+<div class="w-full space-y-2">
+<h3 class="font-bold text-slate-500 text-sm uppercase">10 Game Streak</h3>
+<div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[70%]"></div>
+</div>
+<p class="text-[10px] text-slate-500 font-bold">7 / 10 WINS</p>
+</div>
+</div>
+<!-- Locked Achievement: Survivor -->
+<div class="relative aspect-[3/4] rounded-lg overflow-hidden border-2 border-slate-700 bg-slate-800/50 p-3 flex flex-col items-center justify-between text-center grayscale opacity-80">
+<div class="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/paper-fibers.png')]"></div>
+<div class="flex flex-col items-center">
+<span class="material-symbols-outlined text-slate-500 text-2xl mb-1">lock</span>
+<p class="text-[10px] font-bold text-slate-500 uppercase tracking-[0.2em] mb-1">Unknown</p>
+</div>
+<div class="w-20 h-20 rounded-full bg-slate-700/50 flex items-center justify-center mb-2">
+<span class="material-symbols-outlined text-4xl text-slate-600">health_and_safety</span>
+</div>
+<div class="w-full space-y-2">
+<h3 class="font-bold text-slate-500 text-sm uppercase">Survivor</h3>
+<div class="w-full bg-slate-700 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[40%]"></div>
+</div>
+<p class="text-[10px] text-slate-500 font-bold">40% COMPLETE</p>
+</div>
+</div>
+</div>
+<!-- Detail View Mockup -->
+<div class="mt-12 p-6 rounded-xl border border-primary bg-primary/5 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4">
+<span class="material-symbols-outlined text-primary/30 text-6xl">verified_user</span>
+</div>
+<h4 class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Featured Accomplishment</h4>
+<div class="flex gap-4 items-start relative z-10">
+<div class="size-16 shrink-0 rounded-lg bg-primary flex items-center justify-center shadow-[0_0_15px_rgba(212,165,115,0.4)]">
+<span class="material-symbols-outlined text-background-dark text-3xl">local_fire_department</span>
+</div>
+<div>
+<h2 class="text-xl font-bold text-slate-100 mb-1">Master of the Wheel</h2>
+<p class="text-sm text-slate-400 mb-3">Win 5 consecutive spins with a bet over 500 gold. This proves your nerves are as steady as a mountain range.</p>
+<div class="flex gap-2">
+<div class="px-2 py-1 bg-primary/20 rounded text-[10px] font-bold text-primary">+500 XP</div>
+<div class="px-2 py-1 bg-primary/20 rounded text-[10px] font-bold text-primary">LEGENDARY TITLE</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<div class="fixed bottom-0 left-0 right-0 z-20">
+<div class="max-w-2xl mx-auto flex gap-2 border-t border-primary/20 bg-background-dark/95 backdrop-blur-md px-4 pb-6 pt-3">
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">home</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">SALOON</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">casino</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">ROULETTE</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">emoji_events</span>
+<p class="text-[10px] font-bold leading-normal tracking-wide">GALLERY</p>
+</a>
+<a class="flex flex-1 flex-col items-center justify-center gap-1 text-slate-500 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">shopping_bag</span>
+<p class="text-[10px] font-medium leading-normal tracking-wide">SHOP</p>
+</a>
+</div>
+</div>
+</body></html>

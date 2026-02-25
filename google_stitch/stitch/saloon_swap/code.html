@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#d4a573",
+                        "background-light": "#f8f7f6",
+                        "background-dark": "#1e1914",
+                        "wood-dark": "#2a221b",
+                        "cream": "#f2e8cf",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<header class="flex items-center bg-background-light dark:bg-background-dark p-4 border-b border-primary/20 sticky top-0 z-10">
+<div class="flex size-12 shrink-0 items-center justify-center text-primary cursor-pointer hover:bg-primary/10 rounded-full">
+<span class="material-symbols-outlined text-2xl">arrow_back</span>
+</div>
+<h2 class="text-primary text-xl font-extrabold leading-tight tracking-tight flex-1 text-center uppercase">Saloon Swap</h2>
+<div class="flex w-12 items-center justify-end">
+<button class="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary hover:bg-primary/20">
+<span class="material-symbols-outlined">settings_suggest</span>
+</button>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-4 max-w-md mx-auto w-full space-y-4">
+<div class="bg-wood-dark border border-primary/30 rounded-xl p-5 shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-6xl">currency_bitcoin</span>
+</div>
+<div class="flex justify-between items-center mb-4">
+<span class="text-primary/70 text-sm font-bold uppercase tracking-wider">From</span>
+<span class="text-primary/50 text-xs font-medium">Balance: 42.50 SOL</span>
+</div>
+<div class="flex items-center justify-between gap-4">
+<div class="flex-1">
+<input class="bg-transparent border-none text-3xl font-bold text-slate-100 focus:ring-0 p-0 w-full" placeholder="0.0" type="number" value="1.0"/>
+<p class="text-primary/40 text-sm mt-1">≈ $142.34</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-background-dark font-bold px-4 py-2 rounded-full shadow-lg hover:brightness-110 transition-all">
+<div class="size-6 bg-background-dark/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">token</span>
+</div>
+<span>SOL</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+<div class="flex justify-center -my-6 relative z-10">
+<button class="size-12 bg-primary border-4 border-background-dark rounded-full flex items-center justify-center text-background-dark shadow-xl hover:scale-110 transition-transform">
+<span class="material-symbols-outlined font-bold">swap_vert</span>
+</button>
+</div>
+<div class="bg-wood-dark border border-primary/30 rounded-xl p-5 shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-2 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-6xl">monetization_on</span>
+</div>
+<div class="flex justify-between items-center mb-4">
+<span class="text-primary/70 text-sm font-bold uppercase tracking-wider">To</span>
+<span class="text-primary/50 text-xs font-medium">Balance: 1,200.00 USDC</span>
+</div>
+<div class="flex items-center justify-between gap-4">
+<div class="flex-1">
+<input class="bg-transparent border-none text-3xl font-bold text-slate-100 focus:ring-0 p-0 w-full" placeholder="0.0" readonly="" type="number" value="142.34"/>
+<p class="text-primary/40 text-sm mt-1">Receive at least 141.50 USDC</p>
+</div>
+<button class="flex items-center gap-2 bg-slate-100/10 border border-primary/30 text-slate-100 font-bold px-4 py-2 rounded-full hover:bg-slate-100/20 transition-all">
+<div class="size-6 bg-primary/20 rounded-full flex items-center justify-center">
+<span class="material-symbols-outlined text-sm text-primary">attach_money</span>
+</div>
+<span>USDC</span>
+<span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</div>
+<div class="bg-primary/5 rounded-xl border border-primary/10 p-4 space-y-3">
+<div class="flex justify-between items-center text-sm">
+<span class="text-primary/60 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">info</span> Rate
+                </span>
+<span class="font-bold text-primary italic">1 SOL = 142.34 USDC</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-primary/60 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">tune</span> Slippage Tolerance
+                </span>
+<span class="font-bold text-primary">0.5%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<span class="text-primary/60 flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">local_gas_station</span> Transaction Fee
+                </span>
+<span class="font-bold text-primary">0.000005 SOL</span>
+</div>
+</div>
+<div class="pt-4">
+<button class="w-full bg-primary hover:brightness-110 text-background-dark font-black text-lg py-5 rounded-xl shadow-[0_4px_20px_rgba(212,165,115,0.4)] flex items-center justify-center gap-3 uppercase tracking-widest transition-all active:scale-[0.98]">
+<span class="material-symbols-outlined font-black">lock_open</span>
+                Execute Swap
+            </button>
+<p class="text-center text-primary/40 text-xs mt-4 uppercase tracking-widest font-bold">Fastest Route via Saloon Router v2</p>
+</div>
+</main>
+<nav class="bg-wood-dark border-t border-primary/20 px-4 py-2 flex items-center justify-around pb-6">
+<a class="flex flex-col items-center gap-1 text-primary/50 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">casino</span>
+<span class="text-[10px] font-bold uppercase">Games</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary transition-colors" href="#">
+<span class="material-symbols-outlined fill-1">swap_horizontal_circle</span>
+<span class="text-[10px] font-bold uppercase">Swap</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary/50 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-[10px] font-bold uppercase">Vault</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary/50 hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined">assignment_ind</span>
+<span class="text-[10px] font-bold uppercase">Wanted</span>
+</a>
+</nav>
+<div class="fixed top-24 left-0 w-full h-full pointer-events-none opacity-5 overflow-hidden">
+<div class="absolute -left-20 top-20 rotate-45">
+<span class="material-symbols-outlined text-[300px]">9mp</span>
+</div>
+<div class="absolute -right-20 bottom-20 -rotate-12">
+<span class="material-symbols-outlined text-[300px]">skull</span>
+</div>
+</div>
+</body></html>
